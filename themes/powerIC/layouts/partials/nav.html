@@ -2,7 +2,7 @@
   <a href="/" class="nav-logo">PowerIC<span>.log</span></a>
   <ul class="nav-links">
     <li><a href="/" {{ if .IsHome }}class="active"{{ end }} data-ko="홈" data-en="Home">홈</a></li>
-    <li><a href="/profile/" {{ if eq .RelPermalink "/profile/" }}class="active"{{ end }} data-ko="프로필" data-en="Profile">프로필</a></li>
+    <li><a href="{{ "profile/" | relURL }}" {{ if eq .RelPermalink "/profile/" }}class="active"{{ end }} data-ko="프로필" data-en="Profile">프로필</a></li>
     <li><a href="/posts/" {{ if eq .Section "posts" }}class="active"{{ end }} data-ko="포스트" data-en="Post">포스트</a></li>
   </ul>
   <div class="lang-toggle">
