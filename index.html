@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerIC.log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#ffffff; --bg2:#f7f8fa; --bg3:#f0f2f5;
+    --border:#e4e7ed; --border2:#d0d5de;
+    --accent:#0a7c5c; --accent-lt:#e6f4ef;
+    --text:#111827; --text2:#4b5563; --text3:#9ca3af;
+    --mono:'IBM Plex Mono',monospace; --sans:'Noto Sans KR',sans-serif;
+    --radius:6px;
+  }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:14px; line-height:1.7; }
+
+  /* NAV */
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.94); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    padding:0 2rem; height:54px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-logo { font-family:var(--mono); font-size:15px; font-weight:500; color:var(--text); text-decoration:none; letter-spacing:-0.02em; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { font-family:var(--mono); font-size:11px; color:var(--text2); text-decoration:none; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+  .lang-toggle {
+    font-family:var(--mono); font-size:11px;
+    background:none; border:1px solid var(--border2);
+    border-radius:var(--radius); cursor:pointer;
+    display:flex; overflow:hidden; padding:0;
+  }
+  .lang-toggle button {
+    font-family:var(--mono); font-size:11px; letter-spacing:0.06em;
+    background:none; border:none; cursor:pointer;
+    padding:4px 10px; color:var(--text3); transition:all 0.18s;
+  }
+  .lang-toggle button.active { background:var(--accent); color:#fff; font-weight:500; }
+  .lang-toggle button:not(.active):hover { color:var(--accent); }
+
+  /* HERO */
+  .hero {
+    max-width:860px; margin:0 auto;
+    padding:5rem 2rem 3.5rem;
+    display:grid; grid-template-columns:1fr auto;
+    gap:3rem; align-items:center;
+    border-bottom:1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-family:var(--mono); font-size:11px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--accent);
+    margin-bottom:1rem; display:flex; align-items:center; gap:8px;
+  }
+  .hero-eyebrow::before { content:''; display:inline-block; width:24px; height:1px; background:var(--accent); }
+  .hero h1 { font-family:var(--mono); font-size:2.2rem; font-weight:500; letter-spacing:-0.03em; line-height:1.15; color:var(--text); margin-bottom:6px; }
+  .hero-role { font-family:var(--mono); font-size:12px; color:var(--text3); margin-bottom:1.4rem; letter-spacing:0.04em; }
+  .hero-desc { font-size:14px; color:var(--text2); max-width:500px; line-height:1.9; margin-bottom:2rem; }
+  .hero-desc em { font-style:normal; color:var(--text); font-weight:500; }
+  .hero-cta { display:flex; gap:10px; flex-wrap:wrap; }
+  .btn {
+    font-family:var(--mono); font-size:11px; letter-spacing:0.06em;
+    padding:9px 20px; border-radius:var(--radius);
+    text-decoration:none; transition:all 0.18s;
+    display:inline-flex; align-items:center; gap:6px; cursor:pointer; border:none;
+  }
+  .btn-primary { background:var(--accent); color:#fff; font-weight:500; }
+  .btn-primary:hover { background:#085e46; }
+  .btn-ghost { border:1px solid var(--border2); color:var(--text2); background:transparent; }
+  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-lt); }
+  .hero-avatar {
+    width:108px; height:108px; border-radius:50%;
+    border:2px solid var(--border); background:var(--accent-lt);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:1.6rem; font-weight:500;
+    color:var(--accent); flex-shrink:0;
+  }
+
+  /* STATS */
+  .stats {
+    max-width:860px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-bottom:1px solid var(--border);
+  }
+  .stat { padding:1.4rem 1.8rem; border-right:1px solid var(--border); }
+  .stat:last-child { border-right:none; }
+  .stat-num { font-family:var(--mono); font-size:1.5rem; font-weight:500; color:var(--text); display:block; line-height:1.2; }
+  .stat-label { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.08em; text-transform:uppercase; margin-top:4px; }
+
+  /* SECTION */
+  .section { max-width:860px; margin:0 auto; padding:3rem 2rem; border-bottom:1px solid var(--border); }
+  .section-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1.6rem; }
+  .section-title { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--text3); }
+  .view-all { font-family:var(--mono); font-size:11px; color:var(--text3); text-decoration:none; transition:color 0.2s; }
+  .view-all:hover { color:var(--accent); }
+
+  /* SERIES */
+  .series-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .series-card {
+    border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.2rem 1.4rem; text-decoration:none;
+    transition:all 0.18s; background:var(--bg); display:block;
+  }
+  .series-card:hover { border-color:var(--accent); background:var(--accent-lt); transform:translateY(-2px); box-shadow:0 4px 16px rgba(10,124,92,0.08); }
+  .series-card-name { font-size:13px; font-weight:500; color:var(--text); margin-bottom:4px; display:block; }
+  .series-card-sub { font-family:var(--mono); font-size:10px; color:var(--text3); line-height:1.6; display:block; margin-bottom:10px; }
+  .series-card-count { font-family:var(--mono); font-size:10px; color:var(--accent); }
+
+  /* POST LIST */
+  .post-list { display:flex; flex-direction:column; }
+  .post-item {
+    display:grid; grid-template-columns:90px 1fr 80px;
+    gap:1.2rem; align-items:baseline;
+    padding:1rem 0; border-bottom:1px solid var(--border);
+    text-decoration:none; transition:all 0.15s;
+  }
+  .post-item:first-child { border-top:1px solid var(--border); }
+  .post-item:hover .post-title { color:var(--accent); }
+  .post-cat {
+    font-family:var(--mono); font-size:10px; color:var(--accent);
+    background:var(--accent-lt); padding:3px 8px;
+    border-radius:3px; letter-spacing:0.04em; white-space:nowrap; display:inline-block;
+  }
+  .post-title { font-size:13px; color:var(--text); transition:color 0.2s; line-height:1.5; }
+  .post-date { font-family:var(--mono); font-size:11px; color:var(--text3); text-align:right; }
+
+  /* FOOTER */
+  footer { border-top:1px solid var(--border); padding:2rem; }
+  .footer-inner { max-width:860px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+  .footer-logo { font-family:var(--mono); font-size:13px; color:var(--text3); }
+  .footer-logo span { color:var(--accent); }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a { font-family:var(--mono); font-size:11px; color:var(--text3); text-decoration:none; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--accent); }
+  .footer-copy { font-family:var(--mono); font-size:11px; color:var(--text3); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+  .hero  { animation:fadeUp 0.55s ease both; }
+  .stats { animation:fadeUp 0.55s 0.08s ease both; }
+  .section { animation:fadeUp 0.55s 0.14s ease both; }
+
+  @media(max-width:640px){
+    .hero { grid-template-columns:1fr; padding-top:3rem; }
+    .hero-avatar { display:none; }
+    .series-grid { grid-template-columns:repeat(2,1fr); }
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .post-item { grid-template-columns:1fr; gap:4px; }
+    .post-date { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">PowerIC<span>.log</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active" data-ko="홈" data-en="Home">홈</a></li>
+    <li><a href="profile.html" data-ko="프로필" data-en="Profile">프로필</a></li>
+    <li><a href="post.html" data-ko="포스트" data-en="Post">포스트</a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button onclick="setLang('ko')" id="btn-ko" class="active">KO</button>
+    <button onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Power Management IC</div>
+    <h1>Minha Hwang</h1>
+    <div class="hero-role">System/Application Engineer</div>
+    <p class="hero-desc" data-ko='Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.' data-en='Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.'>
+      Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.
+    </p>
+    <div class="hero-cta">
+      <a href="profile.html" class="btn btn-primary" data-ko="프로필 보기 →" data-en="View Profile →">프로필 보기 →</a>
+      <a href="post.html" class="btn btn-ghost" data-ko="포스트 읽기" data-en="Read Posts">포스트 읽기</a>
+    </div>
+  </div>
+  <div class="hero-avatar">MH</div>
+</div>
+
+<div class="stats">
+  <div class="stat"><span class="stat-num">0</span><span class="stat-label" data-ko="포스트" data-en="Posts">포스트</span></div>
+  <div class="stat"><span class="stat-num">5</span><span class="stat-label" data-ko="시리즈" data-en="Series">시리즈</span></div>
+  <div class="stat"><span class="stat-num" id="today-count">—</span><span class="stat-label" data-ko="오늘 방문" data-en="Today">오늘 방문</span></div>
+  <div class="stat"><span class="stat-num" id="total-count">—</span><span class="stat-label" data-ko="전체 방문" data-en="Total">전체 방문</span></div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="section-title" data-ko="시리즈" data-en="Series">시리즈</span>
+    <a href="post.html" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
+  </div>
+  <div class="series-grid">
+    <a href="#" class="series-card">
+      <span class="series-card-name" data-ko="이론/원리" data-en="Theory & Principles">이론/원리</span>
+      <span class="series-card-sub">Power Topology · Circuit Analysis</span>
+      <span class="series-card-count" data-ko="0 편" data-en="0 posts">0 편</span>
+    </a>
+    <a href="#" class="series-card">
+      <span class="series-card-name" data-ko="시스템 설계" data-en="System Design">시스템 설계</span>
+      <span class="series-card-sub" data-ko="EVB 설계 · 부품 선정 · 인덕터 설계" data-en="EVB Design · Component Selection · Inductor Design">EVB 설계 · 부품 선정 · 인덕터 설계</span>
+      <span class="series-card-count" data-ko="0 편" data-en="0 posts">0 편</span>
+    </a>
+    <a href="#" class="series-card">
+      <span class="series-card-name" data-ko="IC 검증" data-en="IC Verification">IC 검증</span>
+      <span class="series-card-sub">IC Verification</span>
+      <span class="series-card-count" data-ko="0 편" data-en="0 posts">0 편</span>
+    </a>
+    <a href="#" class="series-card">
+      <span class="series-card-name" data-ko="시뮬레이션" data-en="Simulation">시뮬레이션</span>
+      <span class="series-card-sub">PSIM · SIMPLIS</span>
+      <span class="series-card-count" data-ko="0 편" data-en="0 posts">0 편</span>
+    </a>
+    <a href="#" class="series-card">
+      <span class="series-card-name" data-ko="제품/사례" data-en="Product & Case Study">제품/사례</span>
+      <span class="series-card-sub" data-ko="실제 IC 개발 케이스 스터디" data-en="Real-world IC Development Case Studies">실제 IC 개발 케이스 스터디</span>
+      <span class="series-card-count" data-ko="0 편" data-en="0 posts">0 편</span>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="section-title" data-ko="최신 포스트" data-en="Recent Posts">최신 포스트</span>
+    <a href="post.html" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
+  </div>
+  <div class="post-list">
+    <div class="post-item">
+      <span class="post-cat" style="color:var(--text3);background:var(--bg2);">—</span>
+      <span class="post-title" style="color:var(--text3);" data-ko="아직 포스트가 없습니다. 곧 업로드 예정입니다." data-en="No posts yet. Coming soon.">아직 포스트가 없습니다. 곧 업로드 예정입니다.</span>
+      <span class="post-date">—</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">PowerIC<span>.log</span></div>
+    <div class="footer-links">
+      <a href="profile.html" data-ko="프로필" data-en="Profile">프로필</a>
+      <a href="https://www.linkedin.com/in/minha-hwang-694b25313/" target="_blank">LinkedIn</a>
+      <a href="#">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Minha Hwang</div>
+  </div>
+</footer>
+
+<script>
+  const STORAGE_KEY = 'powerIC-lang';
+
+  function setLang(lang) {
+    localStorage.setItem(STORAGE_KEY, lang);
+    applyLang(lang);
+  }
+
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+
+    // toggle buttons
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    // all elements with data-ko / data-en
+    document.querySelectorAll('[data-ko]').forEach(el => {
+      const text = lang === 'ko' ? el.dataset.ko : el.dataset.en;
+      if (text !== undefined) el.innerHTML = text;
+    });
+  }
+
+  // on load: restore saved lang
+  const saved = localStorage.getItem(STORAGE_KEY) || 'ko';
+  applyLang(saved);
+</script>
+</body>
+</html>

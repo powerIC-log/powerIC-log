@@ -1,0 +1,113 @@
+{{ define "main" }}
+
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Power Management IC</div>
+    <h1>Minha Hwang</h1>
+    <div class="hero-role">System/Application Engineer</div>
+    <p class="hero-desc" data-ko='Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.' data-en='Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.'>
+      Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.
+    </p>
+    <div class="hero-cta">
+      <a href="/profile/" class="btn btn-primary" data-ko="프로필 보기 →" data-en="View Profile →">프로필 보기 →</a>
+      <a href="/posts/" class="btn btn-ghost" data-ko="포스트 읽기" data-en="Read Posts">포스트 읽기</a>
+    </div>
+  </div>
+  <div class="hero-avatar">MH</div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <span class="stat-num">{{ len (where .Site.RegularPages "Section" "posts") }}</span>
+    <span class="stat-label" data-ko="포스트" data-en="Posts">포스트</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">5</span>
+    <span class="stat-label" data-ko="시리즈" data-en="Series">시리즈</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="today-count">—</span>
+    <span class="stat-label" data-ko="오늘 방문" data-en="Today">오늘 방문</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="total-count">—</span>
+    <span class="stat-label" data-ko="전체 방문" data-en="Total">전체 방문</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head">
+    <span class="section-title" data-ko="시리즈" data-en="Series">시리즈</span>
+    <a href="/posts/" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
+  </div>
+  <div class="series-grid">
+    <a href="/posts/theory/" class="series-card">
+      <span class="series-card-name" data-ko="이론/원리" data-en="Theory & Principles">이론/원리</span>
+      <span class="series-card-sub">Power Topology · Circuit Analysis</span>
+      <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "이론/원리") }} <span data-ko="편" data-en="posts">편</span></span>
+    </a>
+    <a href="/posts/design/" class="series-card">
+      <span class="series-card-name" data-ko="시스템 설계" data-en="System Design">시스템 설계</span>
+      <span class="series-card-sub" data-ko="EVB 설계 · 부품 선정 · 인덕터 설계" data-en="EVB Design · Component Selection · Inductor Design">EVB 설계 · 부품 선정 · 인덕터 설계</span>
+      <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "시스템 설계") }} <span data-ko="편" data-en="posts">편</span></span>
+    </a>
+    <a href="/posts/verification/" class="series-card">
+      <span class="series-card-name" data-ko="IC 검증" data-en="IC Verification">IC 검증</span>
+      <span class="series-card-sub">IC Verification</span>
+      <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "IC 검증") }} <span data-ko="편" data-en="posts">편</span></span>
+    </a>
+    <a href="/posts/simulation/" class="series-card">
+      <span class="series-card-name" data-ko="시뮬레이션" data-en="Simulation">시뮬레이션</span>
+      <span class="series-card-sub">PSIM · SIMPLIS</span>
+      <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "시뮬레이션") }} <span data-ko="편" data-en="posts">편</span></span>
+    </a>
+    <a href="/posts/casestudy/" class="series-card">
+      <span class="series-card-name" data-ko="제품/사례" data-en="Product & Case Study">제품/사례</span>
+      <span class="series-card-sub" data-ko="실제 IC 개발 케이스 스터디" data-en="Real-world IC Development Case Studies">실제 IC 개발 케이스 스터디</span>
+      <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "제품/사례") }} <span data-ko="편" data-en="posts">편</span></span>
+    </a>
+  </div>
+</div>
+
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
+<div class="section">
+  <div class="section-head">
+    <span class="section-title" data-ko="최신 포스트" data-en="Recent Posts">최신 포스트</span>
+    <a href="/posts/" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
+  </div>
+  <div class="post-list">
+    {{ if $posts }}
+      {{ range first 5 $posts }}
+      <a href="{{ .RelPermalink }}" class="post-item">
+        <span class="post-cat">{{ .Params.series }}</span>
+        <span class="post-title">{{ .Title }}</span>
+        <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+      </a>
+      {{ end }}
+    {{ else }}
+      <div class="post-item">
+        <span class="post-cat" style="color:var(--text3);background:var(--bg2);">—</span>
+        <span class="post-title" style="color:var(--text3);" data-ko="아직 포스트가 없습니다. 곧 업로드 예정입니다." data-en="No posts yet. Coming soon.">아직 포스트가 없습니다. 곧 업로드 예정입니다.</span>
+        <span class="post-date">—</span>
+      </div>
+    {{ end }}
+  </div>
+</div>
+
+<script>
+// GoatCounter visitor stats
+fetch('https://poweric-log.goatcounter.com/counter/TOTAL.json')
+  .then(r => r.json())
+  .then(d => {
+    if (d.count) document.getElementById('total-count').textContent = Number(d.count).toLocaleString();
+  }).catch(() => {});
+
+const today = new Date().toISOString().split('T')[0];
+fetch(`https://poweric-log.goatcounter.com/counter/TOTAL.json?start=${today}`)
+  .then(r => r.json())
+  .then(d => {
+    if (d.count) document.getElementById('today-count').textContent = Number(d.count).toLocaleString();
+  }).catch(() => {});
+</script>
+
+{{ end }}

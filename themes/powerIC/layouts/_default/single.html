@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="post-wrap">
+  <div class="post-header">
+    <div class="post-meta">
+      <span class="post-cat">{{ .Params.series }}</span>
+      <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+    </div>
+    <h1 class="post-title-lg">{{ .Title }}</h1>
+    {{ with .Params.description }}<p class="post-subtitle">{{ . }}</p>{{ end }}
+    {{ with .Params.tags }}
+    <div class="post-tags">
+      {{ range . }}<span class="post-tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </div>
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+  <div class="post-nav">
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}" class="post-nav-item prev">
+      <span class="post-nav-label">← 이전 포스트</span>
+      <span class="post-nav-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" class="post-nav-item next">
+      <span class="post-nav-label">다음 포스트 →</span>
+      <span class="post-nav-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

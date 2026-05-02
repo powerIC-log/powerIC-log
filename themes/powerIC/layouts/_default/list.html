@@ -1,0 +1,33 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="section-head" style="margin-bottom:2rem;">
+    <span class="section-title" data-ko="전체 포스트" data-en="All Posts">전체 포스트</span>
+  </div>
+  <div class="post-list">
+    {{ $posts := where .Site.RegularPages "Section" "posts" }}
+    {{ if $posts }}
+      {{ range $posts }}
+      <a href="{{ .RelPermalink }}" class="post-item">
+        <span class="post-cat">{{ .Params.series }}</span>
+        <div>
+          <div class="post-title">{{ .Title }}</div>
+          {{ with .Params.description }}<div class="post-desc">{{ . }}</div>{{ end }}
+          {{ with .Params.tags }}
+          <div class="post-tags" style="margin-top:6px;">
+            {{ range . }}<span class="post-tag">{{ . }}</span>{{ end }}
+          </div>
+          {{ end }}
+        </div>
+        <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+      </a>
+      {{ end }}
+    {{ else }}
+      <div class="post-item">
+        <span class="post-cat" style="color:var(--text3);background:var(--bg2);">—</span>
+        <span class="post-title" style="color:var(--text3);" data-ko="아직 포스트가 없습니다." data-en="No posts yet.">아직 포스트가 없습니다.</span>
+        <span class="post-date">—</span>
+      </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

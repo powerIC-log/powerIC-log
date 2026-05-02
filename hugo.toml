@@ -1,0 +1,16 @@
+baseURL = "https://powerIC-log.github.io/"
+languageCode = "ko-kr"
+title = "PowerIC.log"
+theme = "powerIC"
+defaultContentLanguage = "ko"
+
+[params]
+  author = "Minha Hwang"
+  description = "Power Management System/Application Engineer with 13+ years — AC/DC, DC/DC, and PMIC, from first silicon to mass production."
+  goatcounter = "poweric-log"
+
+[markup]
+  [markup.highlight]
+    style = "github"
+  [markup.goldmark.renderer]
+    unsafe = true

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile | PowerIC.log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg:#ffffff; --bg2:#f7f8fa; --bg3:#f0f2f5;
+    --border:#e4e7ed; --border2:#d0d5de;
+    --accent:#0a7c5c; --accent-lt:#e6f4ef;
+    --text:#111827; --text2:#4b5563; --text3:#9ca3af;
+    --mono:'IBM Plex Mono',monospace; --sans:'Noto Sans KR',sans-serif;
+    --radius:6px;
+  }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:14px; line-height:1.7; }
+
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.94); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    padding:0 2rem; height:54px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-logo { font-family:var(--mono); font-size:15px; font-weight:500; color:var(--text); text-decoration:none; letter-spacing:-0.02em; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { font-family:var(--mono); font-size:11px; color:var(--text2); text-decoration:none; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+  .lang-toggle {
+    font-family:var(--mono); font-size:11px;
+    background:none; border:1px solid var(--border2);
+    border-radius:var(--radius); cursor:pointer;
+    display:flex; overflow:hidden; padding:0;
+  }
+  .lang-toggle button {
+    font-family:var(--mono); font-size:11px; letter-spacing:0.06em;
+    background:none; border:none; cursor:pointer;
+    padding:4px 10px; color:var(--text3); transition:all 0.18s;
+  }
+  .lang-toggle button.active { background:var(--accent); color:#fff; font-weight:500; }
+  .lang-toggle button:not(.active):hover { color:var(--accent); }
+
+  .page-wrap { max-width:780px; margin:0 auto; padding:4rem 2rem 5rem; }
+
+  .profile-header {
+    display:grid; grid-template-columns:auto 1fr; gap:2.4rem;
+    align-items:center; padding-bottom:3rem;
+    border-bottom:1px solid var(--border); margin-bottom:3rem;
+  }
+  .avatar {
+    width:96px; height:96px; border-radius:50%;
+    border:2px solid var(--border); background:var(--accent-lt);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:1.6rem; font-weight:500; color:var(--accent);
+  }
+  .profile-name { font-family:var(--mono); font-size:1.8rem; font-weight:500; letter-spacing:-0.02em; margin-bottom:4px; }
+  .profile-title { font-family:var(--mono); font-size:11px; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.8rem; }
+  .profile-summary { font-size:13px; color:var(--text2); max-width:460px; line-height:1.8; margin-bottom:1.2rem; }
+  .profile-contacts { display:flex; gap:8px; flex-wrap:wrap; }
+  .contact-link {
+    font-family:var(--mono); font-size:11px; color:var(--text2);
+    text-decoration:none; border:1px solid var(--border2);
+    padding:4px 12px; border-radius:var(--radius);
+    transition:all 0.18s; letter-spacing:0.04em;
+  }
+  .contact-link:hover { color:var(--accent); border-color:var(--accent); background:var(--accent-lt); }
+
+  .profile-section { margin-bottom:3rem; }
+  .section-label {
+    font-family:var(--mono); font-size:10px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--text3);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:1.8rem; padding-bottom:0.7rem;
+    border-bottom:1px solid var(--border);
+  }
+  .section-label::before { content:''; width:3px; height:12px; background:var(--accent); border-radius:2px; display:inline-block; }
+
+  .exp-item { margin-bottom:2.4rem; }
+  .exp-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2px; flex-wrap:wrap; gap:4px; }
+  .exp-role { font-size:14px; font-weight:500; color:var(--text); }
+  .exp-period { font-family:var(--mono); font-size:11px; color:var(--text3); white-space:nowrap; }
+  .exp-company { font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:12px; letter-spacing:0.04em; }
+  .exp-project { margin-bottom:14px; }
+  .exp-project-title {
+    font-family:var(--mono); font-size:11px; color:var(--text2);
+    background:var(--bg2); border:1px solid var(--border);
+    padding:4px 10px; border-radius:var(--radius);
+    display:inline-block; margin-bottom:8px;
+  }
+  .exp-bullets { list-style:none; }
+  .exp-bullets li { font-size:13px; color:var(--text2); line-height:1.75; padding:2px 0 2px 16px; position:relative; }
+  .exp-bullets li::before { content:'–'; position:absolute; left:0; color:var(--text3); font-family:var(--mono); }
+
+  .exp-divider { border:none; border-top:1px dashed var(--border); margin:2rem 0; }
+
+  .edu-item { display:grid; grid-template-columns:1fr auto; gap:1rem; align-items:start; margin-bottom:1.4rem; }
+  .edu-degree { font-size:14px; font-weight:500; color:var(--text); margin-bottom:2px; }
+  .edu-school { font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:2px; }
+  .edu-detail { font-family:var(--mono); font-size:11px; color:var(--text3); line-height:1.6; }
+  .edu-period { font-family:var(--mono); font-size:11px; color:var(--text3); text-align:right; white-space:nowrap; padding-top:3px; }
+
+  .patent-item { padding:0.9rem 0; border-bottom:1px solid var(--border); }
+  .patent-item:first-child { border-top:1px solid var(--border); }
+  .patent-id { font-family:var(--mono); font-size:10px; color:var(--accent); letter-spacing:0.06em; margin-bottom:4px; }
+  .patent-title { font-size:13px; color:var(--text); line-height:1.5; }
+
+  .pub-item { padding:0.9rem 0; border-bottom:1px solid var(--border); }
+  .pub-item:first-child { border-top:1px solid var(--border); }
+  .pub-venue { font-family:var(--mono); font-size:10px; color:var(--text3); margin-bottom:4px; letter-spacing:0.04em; }
+  .pub-title { font-size:13px; color:var(--text); line-height:1.5; }
+
+  .skills-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem; }
+  .skill-group-title { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+  .skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .skill-tag {
+    font-family:var(--mono); font-size:11px;
+    background:var(--bg2); border:1px solid var(--border);
+    color:var(--text2); padding:3px 10px; border-radius:var(--radius); transition:all 0.15s;
+  }
+  .skill-tag:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-lt); }
+
+  footer { border-top:1px solid var(--border); padding:2rem; }
+  .footer-inner { max-width:780px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+  .footer-logo { font-family:var(--mono); font-size:13px; color:var(--text3); }
+  .footer-logo span { color:var(--accent); }
+  .footer-copy { font-family:var(--mono); font-size:11px; color:var(--text3); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .page-wrap { animation:fadeUp 0.5s ease both; }
+
+  @media(max-width:600px){
+    .profile-header { grid-template-columns:1fr; }
+    .skills-grid { grid-template-columns:1fr; }
+    .edu-item { grid-template-columns:1fr; }
+    .edu-period { text-align:left; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">PowerIC<span>.log</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-ko="홈" data-en="Home">홈</a></li>
+    <li><a href="profile.html" class="active" data-ko="프로필" data-en="Profile">프로필</a></li>
+    <li><a href="post.html" data-ko="포스트" data-en="Post">포스트</a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button onclick="setLang('ko')" id="btn-ko" class="active">KO</button>
+    <button onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="profile-header">
+    <div class="avatar">MH</div>
+    <div>
+      <div class="profile-name">Minha Hwang</div>
+      <div class="profile-title">Power Management System/Application Engineer</div>
+      <p class="profile-summary" data-ko="Power Management System/Application Engineer with 13+ years — AC/DC, DC/DC, and PMIC, from first silicon to mass production." data-en="Power Management System/Application Engineer with 13+ years — AC/DC, DC/DC, and PMIC, from first silicon to mass production.">
+        Power Management System/Application Engineer with 13+ years — AC/DC, DC/DC, and PMIC, from first silicon to mass production.
+      </p>
+      <div class="profile-contacts">
+        <a href="mailto:minhavalue@naver.com" class="contact-link">✉ Email</a>
+        <a href="https://www.linkedin.com/in/minha-hwang-694b25313/" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="#" class="contact-link" data-ko="서울, 대한민국" data-en="Seoul, Korea">서울, 대한민국</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK EXPERIENCE -->
+  <div class="profile-section">
+    <div class="section-label" data-ko="경력" data-en="Work Experience">경력</div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Principal Engineer</span>
+        <span class="exp-period">Oct 2024 – Present</span>
+      </div>
+      <div class="exp-company">Silicon Mitus</div>
+
+      <div class="exp-project">
+        <span class="exp-project-title">PMIC — Client DDR5 DIMM</span>
+        <ul class="exp-bullets">
+          <li data-ko="JEDEC PMIC 표준 기반 시스템 검증 테스트 플랜 수립 및 실행" data-en="Developed and executed system validation test plans based on JEDEC PMIC standards">JEDEC PMIC 표준 기반 시스템 검증 테스트 플랜 수립 및 실행</li>
+          <li data-ko="Power on/off 시퀀스, OVP/OCP 등 보호 회로, Dynamic Load Transient, LX Spike 전 항목 검증" data-en="Full system validation covering power on/off sequence, OVP/OCP protection, dynamic load transient, and LX spike measurement">Power on/off 시퀀스, OVP/OCP 등 보호 회로, Dynamic Load Transient, LX Spike 전 항목 검증</li>
+          <li data-ko="Script 기반 IC 검증 테스트 자동화 경험" data-en="IC validation test automation experience using script-based framework">Script 기반 IC 검증 테스트 자동화 경험</li>
+          <li data-ko="Jira 기반 이슈 트래킹 — IC 검증 시 발생한 이슈 정리 및 리비전별 수정 검증" data-en="Issue tracking via Jira — organizing validation issues and verifying fixes across silicon revisions">Jira 기반 이슈 트래킹 — IC 검증 시 발생한 이슈 정리 및 리비전별 수정 검증</li>
+        </ul>
+      </div>
+
+      <div class="exp-project">
+        <span class="exp-project-title">Sub PMIC — Enterprise SSD</span>
+        <ul class="exp-bullets">
+          <li data-ko="고객 요구사항 및 데이터시트 기반 테스트 플랜 수립" data-en="Developed test plans based on customer requirements and datasheet specifications">고객 요구사항 및 데이터시트 기반 테스트 플랜 수립</li>
+          <li data-ko="기능 검증 및 보호 회로 테스트 포함 시스템 검증 수행" data-en="Performed system validation including functional verification and protection testing">기능 검증 및 보호 회로 테스트 포함 시스템 검증 수행</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="exp-divider">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Staff Application Engineer</span>
+        <span class="exp-period">May 2017 – Sep 2024</span>
+      </div>
+      <div class="exp-company" data-ko="onsemi · 신규 제품 5개 개발, 4개 양산" data-en="onsemi · 5 new products developed, 4 mass-produced">onsemi · 신규 제품 5개 개발, 4개 양산</div>
+
+      <div class="exp-project">
+        <span class="exp-project-title">Interleaved Boost PFC Controller (NCL2802)</span>
+        <ul class="exp-bullets">
+          <li data-ko="스펙 정의 및 예비 데이터시트 작성 주도" data-en="Led spec definition and preliminary datasheet development">스펙 정의 및 예비 데이터시트 작성 주도</li>
+          <li data-ko="SIMPLIS 시뮬레이션 컨셉 검증" data-en="Concept verification via SIMPLIS simulation">SIMPLIS 시뮬레이션 컨셉 검증</li>
+          <li data-ko="인터리빙 알고리즘 및 조명·컴퓨팅 응용 THD 최적화 핵심 IP 생성" data-en="Generated key IP: interleaving algorithm and THD optimization for lighting and computing applications">인터리빙 알고리즘 및 조명·컴퓨팅 응용 THD 최적화 핵심 IP 생성</li>
+        </ul>
+      </div>
+
+      <div class="exp-project">
+        <span class="exp-project-title">High Efficiency PFC Controller (NCP1623)</span>
+        <ul class="exp-bullets">
+          <li data-ko="시스템 레벨 IC 검증 및 이슈 해결" data-en="IC validation at system level and issue resolution">시스템 레벨 IC 검증 및 이슈 해결</li>
+          <li data-ko="외부 부품 선정, 인덕터 설계 포함 EVB 회로도 설계" data-en="EVB schematic design including external component selection and inductor design">외부 부품 선정, 인덕터 설계 포함 EVB 회로도 설계</li>
+          <li data-ko="공개 데이터시트 및 Application Note 작성" data-en="Authored public datasheet and application note">공개 데이터시트 및 Application Note 작성</li>
+        </ul>
+      </div>
+
+      <div class="exp-project">
+        <span class="exp-project-title">DC/DC Buck Controller (NCL35076 / NCL30076)</span>
+        <ul class="exp-bullets">
+          <li data-ko="IC 스펙 정의 및 DCM 디지털 보정 고정밀 아날로그 디밍 핵심 IP 생성" data-en="Defined IC specs and generated key IP: high-accuracy analog dimming with digital compensation in DCM">IC 스펙 정의 및 DCM 디지털 보정 고정밀 아날로그 디밍 핵심 IP 생성</li>
+          <li data-ko="SIMPLIS 시뮬레이션 및 FPGA 에뮬레이션 보드 컨셉 검증" data-en="Concept verification via SIMPLIS simulation and FPGA-based emulation board">SIMPLIS 시뮬레이션 및 FPGA 에뮬레이션 보드 컨셉 검증</li>
+          <li data-ko="CCM/DCM·CrM/DCM 멀티모드 지원 싱글코어 아키텍처 개발" data-en="Developed single-core architecture supporting CCM/DCM and CrM/DCM multi-mode products">CCM/DCM·CrM/DCM 멀티모드 지원 싱글코어 아키텍처 개발</li>
+          <li data-ko="EVB 회로도 설계 및 공개 데이터시트·Application Note 작성" data-en="EVB schematic design and authored public datasheet and application note">EVB 회로도 설계 및 공개 데이터시트·Application Note 작성</li>
+        </ul>
+      </div>
+
+      <div class="exp-project">
+        <span class="exp-project-title">Direct AC Drive LED Driver (NCL30170)</span>
+        <ul class="exp-bullets">
+          <li data-ko="시스템 레벨 IC 검증 및 EVB 설계" data-en="IC validation at system level and EVB design">시스템 레벨 IC 검증 및 EVB 설계</li>
+          <li data-ko="공개 데이터시트 및 Application Note 작성" data-en="Authored public datasheet and application note">공개 데이터시트 및 Application Note 작성</li>
+          <li data-ko="중국·대만·태국 고객 현장 기술 지원" data-en="Customer technical support with on-site visits in China, Taiwan, and Thailand">중국·대만·태국 고객 현장 기술 지원</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="exp-divider">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Senior Engineer</span>
+        <span class="exp-period">Feb 2013 – May 2017</span>
+      </div>
+      <div class="exp-company">Samsung Electro-Mechanics</div>
+      <ul class="exp-bullets">
+        <li data-ko="파워 인덕터 등가 회로 모델(SPICE 라이브러리) 및 DC-Bias 특성 개발" data-en="Developed power inductor equivalent circuit model (SPICE library) with DC-bias characteristics">파워 인덕터 등가 회로 모델(SPICE 라이브러리) 및 DC-Bias 특성 개발</li>
+        <li data-ko="파워 인덕터 평가용 AC 손실 측정 시스템 구축" data-en="Built AC loss measurement system for power inductor evaluation">파워 인덕터 평가용 AC 손실 측정 시스템 구축</li>
+        <li data-ko="AC Direct LED 모듈 설계·평가 — 11W LED 드라이버 4개 제품 양산" data-en="Designed and evaluated AC direct LED modules — 11W LED driver mass production (4 product lines)">AC Direct LED 모듈 설계·평가 — 11W LED 드라이버 4개 제품 양산</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="profile-section">
+    <div class="section-label" data-ko="학력" data-en="Education">학력</div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">M.S. Power Electronics</div>
+        <div class="edu-school">Kookmin University</div>
+        <div class="edu-detail" data-ko="GPA 4.5/4.5 · POESLA Lab · SMPS 토폴로지 분석, 전력 IC 기반 회로 설계" data-en="GPA 4.5/4.5 · POESLA Lab · SMPS topology analysis, power IC-based circuit design">GPA 4.5/4.5 · POESLA Lab · SMPS 토폴로지 분석, 전력 IC 기반 회로 설계</div>
+      </div>
+      <div class="edu-period">2011 – 2013</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">B.S. Electronic Engineering</div>
+        <div class="edu-school">Kookmin University</div>
+        <div class="edu-detail">GPA 3.64/4.5</div>
+      </div>
+      <div class="edu-period">2006 – 2011</div>
+    </div>
+  </div>
+
+  <!-- PATENTS -->
+  <div class="profile-section">
+    <div class="section-label" data-ko="특허" data-en="Patents">특허</div>
+    <div class="patent-item">
+      <div class="patent-id">US12476535B2</div>
+      <div class="patent-title">Method and System of Reducing Total Harmonic Distortion of Power Factor Correction Converters</div>
+    </div>
+    <div class="patent-item">
+      <div class="patent-id">US10999905B2</div>
+      <div class="patent-title">Current Control for Power Converter</div>
+    </div>
+    <div class="patent-item">
+      <div class="patent-id">KR1020130089678</div>
+      <div class="patent-title">Single Stage Forward-Flyback Converter, Power Supplying Apparatus for LED</div>
+    </div>
+    <div class="patent-item">
+      <div class="patent-id">KR1020130089659</div>
+      <div class="patent-title">Single Stage Forward-Flyback Converter, Power Supply Apparatus for LED</div>
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS -->
+  <div class="profile-section">
+    <div class="section-label" data-ko="논문" data-en="Publications">논문</div>
+    <div class="pub-item">
+      <div class="pub-venue">KIPE Power Electronics Conference · 2018</div>
+      <div class="pub-title">Direct AC LED Driver for Wide Power Range and Precise Constant Current Regulation</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-venue">KIPE Power Electronics Conference · 2018</div>
+      <div class="pub-title">A Novel Switching Mode for High Power Factor Correction and Low THD</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-venue">KIPE Power Electronics Conference · 2013</div>
+      <div class="pub-title">Balanced Forward-Flyback Converter for High Efficiency and High-Power Factor LED Driver</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-venue">KIPE Power Electronics Conference · 2012</div>
+      <div class="pub-title">Single-stage PFC Forward-Flyback Converter for LED Driving</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-venue">KIPE Power Electronics Conference · 2011</div>
+      <div class="pub-title">Independently-Controlled Dual-Channel LED Driver using LLC Resonant Converter</div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="profile-section">
+    <div class="section-label" data-ko="스킬" data-en="Skills">스킬</div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-title">Simulation</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PSIM</span>
+          <span class="skill-tag">SIMPLIS</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title" data-ko="실험 장비" data-en="Lab Equipment">실험 장비</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Oscilloscope</span>
+          <span class="skill-tag">Power Supply</span>
+          <span class="skill-tag">Electronic Load</span>
+          <span class="skill-tag">Power Analyzer</span>
+          <span class="skill-tag">Test Automation</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title" data-ko="언어" data-en="Language">언어</div>
+        <div class="skill-tags">
+          <span class="skill-tag" data-ko="한국어 (모국어)" data-en="Korean (Native)">한국어 (모국어)</span>
+          <span class="skill-tag" data-ko="영어 (OPIc IH)" data-en="English (OPIc IH)">영어 (OPIc IH)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">PowerIC<span>.log</span></div>
+    <div class="footer-copy">© 2026 Minha Hwang</div>
+  </div>
+</footer>
+
+<script>
+  const STORAGE_KEY = 'powerIC-lang';
+
+  function setLang(lang) {
+    localStorage.setItem(STORAGE_KEY, lang);
+    applyLang(lang);
+  }
+
+  function applyLang(lang) {
+    document.documentElement.lang = lang;
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.querySelectorAll('[data-ko]').forEach(el => {
+      const text = lang === 'ko' ? el.dataset.ko : el.dataset.en;
+      if (text !== undefined) el.innerHTML = text;
+    });
+  }
+
+  const saved = localStorage.getItem(STORAGE_KEY) || 'ko';
+  applyLang(saved);
+</script>
+</body>
+</html>
