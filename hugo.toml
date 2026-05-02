@@ -1,4 +1,4 @@
-baseURL = "https://powerIC-log.github.io/"
+baseURL = "https://poweric-log.github.io/powerIC-log/"
 languageCode = "ko-kr"
 title = "PowerIC.log"
 theme = "powerIC"
