@@ -88,6 +88,20 @@ nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.94); ba
 .post-content pre { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1.2rem; overflow-x:auto; margin:1.5rem 0; }
 .post-content pre code { background:none; border:none; padding:0; }
 .post-content img { max-width:100%; border-radius:var(--radius); margin:1.5rem 0; }
+.post-content table { width:100%; border-collapse:collapse; margin:1.6rem 0; font-size:0.92rem; line-height:1.65; }
+.post-content th, .post-content td { border:1px solid #333a44; padding:0.7rem 1rem; text-align:left; vertical-align:top; }
+.post-content thead th { background:var(--bg3); color:var(--text); font-weight:600; border-bottom:2px solid #333a44; }
+.post-content tbody tr:nth-child(even) { background:var(--bg2); }
+.post-content tbody td { color:var(--text2); }
+.post-content ul, .post-content ol { margin:1.2rem 0; padding-left:1.5rem; color:var(--text2); }
+.post-content li { margin-bottom:0.55rem; line-height:1.85; }
+.post-content li::marker { color:var(--accent); }
+.post-content strong { color:var(--text); font-weight:600; }
+.post-content em { color:var(--text2); }
+.post-content blockquote { border-left:3px solid var(--accent); background:var(--accent-lt); margin:1.6rem 0; padding:0.85rem 1.1rem; border-radius:0 var(--radius) var(--radius) 0; }
+.post-content blockquote p { margin:0; color:var(--text2); }
+.post-content .pt { color:var(--accent); font-weight:600; }
+.post-content hr { border:none; border-top:1px solid var(--border); margin:2.6rem 0; }
 .post-nav { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); }
 .post-nav-item { text-decoration:none; border:1px solid var(--border); border-radius:var(--radius); padding:1rem; transition:all 0.18s; }
 .post-nav-item:hover { border-color:var(--accent); background:var(--accent-lt); }
