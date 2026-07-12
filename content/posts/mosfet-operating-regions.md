@@ -153,6 +153,8 @@ saturation 안쪽($V_{DS} > V_{OV}$)에서는 이 값으로 **고정된다**($V_
 
 $$\boxed{\,I_{D,\text{sat}} = \tfrac{1}{2}\,k\,V_{OV}^2\,}$$
 
+> *실전 한 스푼:* 사실 완전 평평하진 않다. $V_{DS}$ 를 더 올리면 pinch-off 지점이 밀려 채널이 살짝 짧아져(**채널 길이 변조**) 전류가 미세하게 우상향한다 — $I_D \approx \tfrac{1}{2}kV_{OV}^2(1+\lambda V_{DS})$. 이 기울기가 유한한 출력저항 $r_o$ 이고, **아날로그(증폭·미러·LDO)** 엔 핵심이지만 **스위치로 쓸 땐 무시**해도 된다. (BJT의 Early effect와 같은 얘기.)
+
 <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
   <title>MOSFET 출력특성 I_D vs V_DS</title>
   <desc>V_DS를 올리면 ohmic에서 전류가 오르다 V_OV에서 꺾여 saturation에서 평평해진다.</desc>
