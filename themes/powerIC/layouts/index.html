@@ -9,8 +9,8 @@
       Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.
     </p>
     <div class="hero-cta">
-      <a href="/profile/" class="btn btn-primary" data-ko="프로필 보기 →" data-en="View Profile →">프로필 보기 →</a>
-      <a href="/posts/" class="btn btn-ghost" data-ko="포스트 읽기" data-en="Read Posts">포스트 읽기</a>
+      <a href="{{ "profile/" | relURL }}" class="btn btn-primary" data-ko="프로필 보기 →" data-en="View Profile →">프로필 보기 →</a>
+      <a href="{{ "posts/" | relURL }}" class="btn btn-ghost" data-ko="포스트 읽기" data-en="Read Posts">포스트 읽기</a>
     </div>
   </div>
   <div class="hero-avatar">MH</div>
@@ -38,30 +38,30 @@
 <div class="section">
   <div class="section-head">
     <span class="section-title" data-ko="시리즈" data-en="Series">시리즈</span>
-    <a href="/posts/" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
+    <a href="{{ "posts/" | relURL }}" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
   </div>
   <div class="series-grid">
-    <a href="/posts/theory/" class="series-card">
+    <a href="{{ "posts/theory/" | relURL }}" class="series-card">
       <span class="series-card-name" data-ko="이론/원리" data-en="Theory & Principles">이론/원리</span>
       <span class="series-card-sub">Power Topology · Circuit Analysis</span>
       <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "이론/원리") }} <span data-ko="편" data-en="posts">편</span></span>
     </a>
-    <a href="/posts/design/" class="series-card">
+    <a href="{{ "posts/design/" | relURL }}" class="series-card">
       <span class="series-card-name" data-ko="시스템 설계" data-en="System Design">시스템 설계</span>
       <span class="series-card-sub" data-ko="EVB 설계 · 부품 선정 · 인덕터 설계" data-en="EVB Design · Component Selection · Inductor Design">EVB 설계 · 부품 선정 · 인덕터 설계</span>
       <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "시스템 설계") }} <span data-ko="편" data-en="posts">편</span></span>
     </a>
-    <a href="/posts/verification/" class="series-card">
+    <a href="{{ "posts/verification/" | relURL }}" class="series-card">
       <span class="series-card-name" data-ko="IC 검증" data-en="IC Verification">IC 검증</span>
       <span class="series-card-sub">IC Verification</span>
       <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "IC 검증") }} <span data-ko="편" data-en="posts">편</span></span>
     </a>
-    <a href="/posts/simulation/" class="series-card">
+    <a href="{{ "posts/simulation/" | relURL }}" class="series-card">
       <span class="series-card-name" data-ko="시뮬레이션" data-en="Simulation">시뮬레이션</span>
       <span class="series-card-sub">PSIM · SIMPLIS</span>
       <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "시뮬레이션") }} <span data-ko="편" data-en="posts">편</span></span>
     </a>
-    <a href="/posts/casestudy/" class="series-card">
+    <a href="{{ "posts/casestudy/" | relURL }}" class="series-card">
       <span class="series-card-name" data-ko="제품/사례" data-en="Product & Case Study">제품/사례</span>
       <span class="series-card-sub" data-ko="실제 IC 개발 케이스 스터디" data-en="Real-world IC Development Case Studies">실제 IC 개발 케이스 스터디</span>
       <span class="series-card-count">{{ len (where .Site.RegularPages "Params.series" "제품/사례") }} <span data-ko="편" data-en="posts">편</span></span>
@@ -73,7 +73,7 @@
 <div class="section">
   <div class="section-head">
     <span class="section-title" data-ko="최신 포스트" data-en="Recent Posts">최신 포스트</span>
-    <a href="/posts/" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
+    <a href="{{ "posts/" | relURL }}" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
   </div>
   <div class="post-list">
     {{ if $posts }}
