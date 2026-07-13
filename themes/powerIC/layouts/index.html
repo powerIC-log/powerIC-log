@@ -26,8 +26,8 @@
     <span class="stat-label" data-ko="시리즈" data-en="Series">시리즈</span>
   </div>
   <div class="stat">
-    <span class="stat-num" id="today-count">—</span>
-    <span class="stat-label" data-ko="오늘 방문" data-en="Today">오늘 방문</span>
+    <span class="stat-num" id="unique-count">—</span>
+    <span class="stat-label" data-ko="순 방문자" data-en="Visitors">순 방문자</span>
   </div>
   <div class="stat">
     <span class="stat-num" id="total-count">—</span>
@@ -95,19 +95,20 @@
 </div>
 
 <script>
-// GoatCounter visitor stats
-fetch('https://poweric-log.goatcounter.com/counter/TOTAL.json')
-  .then(r => r.json())
-  .then(d => {
-    if (d.count) document.getElementById('total-count').textContent = Number(d.count).toLocaleString();
-  }).catch(() => {});
-
-const today = new Date().toISOString().split('T')[0];
-fetch(`https://poweric-log.goatcounter.com/counter/TOTAL.json?start=${today}`)
-  .then(r => r.json())
-  .then(d => {
-    if (d.count) document.getElementById('today-count').textContent = Number(d.count).toLocaleString();
-  }).catch(() => {});
+// GoatCounter visitor stats.
+// NOTE: requires "allow using the visitor counter" enabled in GoatCounter site settings,
+// otherwise /counter/ returns 403 and the tiles stay "—".
+(function () {
+  var toNum = function (v) { return Number(String(v).replace(/[^0-9]/g, '')) || 0; };
+  fetch('https://poweric-log.goatcounter.com/counter/TOTAL.json')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d) return;
+      if (d.count) document.getElementById('total-count').textContent = toNum(d.count).toLocaleString();
+      if (d.count_unique) document.getElementById('unique-count').textContent = toNum(d.count_unique).toLocaleString();
+    })
+    .catch(function () {});
+})();
 </script>
 
 {{ end }}
