@@ -187,6 +187,34 @@ saturation 안쪽($V_{DS} > V_{OV}$)에서는 이 값으로 **고정된다**($V_
 
 $$\boxed{\,I_{D,\text{sat}} = \tfrac{1}{2}\,k\,V_{OV}^2\,}$$
 
+#### 포물선으로 보기 — triode 식은 꼭대기까지만 유효
+
+triode 식을 $V_{DS}$ 에 대해 그리면 **위로 볼록한 포물선**이고, 꼭대기가 정확히 $V_{DS}=V_{OV}$ (그 값이 $\tfrac12 kV_{OV}^2$)다. 실제 소자는 이 포물선을 **꼭대기까지만** 따라 올라간다. $V_{DS}$ 가 $V_{OV}$ 를 넘으면 식대로는 포물선이 아래로 꺾여 전류가 줄어야 하지만(아래 점선) — 물리적으로 그런 일은 없다. 대신 **꼭대기 값에서 평평하게 고정**된다.
+
+<svg viewBox="0 0 620 350" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>triode 식 포물선과 saturation 고정</title>
+  <desc>triode 식은 V_DS에 대해 위로 볼록한 포물선. 꼭대기 V_DS=V_OV에서 ½kV_OV². V_OV 넘으면 식대로는 내려가지만 실제는 평평 고정.</desc>
+  <line x1="70" y1="300" x2="580" y2="300" stroke="currentColor" stroke-opacity="0.7"/>
+  <line x1="70" y1="300" x2="70" y2="40" stroke="currentColor" stroke-opacity="0.7"/>
+  <text x="575" y="320" font-size="12" text-anchor="end" fill="currentColor">V_DS</text>
+  <text x="60" y="48" font-size="12" text-anchor="end" fill="currentColor">I_D</text>
+  <line x1="290" y1="76" x2="290" y2="300" stroke="currentColor" stroke-opacity="0.35" stroke-dasharray="4 3"/>
+  <text x="290" y="318" font-size="10.5" text-anchor="middle" fill="currentColor" fill-opacity="0.8">V_DS = V_OV</text>
+  <line x1="70" y1="76" x2="290" y2="76" stroke="currentColor" stroke-opacity="0.2" stroke-dasharray="3 3"/>
+  <path d="M290,76 Q410,100 510,300" fill="none" stroke="#e0533d" stroke-width="2" stroke-dasharray="6 4" stroke-opacity="0.85"/>
+  <text x="416" y="205" font-size="10.5" fill="#e0533d">식대로면 내려감</text>
+  <text x="416" y="221" font-size="9.5" fill="#e0533d" fill-opacity="0.85">(실제론 안 됨 → 식 폐기)</text>
+  <path d="M70,300 Q165,112 290,76" fill="none" stroke="#3b82f6" stroke-width="2.4"/>
+  <path d="M290,76 L560,76" fill="none" stroke="#3b82f6" stroke-width="2.4"/>
+  <circle cx="290" cy="76" r="4" fill="#3b82f6"/>
+  <text x="205" y="64" font-size="11" fill="#3b82f6">½k·V_OV² (꼭대기)</text>
+  <text x="432" y="66" font-size="11" fill="#3b82f6">saturation — 평평 고정</text>
+  <text x="150" y="286" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.7">triode</text>
+  <text x="150" y="299" font-size="9" text-anchor="middle" fill="currentColor" fill-opacity="0.5">(식 유효, 오름)</text>
+</svg>
+
+> 즉 **$-\tfrac12 V_{DS}^2$ 항은 포물선을 꼭대기까지 눕히는 역할만** 하고, $V_{OV}$ 를 넘으면 그 식 자체를 안 쓴다. (통하는 채널이 보는 전압이 늘 $V_{OV}$ 라, $V_{DS}$ 자리에 $V_{OV}$ 를 넣은 값 $\tfrac12 kV_{OV}^2$ 에서 얼어붙는다고 봐도 같다.)
+
 > *실전 한 스푼:* 사실 완전 평평하진 않다. $V_{DS}$ 를 더 올리면 pinch-off 지점이 밀려 채널이 살짝 짧아져(**채널 길이 변조**) 전류가 미세하게 우상향한다 — $I_D \approx \tfrac{1}{2}kV_{OV}^2(1+\lambda V_{DS})$. 이 기울기가 유한한 출력저항 $r_o$ 이고, **아날로그(증폭·미러·LDO)** 엔 핵심이지만 **스위치로 쓸 땐 무시**해도 된다. (BJT의 Early effect와 같은 얘기.)
 
 <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
