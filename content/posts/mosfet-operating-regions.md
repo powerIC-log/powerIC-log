@@ -78,6 +78,10 @@ $$\boxed{\,Q_n(x) = C_{ox}\,\big(V_{GS} - V(x) - V_{th}\big)\,}$$
     <text x="150" y="50" font-size="9.5" fill="#3b82f6">overdrive 4V</text>
     <text x="372" y="58" font-size="9.5" fill="#3b82f6">overdrive 3V</text>
     <text x="285" y="92" font-size="10" text-anchor="middle" fill="currentColor" fill-opacity="0.85">채널 →</text>
+    <line x1="135" y1="150" x2="435" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="435" y1="146" x2="435" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <text x="285" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">통하는 채널 L′ = 풀 길이</text>
   </g>
   <g transform="translate(10,228)">
     <text x="0" y="10" font-size="13" font-weight="700" fill="currentColor">② V_DS = V_OV = 4V — 드레인 끝 overdrive = 0 → pinch-off (경계!)</text>
@@ -97,6 +101,10 @@ $$\boxed{\,Q_n(x) = C_{ox}\,\big(V_{GS} - V(x) - V_{th}\big)\,}$$
     <text x="412" y="106" font-size="16" fill="#e0533d" text-anchor="middle">✂</text>
     <text x="437" y="120" font-size="9.5" fill="#e0533d">overdrive 0</text>
     <text x="437" y="132" font-size="9.5" fill="#e0533d">끊김</text>
+    <line x1="135" y1="150" x2="435" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="435" y1="146" x2="435" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <text x="285" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">통하는 채널 L′ = 풀 길이 (pinch-off가 드레인 끝)</text>
   </g>
   <g transform="translate(10,408)">
     <text x="0" y="10" font-size="13" font-weight="700" fill="currentColor">③ V_DS = 6V — 드레인 앞에서 이미 overdrive 0, 여분 V_DS는 공핍에 → I_D 그대로 (saturation)</text>
@@ -117,14 +125,20 @@ $$\boxed{\,Q_n(x) = C_{ox}\,\big(V_{GS} - V(x) - V_{th}\big)\,}$$
     <text x="407" y="95" font-size="8.5" text-anchor="middle" fill="#e0533d">여분 V_DS</text>
     <text x="150" y="48" font-size="9.5" fill="#3b82f6">overdrive 4V</text>
     <text x="330" y="108" font-size="8.5" fill="#e0533d">overdrive 0</text>
+    <line x1="135" y1="150" x2="380" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="380" y1="146" x2="380" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <text x="257" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">통하는 채널 L′ = 짧아짐 (제일 짧음) → 채널길이 변조</text>
   </g>
 </svg>
 
 $V_{DS}$ 를 더 올려도 pinch-off 지점은 *"채널 전위가 $V_{OV}$ 되는 곳"* 이라, 소스 쪽으로 살짝 밀릴 뿐 거기 전위는 늘 $V_{OV}$ 다. 남는 전압 $(V_{DS} - V_{OV})$ 은 전부 공핍구간에 걸린다.
 
+> **그림 읽는 법 (통하는 채널 길이 $L'$):** 위 그림의 파란 브래킷 $L'$ 이 *통하는 채널 길이*(소스 → pinch-off)다. **물리적 S–D 거리 자체는 세 경우 다 똑같다** — 같은 소자니까 그건 안 변한다. 변하는 건 $L'$ 뿐이고, $V_{DS}$ 가 클수록 pinch-off가 소스 쪽으로 밀려 $L'$ 이 **짧아진다.** ①1V·②4V는 풀 길이, ③6V에서 제일 짧다. (주의: $L'$ 이 짧다고 전류가 많은 게 아니다. ①1V는 $L'$ 이 가장 길지만 미는 힘 $V_{DS}$ 가 작아 **전류는 제일 작다.** $L'$ 이 짧아 전류가 미세하게 느는 건 **saturation 안쪽(②↔③)의 2차 효과**일 뿐 → 아래 *실전 한 스푼*.)
+
 > 그래서 **통하는 채널(소스 → pinch-off 지점)은 언제나 $0 \to V_{OV}$ 만 본다.** 이게 saturation에서 전류가 일정한 이유다.
 
-### 조금 더 깊이 — 왜 "일정"한가 (직렬 저항 + 전압분배로 보기)
+### 조금 더 깊이 — saturation에서 왜 "일정"한가 (직렬 저항 + 전압분배로 보기)
 
 수식 없이 직관으로 잡는 가장 쉬운 방법은, pinch-off가 생긴 소자를 **직렬로 이어진 저항 두 개**로 보는 것이다.
 
@@ -156,9 +170,12 @@ triode에서 $V_{DS}$ 를 올리면 **미는 힘이 세져서** 전류가 는다
 
 정확한 triode 식은
 
-$$I_D = k\Big[V_{OV}\,V_{DS} - \tfrac{1}{2}V_{DS}^2\Big], \qquad k = \mu_n C_{ox}\frac{W}{L}$$
+$$I_D = k\Big[\underbrace{V_{OV}\,V_{DS}}_{\text{앞항: 미는 효과}\;(\uparrow)} \;-\; \underbrace{\tfrac{1}{2}V_{DS}^2}_{\text{뒤항: 얇아지는 효과}\;(\downarrow)}\Big], \qquad k = \mu_n C_{ox}\frac{W}{L}$$
 
-앞항은 **미는 효과**(전류↑), 뒤항 $-\tfrac12 V_{DS}^2$ 은 **드레인 쪽이 얇아지는 효과**(억제)다. 기울기를 보면
+- **앞항 $V_{OV}V_{DS}$** = 미는 효과 → 전류 **↑**
+- **뒤항 $-\tfrac12 V_{DS}^2$** = 드레인 쪽이 얇아지는 효과 → 전류 **↓** (깎는 방향)
+
+여기서 *"드레인 쪽이 얇아진다"* 는 뜻: 채널 두께(전하 $Q_n$)는 그 지점의 overdrive $V_{GS}-V(x)-V_{th}$ 로 정해지는데, 드레인 쪽으로 갈수록 $V(x)$ 가 커져 overdrive가 작아진다 → **드레인 근처에서 채널이 얇아지고, 그만큼 전류를 덜 흘린다.** 그래서 뒤항이 전류를 **깎는(−)** 방향이다. $V_{DS}$ 를 올리면 미는 효과(+)가 커지지만 드레인 쪽 얇아짐(−)도 같이 커져, $V_{DS}=V_{OV}$ 에서 둘이 균형을 이뤄 평평해진다. 기울기를 보면
 
 $$\frac{dI_D}{dV_{DS}} = k\,(V_{OV} - V_{DS})$$
 
