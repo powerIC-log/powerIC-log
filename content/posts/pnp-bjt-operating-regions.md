@@ -106,7 +106,99 @@ PNP는 이미터가 **높은 쪽**(예: $V_{CC}$)에 붙어 있다. 베이스를
 
 ---
 
-## 5. 실무 연결
+## 5. 전압–전류 곡선과 영역별 전류 흐름
+
+세로축은 컬렉터 전류 $I_C$, 가로축은 $V_{EC}$(이미터가 컬렉터보다 높은 정도)다. NPN과 곡선 모양은 같고, 축이 **이미터 기준** 으로 바뀐 것뿐이다.
+
+<svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>PNP 출력특성 I_C vs V_EC</title>
+  <desc>V_EC 0.2V 이하 가파른 saturation, 이후 평평한 active. 곡선 높이는 I_B가 정한다.</desc>
+  <rect x="70" y="40" width="55" height="250" fill="#f59e0b" fill-opacity="0.13"/>
+  <rect x="125" y="40" width="440" height="250" fill="#e0533d" fill-opacity="0.06"/>
+  <defs>
+    <marker id="ca2" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+  </defs>
+  <line x1="70" y1="290" x2="590" y2="290" stroke="currentColor" stroke-opacity="0.7" marker-end="url(#ca2)"/>
+  <line x1="70" y1="290" x2="70" y2="35" stroke="currentColor" stroke-opacity="0.7" marker-end="url(#ca2)"/>
+  <text x="596" y="295" font-size="12" font-weight="700" fill="currentColor">V_EC</text>
+  <text x="56" y="40" font-size="12" font-weight="700" fill="currentColor" text-anchor="end">I_C</text>
+  <line x1="125" y1="40" x2="125" y2="290" stroke="currentColor" stroke-opacity="0.45" stroke-dasharray="5 4"/>
+  <text x="125" y="308" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">V_EC,sat ≈ 0.2V</text>
+  <path d="M70,290 Q100,95 125,95 L560,82" fill="none" stroke="#e0533d" stroke-width="2.4"/>
+  <text x="566" y="86" font-size="11" fill="#e0533d">I_B 큼</text>
+  <path d="M70,290 Q98,160 125,160 L560,150" fill="none" stroke="#e0533d" stroke-width="2.4" stroke-opacity="0.7"/>
+  <text x="566" y="154" font-size="11" fill="#e0533d" opacity="0.8">I_B 중</text>
+  <path d="M70,290 Q96,220 125,220 L560,212" fill="none" stroke="#e0533d" stroke-width="2.4" stroke-opacity="0.45"/>
+  <text x="566" y="216" font-size="11" fill="#e0533d" opacity="0.65">I_B 작음</text>
+  <text x="97" y="75" text-anchor="middle" font-size="11" font-weight="700" fill="#f59e0b" transform="rotate(-90 97 165)">SATURATION (스위치 ON)</text>
+  <text x="360" y="272" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor" fill-opacity="0.85">ACTIVE (전류원)</text>
+  <text x="185" y="120" font-size="11" fill="currentColor" fill-opacity="0.85">평평 → V_EC 올라도 I_C 그대로 (= β·I_B)</text>
+  <text x="140" y="345" font-size="11" fill="#f59e0b">◀ 좁고 가파른 구간: 외부회로가 I_C 결정</text>
+  <line x1="430" y1="210" x2="430" y2="90" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 3" marker-end="url(#ca2)"/>
+  <text x="437" y="150" font-size="10.5" fill="currentColor" fill-opacity="0.7">I_B ↑</text>
+</svg>
+
+이제 영역별로 **어디에 전압이 걸리고 홀이 어떻게 흐르는지** 보자.
+
+<svg viewBox="0 0 640 470" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>PNP 영역별 바이어스와 홀 전류 흐름</title>
+  <desc>Cutoff/Active/Saturation 각각에서 E·B·C 전압과 홀 전류 경로, 베이스 전류 방향.</desc>
+  <defs>
+    <marker id="ph3" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#e0533d"/></marker>
+    <marker id="bc3" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#3b82f6"/></marker>
+  </defs>
+  <g transform="translate(0,20)">
+    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">① Cutoff — 베이스가 이미터만큼 높음(V_EB=0) → OFF</text>
+    <rect x="60" y="32" width="95" height="58" rx="4" fill="#e0533d" fill-opacity="0.28" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="107" y="58" font-size="11" text-anchor="middle" fill="currentColor">E (p+)</text>
+    <rect x="155" y="32" width="24" height="58" fill="#3b82f6" fill-opacity="0.2" stroke="currentColor" stroke-opacity="0.5"/>
+    <rect x="179" y="32" width="120" height="58" rx="4" fill="#e0533d" fill-opacity="0.16" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="239" y="58" font-size="11" text-anchor="middle" fill="currentColor">C (p)</text>
+    <text x="167" y="104" font-size="9" text-anchor="middle" fill="currentColor" fill-opacity="0.7">B(n)</text>
+    <text x="330" y="46" font-size="11" fill="currentColor">E=5V · B=5V · C=1V</text>
+    <text x="330" y="65" font-size="11" fill="#e0533d">V_EB = 0 → EB 안 켜짐</text>
+    <text x="330" y="84" font-size="11" fill="currentColor">I_C ≈ 0</text>
+  </g>
+  <g transform="translate(0,170)">
+    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">② Active — 베이스 0.7V 낮춤 · V_EC 넉넉 → 홀 주입, I_C=β·I_B</text>
+    <rect x="60" y="32" width="95" height="58" rx="4" fill="#e0533d" fill-opacity="0.28" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="107" y="58" font-size="11" text-anchor="middle" fill="currentColor">E (p+)</text>
+    <rect x="155" y="32" width="24" height="58" fill="#3b82f6" fill-opacity="0.2" stroke="currentColor" stroke-opacity="0.5"/>
+    <rect x="179" y="32" width="120" height="58" rx="4" fill="#e0533d" fill-opacity="0.16" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="239" y="58" font-size="11" text-anchor="middle" fill="currentColor">C (p)</text>
+    <line x1="115" y1="61" x2="285" y2="61" stroke="#e0533d" stroke-width="2.4" marker-end="url(#ph3)"/>
+    <text x="205" y="53" font-size="9.5" text-anchor="middle" fill="#e0533d">홀 h⁺ →</text>
+    <line x1="167" y1="90" x2="167" y2="116" stroke="#3b82f6" stroke-width="2" marker-end="url(#bc3)"/>
+    <text x="200" y="112" font-size="9" fill="#3b82f6">I_B ↓ 빠짐</text>
+    <text x="330" y="46" font-size="11" fill="currentColor">E=5V · B=4.3V · C=1V</text>
+    <text x="330" y="65" font-size="11" fill="#e0533d">V_EB=0.7 · V_EC=4</text>
+    <text x="330" y="84" font-size="11" fill="currentColor">I_C=β·I_B (컬렉터로 나옴)</text>
+  </g>
+  <g transform="translate(0,320)">
+    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">③ Saturation — V_EC 0.2V 바닥, CB도 순방향 → 스위치 ON</text>
+    <rect x="60" y="32" width="95" height="58" rx="4" fill="#e0533d" fill-opacity="0.28" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="107" y="58" font-size="11" text-anchor="middle" fill="currentColor">E (p+)</text>
+    <rect x="155" y="32" width="24" height="58" fill="#3b82f6" fill-opacity="0.2" stroke="currentColor" stroke-opacity="0.5"/>
+    <rect x="179" y="32" width="120" height="58" rx="4" fill="#e0533d" fill-opacity="0.16" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="239" y="58" font-size="11" text-anchor="middle" fill="currentColor">C (p)</text>
+    <line x1="115" y1="61" x2="285" y2="61" stroke="#e0533d" stroke-width="2.4" marker-end="url(#ph3)"/>
+    <text x="205" y="53" font-size="9.5" text-anchor="middle" fill="#e0533d">홀 h⁺ →</text>
+    <line x1="167" y1="90" x2="167" y2="116" stroke="#3b82f6" stroke-width="2" marker-end="url(#bc3)"/>
+    <text x="330" y="46" font-size="11" fill="currentColor">E=5V · B=4.3V · C=4.8V</text>
+    <text x="330" y="65" font-size="11" fill="#e0533d">V_EC ≈ 0.2V (바닥)</text>
+    <text x="330" y="84" font-size="11" fill="currentColor">I_C = 외부회로가 결정</text>
+  </g>
+</svg>
+
+- **Cutoff**: $V_{EB}=0$ (베이스가 이미터만큼 높음) → EB 안 켜짐 → 전류 없음.
+- **Active**: 베이스를 이미터보다 ~0.7V 낮춤($V_{EB}=0.7$) + $V_{EC}$ 넉넉 → 이미터가 홀을 쏘고 베이스 관통 → 컬렉터가 걷어감. $I_C=\beta I_B$, 컬렉터에서 흘러나옴 (전류원, 평평).
+- **Saturation**: $V_{EC}$ 가 $0.2\text{V}$ 바닥까지 떨어짐(CB도 순방향) → $I_C$ 는 외부회로가 정하는 값에 묶임 (스위치 ON).
+
+> 홀은 **이미터(높은 전압)에서 컬렉터(낮은 전압)로** 흐르고, 베이스 전류는 **밖으로 빠져나간다** — NPN에서 전자가 이미터→컬렉터로 흐르고 베이스로 들어가던 것과 방향이 반대다.
+
+---
+
+## 6. 실무 연결
 
 - **High-side 스위치·전류원**: 이미터를 $V_{CC}$ 에 붙이고 베이스를 당겨(전류를 빼내) 켠다. 부하 위쪽에서 공급을 제어하기 좋다.
 - **밴드갭·전류미러**: 위쪽(공급 쪽) 전류원이 필요할 때 PNP를 쓴다. NPN 전류원은 아래쪽(GND 쪽)에 놓기 좋고, PNP는 위쪽에 놓기 좋다 — 둘을 짝지어 쓴다.

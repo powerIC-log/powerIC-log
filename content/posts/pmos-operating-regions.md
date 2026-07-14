@@ -100,7 +100,99 @@ pinch-off, 채널 전하, "saturation에서 왜 전류가 일정한가"(직렬�
 
 ---
 
-## 5. 실무 연결
+## 5. 전압–전류 곡선과 영역별 전류 흐름
+
+세로축은 전류 크기 $I_D$, 가로축은 $V_{SD}$(소스가 드레인보다 높은 정도)다. NMOS와 곡선 모양은 같고, 축이 **소스 기준(양수)** 으로 바뀐 것뿐이다.
+
+<svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>PMOS 출력특성 I_D vs V_SD</title>
+  <desc>V_SD를 올리면 triode(ohmic)에서 전류가 오르다 V_OV에서 꺾여 saturation에서 평평.</desc>
+  <line x1="60" y1="280" x2="580" y2="280" stroke="currentColor" stroke-opacity="0.7"/>
+  <line x1="60" y1="280" x2="60" y2="30" stroke="currentColor" stroke-opacity="0.7"/>
+  <text x="575" y="300" font-size="12" text-anchor="end" fill="currentColor">V_SD</text>
+  <text x="52" y="40" font-size="12" text-anchor="end" fill="currentColor">I_D</text>
+  <path d="M60,280 Q210,150 350,90 L560,90" fill="none" stroke="#e0533d" stroke-width="2.2"/>
+  <line x1="350" y1="90" x2="350" y2="280" stroke="#e0533d" stroke-opacity="0.4" stroke-dasharray="4 3"/>
+  <text x="350" y="296" font-size="10.5" text-anchor="middle" fill="#e0533d">V_OV (큰 V_SG)</text>
+  <path d="M60,280 Q150,210 220,185 L560,185" fill="none" stroke="#f59e0b" stroke-width="2.2"/>
+  <line x1="220" y1="185" x2="220" y2="280" stroke="#f59e0b" stroke-opacity="0.4" stroke-dasharray="4 3"/>
+  <text x="220" y="296" font-size="10.5" text-anchor="middle" fill="#f59e0b">V_OV (작은 V_SG)</text>
+  <text x="120" y="120" font-size="12" fill="currentColor" fill-opacity="0.8">triode</text>
+  <text x="120" y="136" font-size="9.5" fill="currentColor" fill-opacity="0.55">(ohmic, 오름)</text>
+  <text x="450" y="70" font-size="12" fill="currentColor" fill-opacity="0.8">saturation</text>
+  <text x="450" y="86" font-size="9.5" fill="currentColor" fill-opacity="0.55">(전류원, 평평)</text>
+  <text x="465" y="175" font-size="11" fill="#e0533d">I_D,sat = ½·k·V_OV²</text>
+</svg>
+
+이제 영역별로 **어디에 전압이 걸리고 홀(정공)이 어떻게 흐르는지** 보자.
+
+<svg viewBox="0 0 640 470" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>PMOS 영역별 바이어스와 홀 전류 흐름</title>
+  <desc>Cutoff/Triode/Saturation 각각에서 S·G·D 전압과 홀(정공) 전류 경로.</desc>
+  <defs>
+    <marker id="ph" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#e0533d"/></marker>
+  </defs>
+  <g transform="translate(0,20)">
+    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">① Cutoff — 게이트가 소스만큼 높음(V_SG=0) → 채널 없음</text>
+    <text x="255" y="26" font-size="10" text-anchor="middle" fill="currentColor">Gate</text>
+    <rect x="175" y="28" width="160" height="11" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
+    <line x1="175" y1="41" x2="335" y2="41" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
+    <rect x="155" y="44" width="200" height="50" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="255" y="88" font-size="9" text-anchor="middle" fill="currentColor" fill-opacity="0.55">n-body</text>
+    <rect x="155" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
+    <rect x="313" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
+    <text x="176" y="67" font-size="10" text-anchor="middle" fill="currentColor">S</text>
+    <text x="334" y="67" font-size="10" text-anchor="middle" fill="currentColor">D</text>
+    <text x="390" y="46" font-size="11" fill="currentColor">S=5V · G=5V · D=0V</text>
+    <text x="390" y="65" font-size="11" fill="#e0533d">V_SG = 0 → 채널 없음</text>
+    <text x="390" y="84" font-size="11" fill="currentColor">I_D = 0 (OFF)</text>
+  </g>
+  <g transform="translate(0,170)">
+    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">② Triode(ohmic) — V_SG 큼 · V_SD 작음 → 채널 꽉 참, 저항처럼</text>
+    <text x="255" y="26" font-size="10" text-anchor="middle" fill="currentColor">Gate</text>
+    <rect x="175" y="28" width="160" height="11" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
+    <line x1="175" y1="41" x2="335" y2="41" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
+    <rect x="155" y="44" width="200" height="50" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
+    <rect x="155" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
+    <rect x="313" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
+    <text x="176" y="67" font-size="10" text-anchor="middle" fill="currentColor">S</text>
+    <text x="334" y="67" font-size="10" text-anchor="middle" fill="currentColor">D</text>
+    <rect x="197" y="46" width="116" height="11" fill="#e0533d" fill-opacity="0.4" stroke="#e0533d" stroke-opacity="0.5"/>
+    <line x1="205" y1="72" x2="305" y2="72" stroke="#e0533d" stroke-width="2" marker-end="url(#ph)"/>
+    <text x="255" y="68" font-size="9.5" text-anchor="middle" fill="#e0533d">홀 h⁺ →</text>
+    <text x="390" y="46" font-size="11" fill="currentColor">S=5V · G=0V · D=4.5V</text>
+    <text x="390" y="65" font-size="11" fill="#e0533d">V_SG=5 · V_SD=0.5</text>
+    <text x="390" y="84" font-size="11" fill="currentColor">홀 S→D, I_D ∝ V_SD</text>
+  </g>
+  <g transform="translate(0,320)">
+    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">③ Saturation — V_SD 큼 → 드레인쪽 pinch-off, I_D 일정</text>
+    <text x="255" y="26" font-size="10" text-anchor="middle" fill="currentColor">Gate</text>
+    <rect x="175" y="28" width="160" height="11" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
+    <line x1="175" y1="41" x2="335" y2="41" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
+    <rect x="155" y="44" width="200" height="50" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
+    <rect x="155" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
+    <rect x="313" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
+    <text x="176" y="67" font-size="10" text-anchor="middle" fill="currentColor">S</text>
+    <text x="334" y="67" font-size="10" text-anchor="middle" fill="currentColor">D</text>
+    <polygon points="197,46 300,57 197,57" fill="#e0533d" fill-opacity="0.4" stroke="#e0533d" stroke-opacity="0.5"/>
+    <rect x="300" y="44" width="13" height="40" fill="#e0533d" fill-opacity="0.12" stroke="#e0533d" stroke-opacity="0.45" stroke-dasharray="2 2"/>
+    <text x="306" y="102" font-size="8" text-anchor="middle" fill="#e0533d">공핍</text>
+    <line x1="205" y1="66" x2="288" y2="66" stroke="#e0533d" stroke-width="2" marker-end="url(#ph)"/>
+    <text x="390" y="46" font-size="11" fill="currentColor">S=5V · G=0V · D=1V</text>
+    <text x="390" y="65" font-size="11" fill="#e0533d">V_SG=5 · V_SD=4</text>
+    <text x="390" y="84" font-size="11" fill="currentColor">pinch-off, I_D=½kV_OV² 고정</text>
+  </g>
+</svg>
+
+- **Cutoff**: $V_{SG}=0$ (게이트가 소스만큼 높음) → 채널 없음 → 전류 없음.
+- **Triode(ohmic)**: 게이트를 낮춰 $V_{SG}$ 크게 + $V_{SD}$ 작게 → 채널이 소스~드레인 꽉 참 → 홀이 S→D로 흐르고 $V_{SD}$ 에 비례(저항처럼).
+- **Saturation**: $V_{SD}$ 를 키우면 드레인 쪽에서 채널이 pinch-off → 여분 전압은 공핍이 먹고 → $I_D$ 는 $\tfrac12 kV_{OV}^2$ 로 고정.
+
+> 홀은 **소스(높은 전압)에서 드레인(낮은 전압)으로** 흐른다 — NMOS에서 전자가 소스→드레인으로 흐르던 것과 캐리어·방향이 반대다.
+
+---
+
+## 6. 실무 연결
 
 <svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
   <title>NMOS low-side vs PMOS high-side 스위치</title>
