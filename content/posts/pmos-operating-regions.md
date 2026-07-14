@@ -92,9 +92,9 @@ PMOS는 소스가 **높은 쪽**(예: Vdd)에 붙어 있다. 게이트를 소스
 
 | 영역 | 조건 (크기 기준) | 동작 |
 |------|----------------|------|
-| **Cutoff** | $|V_{GS}| < |V_{th}|$ | 채널 없음, $I_D\approx0$ (OFF) |
-| **Triode** | $|V_{GS}|>|V_{th}|$, $\;|V_{DS}| < V_{OV}$ | 전압제어 저항 ($R_{DS(on)}$) |
-| **Saturation** | $|V_{GS}|>|V_{th}|$, $\;|V_{DS}| \ge V_{OV}$ | 전압제어 전류원 |
+| **Cutoff** | $\lvert V_{GS}\rvert < \lvert V_{th}\rvert$ | 채널 없음, $I_D\approx0$ (OFF) |
+| **Triode** | $\lvert V_{GS}\rvert>\lvert V_{th}\rvert$, $\;\lvert V_{DS}\rvert < V_{OV}$ | 전압제어 저항 ($R_{DS(on)}$) |
+| **Saturation** | $\lvert V_{GS}\rvert>\lvert V_{th}\rvert$, $\;\lvert V_{DS}\rvert \ge V_{OV}$ | 전압제어 전류원 |
 
 pinch-off, 채널 전하, "saturation에서 왜 전류가 일정한가"(직렬저항+전압분배) 같은 **원리는 NMOS 글과 100% 동일**하다 — 전자를 홀로, 부호를 반대로 읽으면 된다. 자세한 메커니즘은 [NMOS 글](../mosfet-operating-regions/)을 참고.
 
