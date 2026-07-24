@@ -1,34 +1,58 @@
 {{ define "main" }}
+<div class="reading-bar"><div class="reading-bar-fill" id="rbar"></div></div>
 <div class="post-wrap">
+  <a class="post-back" href="{{ "posts/" | relURL }}" data-ko="← 포스트" data-en="← Posts">← 포스트</a>
   <div class="post-header">
     <div class="post-meta">
       <span class="post-cat">{{ .Params.series }}</span>
-      <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+      <span class="post-date">{{ .Date.Format "2006·01·02" }}</span>
+      <span class="post-rt">{{ .ReadingTime }}<span data-ko="분" data-en=" min read">분</span></span>
     </div>
     <h1 class="post-title-lg">{{ .Title }}</h1>
     {{ with .Params.description }}<p class="post-subtitle">{{ . }}</p>{{ end }}
     {{ with .Params.tags }}
     <div class="post-tags">
-      {{ range . }}<span class="post-tag">{{ . }}</span>{{ end }}
+      {{ range . }}<span class="post-tag">#{{ . }}</span>{{ end }}
     </div>
     {{ end }}
   </div>
+  {{ if .Fragments.Headings }}
+  <details class="toc" open>
+    <summary data-ko="목차" data-en="Contents">목차</summary>
+    {{ .TableOfContents }}
+  </details>
+  {{ end }}
   <div class="post-content">
     {{ .Content }}
   </div>
   <div class="post-nav">
     {{ with .PrevInSection }}
     <a href="{{ .RelPermalink }}" class="post-nav-item prev">
-      <span class="post-nav-label">← 이전 포스트</span>
+      <span class="post-nav-label" data-ko="← 이전 포스트" data-en="← Previous">← 이전 포스트</span>
       <span class="post-nav-title">{{ .Title }}</span>
     </a>
     {{ end }}
     {{ with .NextInSection }}
     <a href="{{ .RelPermalink }}" class="post-nav-item next">
-      <span class="post-nav-label">다음 포스트 →</span>
+      <span class="post-nav-label" data-ko="다음 포스트 →" data-en="Next →">다음 포스트 →</span>
       <span class="post-nav-title">{{ .Title }}</span>
     </a>
     {{ end }}
   </div>
 </div>
+<script>
+(function () {
+  var bar = document.getElementById('rbar');
+  if (!bar) return;
+  function upd() {
+    var h = document.documentElement, b = document.body;
+    var st = window.pageYOffset || h.scrollTop || b.scrollTop || 0;
+    var max = (h.scrollHeight || b.scrollHeight) - h.clientHeight;
+    bar.style.width = (max > 0 ? Math.min(100, (st / max) * 100) : 0) + '%';
+  }
+  document.addEventListener('scroll', upd, { passive: true });
+  window.addEventListener('resize', upd);
+  upd();
+})();
+</script>
 {{ end }}
