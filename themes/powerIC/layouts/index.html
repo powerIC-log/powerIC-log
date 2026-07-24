@@ -66,7 +66,7 @@
           </span>
         </button>
         <div class="rposts open">
-          {{ range where .Site.RegularPages "Section" "posts" }}
+          {{ range where (where .Site.RegularPages "Section" "posts") "Params.tags" "intersect" (slice "device") }}
           <a class="rpost" href="{{ .RelPermalink }}">
             <span class="rpost-t">{{ .Title }}</span>
             <span class="rpost-d">{{ .Date.Format "2006·01·02" }}</span>
@@ -105,13 +105,24 @@
         </div>
       </div>
       <div class="ritem">
-        <div class="rrow upcoming">
+        <button class="rrow done" type="button" aria-expanded="true" onclick="toggleRoadmap(this)">
           <span class="node"></span>
           <div>
             <div class="rtitle" data-ko="증폭기 · RF 기초" data-en="Amplifier · RF basics">증폭기 · RF 기초</div>
             <div class="rsub" data-ko="gain / noise / bandwidth · preamplifier · S-파라미터" data-en="gain / noise / bandwidth · preamplifier · S-parameters">gain / noise / bandwidth · preamplifier · S-파라미터</div>
           </div>
-          <span class="rend"><span class="rstat new" data-ko="새 영역" data-en="New domain">새 영역</span></span>
+          <span class="rend">
+            <span class="rstat new" data-ko="새 영역 · 1편" data-en="New domain · 1">새 영역 · 1편</span>
+            <span class="chev" aria-hidden="true">▸</span>
+          </span>
+        </button>
+        <div class="rposts open">
+          {{ range where (where .Site.RegularPages "Section" "posts") "Params.tags" "intersect" (slice "RF") }}
+          <a class="rpost" href="{{ .RelPermalink }}">
+            <span class="rpost-t">{{ .Title }}</span>
+            <span class="rpost-d">{{ .Date.Format "2006·01·02" }}</span>
+          </a>
+          {{ end }}
         </div>
       </div>
     </div>
