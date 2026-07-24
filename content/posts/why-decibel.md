@@ -1,6 +1,6 @@
 +++
 title = "[개념정리] dB는 왜 쓸까 — 로그로 신호를 보는 이유"
-date = 2026-07-25
+date = 2026-07-24
 series = "이론/원리"
 description = "이득도 감쇠도 dB로 쓰는데, 정작 왜 로그로 보는지는 넘어갔다. dB의 정의부터 '왜 로그인가'까지, 전력 기준(10log)으로 정리한다."
 tags = ["개념정리", "dB", "decibel", "RF", "fundamentals"]
