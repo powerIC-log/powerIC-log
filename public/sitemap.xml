@@ -2,12 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://powerIC-log.github.io/categories/</loc>
+    <loc>http://localhost:1313/posts/pnp-bjt-operating-regions/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
   </url><url>
-    <loc>https://powerIC-log.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
   </url><url>
-    <loc>https://powerIC-log.github.io/profile/</loc>
+    <loc>http://localhost:1313/tags/bjt/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
   </url><url>
-    <loc>https://powerIC-log.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/device/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/fundamentals/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pnp/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC/</loc>
+    <lastmod>2026-07-15T05:30:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/pmos-operating-regions/</loc>
+    <lastmod>2026-07-15T05:00:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/mosfet/</loc>
+    <lastmod>2026-07-15T05:00:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pmos/</loc>
+    <lastmod>2026-07-15T05:00:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/bjt-npn-operating-regions/</loc>
+    <lastmod>2026-07-14T06:00:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/npn/</loc>
+    <lastmod>2026-07-14T06:00:00+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/mosfet-operating-regions/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pinch-off/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/verification/</loc>
+  </url><url>
+    <loc>http://localhost:1313/profile/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/simulation/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/design/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/theory/</loc>
+  </url><url>
+    <loc>http://localhost:1313/posts/casestudy/</loc>
   </url>
 </urlset>

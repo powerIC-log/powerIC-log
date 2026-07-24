@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BJT on Analog Notes</title>
+    <link>http://localhost:1313/tags/bjt/</link>
+    <description>Recent content in BJT on Analog Notes</description>
+    <generator>Hugo</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Wed, 15 Jul 2026 05:30:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/bjt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[개념정리] PNP BJT 동작영역 — NPN과 무엇이 다른가</title>
+      <link>http://localhost:1313/posts/pnp-bjt-operating-regions/</link>
+      <pubDate>Wed, 15 Jul 2026 05:30:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/pnp-bjt-operating-regions/</guid>
+      <description>&lt;h2 id=&#34;들어가며&#34;&gt;들어가며&lt;/h2&gt;&#xA;&lt;p&gt;앞의 &lt;a href=&#34;../bjt-npn-operating-regions/&#34;&gt;BJT(npn) 동작영역&lt;/a&gt;을 봤다면 PNP도 거의 끝났다. &lt;strong&gt;PNP는 NPN의 극성을 통째로 뒤집은 짝&lt;/strong&gt;이다 — 캐리어가 전자 대신 정공(홀), 전압·전류 방향이 전부 반대. 얇은 베이스를 캐리어가 관통하고 컬렉터가 &amp;ldquo;청소기&amp;quot;처럼 걷어가는 &lt;strong&gt;동작 원리는 NPN과 완전히 동일&lt;/strong&gt;하다.&lt;/p&gt;&#xA;&lt;p&gt;그래서 이 글도 &lt;em&gt;&amp;ldquo;NPN과 무엇이 다른가&amp;rdquo;&lt;/em&gt; 에 초점을 둔다. PNP는 &lt;strong&gt;high-side 스위치&lt;/strong&gt;나 밴드갭·미러 같은 데서 &lt;strong&gt;high-side 전류원&lt;/strong&gt;으로 자주 쓴다.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-한눈에--npn-vs-pnp-기본-동작-차이&#34;&gt;1. 한눈에 — NPN vs PNP 기본 동작 차이&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;항목&lt;/th&gt;&#xA;          &lt;th&gt;NPN&lt;/th&gt;&#xA;          &lt;th&gt;PNP&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;구조&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;n-p-n&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;p-n-p&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;이미터가 주입하는 캐리어&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;전자&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;정공(홀)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;이미터 위치 (관습)&lt;/td&gt;&#xA;          &lt;td&gt;회로의 &lt;strong&gt;낮은 쪽&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;회로의 &lt;strong&gt;높은 쪽&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;BE(이미터) 켜는 조건&lt;/td&gt;&#xA;          &lt;td&gt;$V_{BE}\approx+0.7\text{V}$ (베이스가 이미터보다 &lt;strong&gt;높게&lt;/strong&gt;)&lt;/td&gt;&#xA;          &lt;td&gt;$V_{EB}\approx+0.7\text{V}$ (베이스가 이미터보다 &lt;strong&gt;낮게&lt;/strong&gt;)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;베이스 전류 방향&lt;/td&gt;&#xA;          &lt;td&gt;베이스로 &lt;strong&gt;흘러들어감&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;베이스에서 &lt;strong&gt;흘러나옴&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;컬렉터 전류 방향&lt;/td&gt;&#xA;          &lt;td&gt;컬렉터로 &lt;strong&gt;들어감&lt;/strong&gt; (C가 높음)&lt;/td&gt;&#xA;          &lt;td&gt;컬렉터에서 &lt;strong&gt;나옴&lt;/strong&gt; (E가 높음)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;기호 이미터 화살표&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;밖으로&lt;/strong&gt; (npn)&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;안으로&lt;/strong&gt; (pnp)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;주 용도&lt;/td&gt;&#xA;          &lt;td&gt;low-side 스위치·증폭&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;high-side&lt;/strong&gt; 스위치·전류원&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;핵심 한 줄:&lt;/strong&gt; PNP는 이미터가 &lt;strong&gt;위(높은 쪽)&lt;/strong&gt; 에 있고, 베이스를 이미터보다 &lt;strong&gt;~0.7V 낮추면&lt;/strong&gt; 켜진다. 그리고 베이스 전류는 &lt;strong&gt;빼내는(흘러나오는)&lt;/strong&gt; 방향이다. 나머지는 NPN을 거울에 비춘 것.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[개념정리] BJT(npn) 동작영역 — cutoff · active · saturation</title>
+      <link>http://localhost:1313/posts/bjt-npn-operating-regions/</link>
+      <pubDate>Tue, 14 Jul 2026 06:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/bjt-npn-operating-regions/</guid>
+      <description>&lt;h2 id=&#34;들어가며&#34;&gt;들어가며&lt;/h2&gt;&#xA;&lt;p&gt;앞선 &lt;a href=&#34;../mosfet-operating-regions/&#34;&gt;MOSFET 동작영역&lt;/a&gt; 정리에 이어지는 짝이다. BJT는 밴드갭 레퍼런스·전류미러·바이어스 회로, 그리고 옛 리니어 레귤레이터의 pass 소자까지 IC 안에 늘 살아있다.&lt;/p&gt;&#xA;&lt;p&gt;n채널 MOSFET과 대응시켜, npn BJT 기준으로 &lt;span class=&#34;pt&#34;&gt;cutoff / active / saturation&lt;/span&gt; 세 영역을 &lt;em&gt;두 접합의 순방향·역방향&lt;/em&gt; 관점에서 잡는다. 특히 &lt;strong&gt;왜 BC 접합이 역방향인데도 컬렉터 전류가 흐르는지&lt;/strong&gt;, 그리고 &lt;strong&gt;Vce는 내가 직접 정하는 값이 아니라는 것&lt;/strong&gt;이 핵심이다.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-구조--n-p-n-샌드위치&#34;&gt;1. 구조 — n-p-n 샌드위치&lt;/h2&gt;&#xA;&lt;p&gt;BJT는 반도체를 &lt;strong&gt;n / p / n&lt;/strong&gt; 순서로 쌓은 세 층짜리 샌드위치다. 층이 3개니까 단자도 3개 — &lt;strong&gt;E&lt;/strong&gt;(emitter), &lt;strong&gt;B&lt;/strong&gt;(base), &lt;strong&gt;C&lt;/strong&gt;(collector). 세 층이 만드는 경계 2개가 곧 &lt;strong&gt;BE 접합&lt;/strong&gt;과 &lt;strong&gt;BC 접합&lt;/strong&gt;이다.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,12 +1,19 @@
 <nav>
-  <a href="{{ "." | relURL }}" class="nav-logo">PowerIC<span>.log</span></a>
-  <ul class="nav-links">
-    <li><a href="{{ "." | relURL }}" {{ if .IsHome }}class="active"{{ end }} data-ko="홈" data-en="Home">홈</a></li>
-    <li><a href="{{ "profile/" | relURL }}" {{ if eq .RelPermalink "/profile/" }}class="active"{{ end }} data-ko="프로필" data-en="Profile">프로필</a></li>
-    <li><a href="{{ "posts/" | relURL }}" {{ if eq .Section "posts" }}class="active"{{ end }} data-ko="포스트" data-en="Post">포스트</a></li>
-  </ul>
-  <div class="lang-toggle">
-    <button onclick="setLang('ko')" id="btn-ko" class="active">KO</button>
-    <button onclick="setLang('en')" id="btn-en">EN</button>
+  <a href="{{ "." | relURL }}" class="nav-logo">Analog <span>Notes</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="{{ "." | relURL }}" {{ if .IsHome }}class="active"{{ end }} data-ko="홈" data-en="Home">홈</a></li>
+      <li><a href="{{ "posts/" | relURL }}" {{ if eq .Section "posts" }}class="active"{{ end }} data-ko="포스트" data-en="Posts">포스트</a></li>
+      <li><a href="{{ "profile/" | relURL }}" {{ if eq .RelPermalink "/profile/" }}class="active"{{ end }} data-ko="프로필" data-en="Profile">프로필</a></li>
+    </ul>
+    <div class="toggles">
+      <div class="lang-toggle">
+        <button onclick="setLang('ko')" id="btn-ko" class="active">KO</button>
+        <button onclick="setLang('en')" id="btn-en">EN</button>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme" title="라이트 / 다크">
+        <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></svg>
+      </button>
+    </div>
   </div>
 </nav>

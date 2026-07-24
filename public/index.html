@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta name="generator" content="Hugo 0.161.1">
+	<meta name="generator" content="Hugo 0.161.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PowerIC.log</title>
+<title>Analog Notes</title>
+<script>(function(){try{var t=localStorage.getItem('an-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css?v=1784902732">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+      throwOnError: false
+    });
+  });
+</script>
 
 <script data-goatcounter="https://poweric-log.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
@@ -15,137 +32,193 @@
 </head>
 <body>
 <nav>
-  <a href="/" class="nav-logo">PowerIC<span>.log</span></a>
-  <ul class="nav-links">
-    <li><a href="/" class="active" data-ko="홈" data-en="Home">홈</a></li>
-    <li><a href="/profile/"  data-ko="프로필" data-en="Profile">프로필</a></li>
-    <li><a href="/posts/"  data-ko="포스트" data-en="Post">포스트</a></li>
-  </ul>
-  <div class="lang-toggle">
-    <button onclick="setLang('ko')" id="btn-ko" class="active">KO</button>
-    <button onclick="setLang('en')" id="btn-en">EN</button>
+  <a href="/" class="nav-logo">Analog <span>Notes</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/" class="active" data-ko="홈" data-en="Home">홈</a></li>
+      <li><a href="/posts/"  data-ko="포스트" data-en="Posts">포스트</a></li>
+      <li><a href="/profile/"  data-ko="프로필" data-en="Profile">프로필</a></li>
+    </ul>
+    <div class="toggles">
+      <div class="lang-toggle">
+        <button onclick="setLang('ko')" id="btn-ko" class="active">KO</button>
+        <button onclick="setLang('en')" id="btn-en">EN</button>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme" title="라이트 / 다크">
+        <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
 <main>
 
 
-<div class="hero">
-  <div>
-    <div class="hero-eyebrow">Power Management IC</div>
-    <h1>Minha Hwang</h1>
-    <div class="hero-role">System/Application Engineer</div>
-    <p class="hero-desc" data-ko='Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.' data-en='Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.'>
-      Power Management System/Application Engineer with 13+ years — <em>AC/DC, DC/DC, and PMIC</em>, from first silicon to mass production.
-    </p>
+<header class="hero">
+  <canvas class="scope" id="scope" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="hero-eyebrow" data-ko="아날로그 · 믹스드시그널 IC" data-en="Analog · Mixed-Signal IC">아날로그 · 믹스드시그널 IC</div>
+    <h1>Analog <span class="tld">Notes</span></h1>
+    <div class="hero-role">
+      <span class="who">Minha Hwang</span>
+      <span class="sep">·</span>
+      <span data-ko="IC 검증 · 응용 엔지니어" data-en="IC Verification &amp; Application Engineer">IC 검증 · 응용 엔지니어</span>
+      <span class="yr">13Y+</span>
+    </div>
+    <p class="hero-desc"
+       data-ko="전력관리 IC 검증으로 실무를 쌓았고, 지금은 부족한 펀더멘털을 처음부터 다시 세우는 중입니다. 소자 동작부터 증폭기·RF까지, 공부한 걸 여기 남깁니다."
+       data-en="I built my career on power-management IC verification, and now I'm rebuilding the fundamentals from the ground up. From device operation to amplifier &amp; RF — I keep what I study here.">전력관리 IC 검증으로 실무를 쌓았고, 지금은 부족한 펀더멘털을 처음부터 다시 세우는 중입니다. 소자 동작부터 증폭기·RF까지, 공부한 걸 여기 남깁니다.</p>
     <div class="hero-cta">
-      <a href="/profile/" class="btn btn-primary" data-ko="프로필 보기 →" data-en="View Profile →">프로필 보기 →</a>
-      <a href="/posts/" class="btn btn-ghost" data-ko="포스트 읽기" data-en="Read Posts">포스트 읽기</a>
+      <a class="btn btn-primary" href="/posts/" data-ko="글 읽기 →" data-en="Read the writing →">글 읽기 →</a>
+      <a class="btn btn-ghost" href="/profile/" data-ko="프로필 보기" data-en="View profile">프로필 보기</a>
+    </div>
+    <div class="chips">
+      <span class="lbl" data-ko="다루는 분야" data-en="Focus">다루는 분야</span>
+      <span class="chip k" data-ko="전력관리" data-en="Power Mgmt">전력관리</span>
+      <span class="chip g" data-ko="증폭기 · RF" data-en="Amplifier · RF">증폭기 · RF</span>
+      <span class="chip">PMIC</span>
+      <span class="chip" data-ko="신호체인" data-en="Signal chain">신호체인</span>
+      <span class="chip" data-ko="IC 검증" data-en="Verification">IC 검증</span>
     </div>
   </div>
-  <div class="hero-avatar">MH</div>
-</div>
+</header>
 
-<div class="stats">
-  <div class="stat">
-    <span class="stat-num">0</span>
-    <span class="stat-label" data-ko="포스트" data-en="Posts">포스트</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">5</span>
-    <span class="stat-label" data-ko="시리즈" data-en="Series">시리즈</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num" id="today-count">—</span>
-    <span class="stat-label" data-ko="오늘 방문" data-en="Today">오늘 방문</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num" id="total-count">—</span>
-    <span class="stat-label" data-ko="전체 방문" data-en="Total">전체 방문</span>
-  </div>
-</div>
+<div class="wrap">
+  
+  <section class="section" id="writing">
+    <div class="section-head">
+      <span class="section-title" data-ko="최신 글" data-en="Latest writing">최신 글</span>
+      <a class="view-all" href="/posts/" data-ko="전체 보기 →" data-en="View all →">전체 보기 →</a>
+    </div>
+    <div class="post-list">
+      
+      <a class="post-item" href="/posts/pnp-bjt-operating-regions/">
+        <span class="post-cat">이론/원리</span>
+        <span class="post-title">[개념정리] PNP BJT 동작영역 — NPN과 무엇이 다른가</span>
+        <span class="post-date">2026·07·15</span>
+      </a>
+      
+      <a class="post-item" href="/posts/pmos-operating-regions/">
+        <span class="post-cat">이론/원리</span>
+        <span class="post-title">[개념정리] PMOS(p채널) 동작영역 — NMOS와 무엇이 다른가</span>
+        <span class="post-date">2026·07·15</span>
+      </a>
+      
+      <a class="post-item" href="/posts/bjt-npn-operating-regions/">
+        <span class="post-cat">이론/원리</span>
+        <span class="post-title">[개념정리] BJT(npn) 동작영역 — cutoff · active · saturation</span>
+        <span class="post-date">2026·07·14</span>
+      </a>
+      
+      <a class="post-item" href="/posts/mosfet-operating-regions/">
+        <span class="post-cat">이론/원리</span>
+        <span class="post-title">[개념정리] MOSFET 동작영역 — cutoff · triode · saturation과 pinch-off</span>
+        <span class="post-date">2026·07·12</span>
+      </a>
+      
+    </div>
+  </section>
 
-<div class="section">
-  <div class="section-head">
-    <span class="section-title" data-ko="시리즈" data-en="Series">시리즈</span>
-    <a href="/posts/" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
-  </div>
-  <div class="series-grid">
-    <a href="/posts/theory/" class="series-card">
-      <span class="series-card-name" data-ko="이론/원리" data-en="Theory & Principles">이론/원리</span>
-      <span class="series-card-sub">Power Topology · Circuit Analysis</span>
-      <span class="series-card-count">0 <span data-ko="편" data-en="posts">편</span></span>
-    </a>
-    <a href="/posts/design/" class="series-card">
-      <span class="series-card-name" data-ko="시스템 설계" data-en="System Design">시스템 설계</span>
-      <span class="series-card-sub" data-ko="EVB 설계 · 부품 선정 · 인덕터 설계" data-en="EVB Design · Component Selection · Inductor Design">EVB 설계 · 부품 선정 · 인덕터 설계</span>
-      <span class="series-card-count">0 <span data-ko="편" data-en="posts">편</span></span>
-    </a>
-    <a href="/posts/verification/" class="series-card">
-      <span class="series-card-name" data-ko="IC 검증" data-en="IC Verification">IC 검증</span>
-      <span class="series-card-sub">IC Verification</span>
-      <span class="series-card-count">0 <span data-ko="편" data-en="posts">편</span></span>
-    </a>
-    <a href="/posts/simulation/" class="series-card">
-      <span class="series-card-name" data-ko="시뮬레이션" data-en="Simulation">시뮬레이션</span>
-      <span class="series-card-sub">PSIM · SIMPLIS</span>
-      <span class="series-card-count">0 <span data-ko="편" data-en="posts">편</span></span>
-    </a>
-    <a href="/posts/casestudy/" class="series-card">
-      <span class="series-card-name" data-ko="제품/사례" data-en="Product & Case Study">제품/사례</span>
-      <span class="series-card-sub" data-ko="실제 IC 개발 케이스 스터디" data-en="Real-world IC Development Case Studies">실제 IC 개발 케이스 스터디</span>
-      <span class="series-card-count">0 <span data-ko="편" data-en="posts">편</span></span>
-    </a>
-  </div>
-</div>
-
-
-<div class="section">
-  <div class="section-head">
-    <span class="section-title" data-ko="최신 포스트" data-en="Recent Posts">최신 포스트</span>
-    <a href="/posts/" class="view-all" data-ko="전체 보기 →" data-en="View All →">전체 보기 →</a>
-  </div>
-  <div class="post-list">
-    
-      <div class="post-item">
-        <span class="post-cat" style="color:var(--text3);background:var(--bg2);">—</span>
-        <span class="post-title" style="color:var(--text3);" data-ko="아직 포스트가 없습니다. 곧 업로드 예정입니다." data-en="No posts yet. Coming soon.">아직 포스트가 없습니다. 곧 업로드 예정입니다.</span>
-        <span class="post-date">—</span>
+  <section class="section" id="roadmap">
+    <div class="section-head">
+      <span class="section-title" data-ko="학습 로드맵" data-en="Learning roadmap">학습 로드맵</span>
+      <span class="section-sub" data-ko="펀더멘털 → 응용 → 증폭기·RF" data-en="fundamentals → applied → amp·RF">펀더멘털 → 응용 → 증폭기·RF</span>
+    </div>
+    <div class="road">
+      <div class="rrow here">
+        <span class="node"></span>
+        <div>
+          <div class="rtitle" data-ko="소자 동작영역 — MOSFET · BJT · PMOS · PNP" data-en="Device operating regions — MOSFET · BJT · PMOS · PNP">소자 동작영역 — MOSFET · BJT · PMOS · PNP</div>
+          <div class="rsub" data-ko="cutoff / triode / saturation · pinch-off · 캐리어 흐름" data-en="cutoff / triode / saturation · pinch-off · carrier flow">cutoff / triode / saturation · pinch-off · 캐리어 흐름</div>
+        </div>
+        <span class="rstat now" data-ko="지금 여기 · 4편" data-en="You are here · 4">지금 여기 · 4편</span>
       </div>
-    
-  </div>
+      <div class="rrow upcoming">
+        <span class="node"></span>
+        <div>
+          <div class="rtitle" data-ko="컨버터 토폴로지 & 모드 해석" data-en="Converter topology & mode analysis">컨버터 토폴로지 &amp; 모드 해석</div>
+          <div class="rsub" data-ko="buck / boost · volt-second balance · CCM/DCM" data-en="buck / boost · volt-second balance · CCM/DCM">buck / boost · volt-second balance · CCM/DCM</div>
+        </div>
+        <span class="rstat" data-ko="예정" data-en="Planned">예정</span>
+      </div>
+      <div class="rrow upcoming">
+        <span class="node"></span>
+        <div>
+          <div class="rtitle" data-ko="제어 · 안정도" data-en="Control & stability">제어 · 안정도</div>
+          <div class="rsub" data-ko="pole / zero · 보상기 · VMC vs CMC · COT/ACOT" data-en="pole / zero · compensator · VMC vs CMC · COT/ACOT">pole / zero · 보상기 · VMC vs CMC · COT/ACOT</div>
+        </div>
+        <span class="rstat" data-ko="예정" data-en="Planned">예정</span>
+      </div>
+      <div class="rrow upcoming">
+        <span class="node"></span>
+        <div>
+          <div class="rtitle" data-ko="시뮬레이션 — SIMPLIS / PSIM" data-en="Simulation — SIMPLIS / PSIM">시뮬레이션 — SIMPLIS / PSIM</div>
+          <div class="rsub" data-ko="클로즈드루프 구축 · 루프이득 · 안정도 평가" data-en="closed-loop build · loop gain · stability check">클로즈드루프 구축 · 루프이득 · 안정도 평가</div>
+        </div>
+        <span class="rstat" data-ko="예정" data-en="Planned">예정</span>
+      </div>
+      <div class="rrow upcoming">
+        <span class="node"></span>
+        <div>
+          <div class="rtitle" data-ko="증폭기 · RF 기초" data-en="Amplifier · RF basics">증폭기 · RF 기초</div>
+          <div class="rsub" data-ko="gain / noise / bandwidth · preamplifier · S-파라미터" data-en="gain / noise / bandwidth · preamplifier · S-parameters">gain / noise / bandwidth · preamplifier · S-파라미터</div>
+        </div>
+        <span class="rstat new" data-ko="새 영역" data-en="New domain">새 영역</span>
+      </div>
+    </div>
+  </section>
 </div>
 
 <script>
-
-fetch('https://poweric-log.goatcounter.com/counter/TOTAL.json')
-  .then(r => r.json())
-  .then(d => {
-    if (d.count) document.getElementById('total-count').textContent = Number(d.count).toLocaleString();
-  }).catch(() => {});
-
-const today = new Date().toISOString().split('T')[0];
-fetch(`https://poweric-log.goatcounter.com/counter/TOTAL.json?start=${today}`)
-  .then(r => r.json())
-  .then(d => {
-    if (d.count) document.getElementById('today-count').textContent = Number(d.count).toLocaleString();
-  }).catch(() => {});
+(function () {
+  var scope = document.getElementById('scope'), sx;
+  if (!scope) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function size() {
+    var r = scope.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+    scope.width = Math.max(1, r.width * dpr); scope.height = Math.max(1, r.height * dpr);
+    sx = scope.getContext('2d'); sx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (reduce) draw(0);
+  }
+  function draw(t) {
+    if (!sx) return;
+    var w = scope.clientWidth, h = scope.clientHeight;
+    sx.clearRect(0, 0, w, h);
+    sx.strokeStyle = css('--grid'); sx.lineWidth = 1;
+    for (var gx = 0; gx < w; gx += 42) { sx.beginPath(); sx.moveTo(gx, 0); sx.lineTo(gx, h); sx.stroke(); }
+    for (var gy = 0; gy < h; gy += 42) { sx.beginPath(); sx.moveTo(0, gy); sx.lineTo(w, gy); sx.stroke(); }
+    var mid = h * 0.5;
+    sx.lineWidth = 2; sx.strokeStyle = css('--accent'); sx.globalAlpha = .82; sx.beginPath();
+    for (var i = 0; i <= w; i += 4) { var y = mid + Math.sin(i * 0.013 - t * 0.9) * h * 0.16; i === 0 ? sx.moveTo(i, y) : sx.lineTo(i, y); }
+    sx.stroke();
+    sx.strokeStyle = css('--accent2'); sx.globalAlpha = .45; sx.beginPath();
+    for (var j = 0; j <= w; j += 4) { var p = j / w; var env = Math.exp(-p * 3) * Math.cos(p * 22 - t * 0.9);
+      var y2 = mid + h * 0.18 - (1 - Math.exp(-p * 3)) * h * 0.02 - env * h * 0.13; j === 0 ? sx.moveTo(j, y2) : sx.lineTo(j, y2); }
+    sx.stroke(); sx.globalAlpha = 1;
+  }
+  var t0 = 0;
+  function loop() { t0 += 0.02; draw(t0); requestAnimationFrame(loop); }
+  size();
+  if (!reduce) loop();
+  window.addEventListener('resize', size);
+})();
 </script>
 
 
 </main>
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">PowerIC<span>.log</span></div>
+    <div class="footer-logo">Analog <span>Notes</span> · © 2026 Minha Hwang</div>
     <div class="footer-links">
       <a href="/profile/" data-ko="프로필" data-en="Profile">프로필</a>
-      <a href="https://www.linkedin.com/in/minha-hwang-694b25313/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/powerIC-log" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/minha-hwang-694b25313/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/powerIC-log" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <div class="footer-copy">© 2026 Minha Hwang</div>
   </div>
 </footer>
 
+<script src="/js/theme.js"></script>
 <script src="/js/lang.js"></script>
 </body>
 </html>

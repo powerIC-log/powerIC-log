@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MOSFET on Analog Notes</title>
+    <link>http://localhost:1313/tags/mosfet/</link>
+    <description>Recent content in MOSFET on Analog Notes</description>
+    <generator>Hugo</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Wed, 15 Jul 2026 05:00:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/mosfet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[개념정리] PMOS(p채널) 동작영역 — NMOS와 무엇이 다른가</title>
+      <link>http://localhost:1313/posts/pmos-operating-regions/</link>
+      <pubDate>Wed, 15 Jul 2026 05:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/pmos-operating-regions/</guid>
+      <description>&lt;h2 id=&#34;들어가며&#34;&gt;들어가며&lt;/h2&gt;&#xA;&lt;p&gt;앞의 &lt;a href=&#34;../mosfet-operating-regions/&#34;&gt;MOSFET(n채널) 동작영역&lt;/a&gt;을 봤다면, PMOS는 거의 다 온 셈이다. &lt;strong&gt;PMOS는 NMOS의 극성을 통째로 뒤집은 짝&lt;/strong&gt;이다 — 캐리어가 전자 대신 정공(홀), 전압 부호가 전부 반대. pinch-off·채널전하·&amp;ldquo;saturation에서 왜 일정한가&amp;rdquo; 같은 &lt;strong&gt;메커니즘은 NMOS와 완전히 동일&lt;/strong&gt;하다.&lt;/p&gt;&#xA;&lt;p&gt;그래서 이 글은 &lt;em&gt;&amp;ldquo;NMOS와 무엇이 다른가&amp;rdquo;&lt;/em&gt; 에 초점을 둔다. PMOS를 알아야 하는 이유는 명확하다 — &lt;strong&gt;high-side 스위치&lt;/strong&gt;와 &lt;strong&gt;PMOS LDO의 pass 소자&lt;/strong&gt;가 전부 PMOS다.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-한눈에--nmos-vs-pmos-기본-동작-차이&#34;&gt;1. 한눈에 — NMOS vs PMOS 기본 동작 차이&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;항목&lt;/th&gt;&#xA;          &lt;th&gt;NMOS (n채널)&lt;/th&gt;&#xA;          &lt;th&gt;PMOS (p채널)&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;캐리어&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;전자&lt;/strong&gt; (음전하)&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;정공(홀)&lt;/strong&gt; (양전하)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;몸통 / 소스·드레인&lt;/td&gt;&#xA;          &lt;td&gt;p-body, &lt;strong&gt;n+&lt;/strong&gt; S/D&lt;/td&gt;&#xA;          &lt;td&gt;n-body, &lt;strong&gt;p+&lt;/strong&gt; S/D&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;소스 위치 (관습)&lt;/td&gt;&#xA;          &lt;td&gt;회로의 &lt;strong&gt;낮은 쪽&lt;/strong&gt; (GND)&lt;/td&gt;&#xA;          &lt;td&gt;회로의 &lt;strong&gt;높은 쪽&lt;/strong&gt; (Vdd)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;문턱전압 $V_{th}$ 부호&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;양(+)&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;음(−)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;켜는 조건&lt;/td&gt;&#xA;          &lt;td&gt;$V_{GS} &gt; V_{th}$ → 게이트를 소스보다 &lt;strong&gt;높게&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;$V_{GS} &lt; V_{th}$ → 게이트를 소스보다 &lt;strong&gt;낮게&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;전류 방향 (관습)&lt;/td&gt;&#xA;          &lt;td&gt;드레인 → 소스 (D가 높음)&lt;/td&gt;&#xA;          &lt;td&gt;소스 → 드레인 (S가 높음)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;이동도&lt;/td&gt;&#xA;          &lt;td&gt;전자 빠름&lt;/td&gt;&#xA;          &lt;td&gt;홀 느림 → 같은 크기면 $R_{DS(on)}$ &lt;strong&gt;2~3배&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;주 용도&lt;/td&gt;&#xA;          &lt;td&gt;low-side 스위치, 파워 스위치&lt;/td&gt;&#xA;          &lt;td&gt;&lt;strong&gt;high-side 스위치&lt;/strong&gt;, &lt;strong&gt;PMOS LDO&lt;/strong&gt; pass&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;&lt;strong&gt;핵심 한 줄:&lt;/strong&gt; PMOS는 소스가 &lt;strong&gt;위(Vdd)&lt;/strong&gt; 에 있고, 게이트를 소스보다 &lt;strong&gt;낮춰야&lt;/strong&gt; 켜진다. 나머지는 NMOS를 거울에 비춘 것.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>[개념정리] MOSFET 동작영역 — cutoff · triode · saturation과 pinch-off</title>
+      <link>http://localhost:1313/posts/mosfet-operating-regions/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/mosfet-operating-regions/</guid>
+      <description>&lt;h2 id=&#34;들어가며&#34;&gt;들어가며&lt;/h2&gt;&#xA;&lt;p&gt;LDO를 공부하다 보면 pass FET이 &lt;em&gt;&amp;ldquo;어느 영역에서 동작하느냐&amp;rdquo;&lt;/em&gt; 를 반드시 마주친다. 스위칭 컨버터의 파워 MOSFET도 마찬가지다.&lt;/p&gt;&#xA;&lt;p&gt;따로 정리해두는 &lt;strong&gt;개념정리&lt;/strong&gt;다. n채널 MOSFET 기준으로 &lt;span class=&#34;pt&#34;&gt;cutoff / triode / saturation&lt;/span&gt; 세 영역과, 그 사이를 가르는 &lt;span class=&#34;pt&#34;&gt;pinch-off&lt;/span&gt;를 &lt;em&gt;채널 전하&lt;/em&gt; 관점에서 잡는다.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-두-개의-손잡이와-하나의-핵심-식&#34;&gt;1. 두 개의 손잡이와 하나의 핵심 식&lt;/h2&gt;&#xA;&lt;p&gt;MOSFET은 &lt;strong&gt;전압으로 제어&lt;/strong&gt;한다. 손잡이는 두 개다.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;$V_{GS}$&lt;/strong&gt; (게이트-소스 전압) — 채널을 &lt;em&gt;만드는&lt;/em&gt; 힘&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;$V_{DS}$&lt;/strong&gt; (드레인-소스 전압) — 채널을 따라 캐리어를 &lt;em&gt;미는&lt;/em&gt; 힘&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;채널을 따라 위치마다 채널 전위 $V(x)$ 가 다르다 (소스 쪽 $0$ → 드레인 쪽 $V_{DS}$). 게이트가 그 지점에 거는 전압, 즉 &lt;strong&gt;게이트-채널 전압&lt;/strong&gt;은&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

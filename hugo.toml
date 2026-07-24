@@ -1,12 +1,12 @@
 baseURL = "https://poweric-log.github.io/powerIC-log/"
 languageCode = "ko-kr"
-title = "PowerIC.log"
+title = "Analog Notes"
 theme = "powerIC"
 defaultContentLanguage = "ko"
 
 [params]
   author = "Minha Hwang"
-  description = "Power Management System/Application Engineer with 13+ years — AC/DC, DC/DC, and PMIC, from first silicon to mass production."
+  description = "아날로그·믹스드시그널 IC 검증·응용 엔지니어 (13년+). 전력관리(AC/DC·DC/DC·PMIC)를 기반으로 증폭기·RF 신호체인까지 — 공부한 걸 기록합니다."
   goatcounter = "poweric-log"
 
 [markup]

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시뮬레이션 | Analog Notes</title>
+<script>(function(){try{var t=localStorage.getItem('an-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=1784902732">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+      throwOnError: false
+    });
+  });
+</script>
+
+<script data-goatcounter="https://poweric-log.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Analog <span>Notes</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/"  data-ko="홈" data-en="Home">홈</a></li>
+      <li><a href="/posts/" class="active" data-ko="포스트" data-en="Posts">포스트</a></li>
+      <li><a href="/profile/"  data-ko="프로필" data-en="Profile">프로필</a></li>
+    </ul>
+    <div class="toggles">
+      <div class="lang-toggle">
+        <button onclick="setLang('ko')" id="btn-ko" class="active">KO</button>
+        <button onclick="setLang('en')" id="btn-en">EN</button>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme" title="라이트 / 다크">
+        <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<div class="page-wrap">
+  <div class="section-head" style="margin-bottom:2rem;">
+    <span class="section-title">시뮬레이션</span>
+    <a href="/posts/" class="view-all" data-ko="전체 포스트 →" data-en="All Posts →">전체 포스트 →</a>
+  </div>
+  <div class="post-list">
+    
+    
+    
+      <div class="post-item">
+        <span class="post-title" style="color:var(--text3);" data-ko="아직 이 시리즈에 포스트가 없습니다." data-en="No posts in this series yet.">아직 이 시리즈에 포스트가 없습니다.</span>
+      </div>
+    
+  </div>
+</div>
+
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Analog <span>Notes</span> · © 2026 Minha Hwang</div>
+    <div class="footer-links">
+      <a href="/profile/" data-ko="프로필" data-en="Profile">프로필</a>
+      <a href="https://www.linkedin.com/in/minha-hwang-694b25313/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/powerIC-log" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/lang.js"></script>
+</body>
+</html>

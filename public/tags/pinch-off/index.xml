@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pinch-Off on Analog Notes</title>
+    <link>http://localhost:1313/tags/pinch-off/</link>
+    <description>Recent content in Pinch-Off on Analog Notes</description>
+    <generator>Hugo</generator>
+    <language>ko-kr</language>
+    <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/pinch-off/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[개념정리] MOSFET 동작영역 — cutoff · triode · saturation과 pinch-off</title>
+      <link>http://localhost:1313/posts/mosfet-operating-regions/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/mosfet-operating-regions/</guid>
+      <description>&lt;h2 id=&#34;들어가며&#34;&gt;들어가며&lt;/h2&gt;&#xA;&lt;p&gt;LDO를 공부하다 보면 pass FET이 &lt;em&gt;&amp;ldquo;어느 영역에서 동작하느냐&amp;rdquo;&lt;/em&gt; 를 반드시 마주친다. 스위칭 컨버터의 파워 MOSFET도 마찬가지다.&lt;/p&gt;&#xA;&lt;p&gt;따로 정리해두는 &lt;strong&gt;개념정리&lt;/strong&gt;다. n채널 MOSFET 기준으로 &lt;span class=&#34;pt&#34;&gt;cutoff / triode / saturation&lt;/span&gt; 세 영역과, 그 사이를 가르는 &lt;span class=&#34;pt&#34;&gt;pinch-off&lt;/span&gt;를 &lt;em&gt;채널 전하&lt;/em&gt; 관점에서 잡는다.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-두-개의-손잡이와-하나의-핵심-식&#34;&gt;1. 두 개의 손잡이와 하나의 핵심 식&lt;/h2&gt;&#xA;&lt;p&gt;MOSFET은 &lt;strong&gt;전압으로 제어&lt;/strong&gt;한다. 손잡이는 두 개다.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;$V_{GS}$&lt;/strong&gt; (게이트-소스 전압) — 채널을 &lt;em&gt;만드는&lt;/em&gt; 힘&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;$V_{DS}$&lt;/strong&gt; (드레인-소스 전압) — 채널을 따라 캐리어를 &lt;em&gt;미는&lt;/em&gt; 힘&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;채널을 따라 위치마다 채널 전위 $V(x)$ 가 다르다 (소스 쪽 $0$ → 드레인 쪽 $V_{DS}$). 게이트가 그 지점에 거는 전압, 즉 &lt;strong&gt;게이트-채널 전압&lt;/strong&gt;은&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
