@@ -53,51 +53,78 @@
       <span class="section-sub" data-ko="펀더멘털 → 응용 → 증폭기·RF" data-en="fundamentals → applied → amp·RF">펀더멘털 → 응용 → 증폭기·RF</span>
     </div>
     <div class="road">
-      <a class="rrow here" href="{{ "posts/" | relURL }}">
-        <span class="node"></span>
-        <div>
-          <div class="rtitle" data-ko="소자 동작영역 — MOSFET · BJT · PMOS · PNP" data-en="Device operating regions — MOSFET · BJT · PMOS · PNP">소자 동작영역 — MOSFET · BJT · PMOS · PNP</div>
-          <div class="rsub" data-ko="cutoff / triode / saturation · pinch-off · 캐리어 흐름" data-en="cutoff / triode / saturation · pinch-off · carrier flow">cutoff / triode / saturation · pinch-off · 캐리어 흐름</div>
+      <div class="ritem">
+        <button class="rrow here" type="button" aria-expanded="true" onclick="toggleRoadmap(this)">
+          <span class="node"></span>
+          <div>
+            <div class="rtitle" data-ko="소자 동작영역 — MOSFET · BJT · PMOS · PNP" data-en="Device operating regions — MOSFET · BJT · PMOS · PNP">소자 동작영역 — MOSFET · BJT · PMOS · PNP</div>
+            <div class="rsub" data-ko="cutoff / triode / saturation · pinch-off · 캐리어 흐름" data-en="cutoff / triode / saturation · pinch-off · carrier flow">cutoff / triode / saturation · pinch-off · 캐리어 흐름</div>
+          </div>
+          <span class="rend">
+            <span class="rstat now" data-ko="지금 여기 · 4편" data-en="You are here · 4">지금 여기 · 4편</span>
+            <span class="chev" aria-hidden="true">▸</span>
+          </span>
+        </button>
+        <div class="rposts open">
+          {{ range where .Site.RegularPages "Section" "posts" }}
+          <a class="rpost" href="{{ .RelPermalink }}">
+            <span class="rpost-t">{{ .Title }}</span>
+            <span class="rpost-d">{{ .Date.Format "2006·01·02" }}</span>
+          </a>
+          {{ end }}
         </div>
-        <span class="rstat now" data-ko="지금 여기 · 4편" data-en="You are here · 4">지금 여기 · 4편</span>
-      </a>
-      <div class="rrow upcoming">
-        <span class="node"></span>
-        <div>
-          <div class="rtitle" data-ko="컨버터 토폴로지 & 모드 해석" data-en="Converter topology & mode analysis">컨버터 토폴로지 &amp; 모드 해석</div>
-          <div class="rsub" data-ko="buck / boost · volt-second balance · CCM/DCM" data-en="buck / boost · volt-second balance · CCM/DCM">buck / boost · volt-second balance · CCM/DCM</div>
-        </div>
-        <span class="rstat" data-ko="예정" data-en="Planned">예정</span>
       </div>
-      <div class="rrow upcoming">
-        <span class="node"></span>
-        <div>
-          <div class="rtitle" data-ko="제어 · 안정도" data-en="Control & stability">제어 · 안정도</div>
-          <div class="rsub" data-ko="pole / zero · 보상기 · VMC vs CMC · COT/ACOT" data-en="pole / zero · compensator · VMC vs CMC · COT/ACOT">pole / zero · 보상기 · VMC vs CMC · COT/ACOT</div>
+      <div class="ritem">
+        <div class="rrow upcoming">
+          <span class="node"></span>
+          <div>
+            <div class="rtitle" data-ko="컨버터 토폴로지 & 모드 해석" data-en="Converter topology & mode analysis">컨버터 토폴로지 &amp; 모드 해석</div>
+            <div class="rsub" data-ko="buck / boost · volt-second balance · CCM/DCM" data-en="buck / boost · volt-second balance · CCM/DCM">buck / boost · volt-second balance · CCM/DCM</div>
+          </div>
+          <span class="rend"><span class="rstat" data-ko="예정" data-en="Planned">예정</span></span>
         </div>
-        <span class="rstat" data-ko="예정" data-en="Planned">예정</span>
       </div>
-      <div class="rrow upcoming">
-        <span class="node"></span>
-        <div>
-          <div class="rtitle" data-ko="시뮬레이션 — SIMPLIS / PSIM" data-en="Simulation — SIMPLIS / PSIM">시뮬레이션 — SIMPLIS / PSIM</div>
-          <div class="rsub" data-ko="클로즈드루프 구축 · 루프이득 · 안정도 평가" data-en="closed-loop build · loop gain · stability check">클로즈드루프 구축 · 루프이득 · 안정도 평가</div>
+      <div class="ritem">
+        <div class="rrow upcoming">
+          <span class="node"></span>
+          <div>
+            <div class="rtitle" data-ko="제어 · 안정도" data-en="Control & stability">제어 · 안정도</div>
+            <div class="rsub" data-ko="pole / zero · 보상기 · VMC vs CMC · COT/ACOT" data-en="pole / zero · compensator · VMC vs CMC · COT/ACOT">pole / zero · 보상기 · VMC vs CMC · COT/ACOT</div>
+          </div>
+          <span class="rend"><span class="rstat" data-ko="예정" data-en="Planned">예정</span></span>
         </div>
-        <span class="rstat" data-ko="예정" data-en="Planned">예정</span>
       </div>
-      <div class="rrow upcoming">
-        <span class="node"></span>
-        <div>
-          <div class="rtitle" data-ko="증폭기 · RF 기초" data-en="Amplifier · RF basics">증폭기 · RF 기초</div>
-          <div class="rsub" data-ko="gain / noise / bandwidth · preamplifier · S-파라미터" data-en="gain / noise / bandwidth · preamplifier · S-parameters">gain / noise / bandwidth · preamplifier · S-파라미터</div>
+      <div class="ritem">
+        <div class="rrow upcoming">
+          <span class="node"></span>
+          <div>
+            <div class="rtitle" data-ko="시뮬레이션 — SIMPLIS / PSIM" data-en="Simulation — SIMPLIS / PSIM">시뮬레이션 — SIMPLIS / PSIM</div>
+            <div class="rsub" data-ko="클로즈드루프 구축 · 루프이득 · 안정도 평가" data-en="closed-loop build · loop gain · stability check">클로즈드루프 구축 · 루프이득 · 안정도 평가</div>
+          </div>
+          <span class="rend"><span class="rstat" data-ko="예정" data-en="Planned">예정</span></span>
         </div>
-        <span class="rstat new" data-ko="새 영역" data-en="New domain">새 영역</span>
+      </div>
+      <div class="ritem">
+        <div class="rrow upcoming">
+          <span class="node"></span>
+          <div>
+            <div class="rtitle" data-ko="증폭기 · RF 기초" data-en="Amplifier · RF basics">증폭기 · RF 기초</div>
+            <div class="rsub" data-ko="gain / noise / bandwidth · preamplifier · S-파라미터" data-en="gain / noise / bandwidth · preamplifier · S-parameters">gain / noise / bandwidth · preamplifier · S-파라미터</div>
+          </div>
+          <span class="rend"><span class="rstat new" data-ko="새 영역" data-en="New domain">새 영역</span></span>
+        </div>
       </div>
     </div>
   </section>
 </div>
 
 <script>
+window.toggleRoadmap = function (btn) {
+  var open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!open));
+  var panel = btn.nextElementSibling;
+  if (panel && panel.classList.contains('rposts')) panel.classList.toggle('open', !open);
+};
 (function () {
   var scope = document.getElementById('scope'), sx;
   if (!scope) return;
