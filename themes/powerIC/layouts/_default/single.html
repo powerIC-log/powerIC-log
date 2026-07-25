@@ -25,20 +25,36 @@
   <div class="post-content">
     {{ .Content }}
   </div>
-  <div class="post-nav">
-    {{ with .PrevInSection }}
-    <a href="{{ .RelPermalink }}" class="post-nav-item prev">
-      <span class="post-nav-label" data-ko="← 이전 포스트" data-en="← Previous">← 이전 포스트</span>
-      <span class="post-nav-title">{{ .Title }}</span>
-    </a>
-    {{ end }}
-    {{ with .NextInSection }}
-    <a href="{{ .RelPermalink }}" class="post-nav-item next">
-      <span class="post-nav-label" data-ko="다음 포스트 →" data-en="Next →">다음 포스트 →</span>
-      <span class="post-nav-title">{{ .Title }}</span>
-    </a>
-    {{ end }}
-  </div>
+  {{ $domainTags := slice "device" "converter" "control" "simulation" "RF" }}
+  {{ $names := dict
+      "device" (dict "ko" "전자공학 기초" "en" "Electronics fundamentals")
+      "converter" (dict "ko" "컨버터 토폴로지 & 모드 해석" "en" "Converter topology & mode analysis")
+      "control" (dict "ko" "제어 · 안정도" "en" "Control & stability")
+      "simulation" (dict "ko" "시뮬레이션 — SIMPLIS / PSIM" "en" "Simulation — SIMPLIS / PSIM")
+      "RF" (dict "ko" "증폭기 · RF 기초" "en" "Amplifier · RF basics") }}
+  {{ $mine := "" }}{{ range .Params.tags }}{{ if in $domainTags . }}{{ $mine = . }}{{ end }}{{ end }}
+  {{ with $mine }}
+  {{ $sib := sort (where (where $.Site.RegularPages "Section" "posts") "Params.tags" "intersect" (slice .)) "Date" "asc" }}
+  {{ $nm := index $names . }}
+  <nav class="series-nav">
+    <div class="series-nav-head" data-ko="{{ $nm.ko }}" data-en="{{ $nm.en }}">{{ $nm.ko }}</div>
+    <ul class="series-list">
+      {{ range $sib }}
+      {{ if eq .Permalink $.Permalink }}
+      <li class="series-item cur" aria-current="page">
+        <span class="series-t">{{ .Title }}</span>
+        <span class="series-d">{{ .Date.Format "2006·01·02" }}</span>
+      </li>
+      {{ else }}
+      <li class="series-item">
+        <a class="series-t" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="series-d">{{ .Date.Format "2006·01·02" }}</span>
+      </li>
+      {{ end }}
+      {{ end }}
+    </ul>
+  </nav>
+  {{ end }}
 </div>
 <script>
 (function () {
