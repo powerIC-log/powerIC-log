@@ -243,6 +243,7 @@ a.series-t:hover{color:var(--accent);}
 .profile-name{font-family:var(--mono);font-size:1.8rem;font-weight:500;letter-spacing:-0.02em;margin-bottom:4px;color:var(--ink);}
 .profile-title{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.8rem;}
 .profile-summary{font-size:14px;color:var(--muted);max-width:460px;line-height:1.8;margin-bottom:1.2rem;}
+.profile-summary+.profile-summary{margin-top:-0.45rem;}
 .profile-contacts{display:flex;gap:8px;flex-wrap:wrap;}
 .contact-link{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line2);padding:4px 12px;border-radius:var(--radius);transition:all .18s;}
 .contact-link:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
