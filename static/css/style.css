@@ -88,6 +88,7 @@ body>nav{position:sticky;top:0;z-index:60;display:flex;align-items:center;justif
 .hero-role .yr{color:var(--accent);border:1px solid var(--line2);border-radius:999px;padding:2px 9px;font-size:11px;letter-spacing:0.06em;}
 .hero-desc{max-width:34em;font-size:clamp(15px,1.6vw,16.5px);line-height:1.85;color:var(--muted);margin:0 0 1.9rem;}
 .hero-desc b,.hero-desc em{color:var(--ink);font-weight:600;font-style:normal;}
+.hero-desc+.hero-desc{margin-top:-0.9rem;}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--line);}
 .chips .lbl{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);
