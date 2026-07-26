@@ -15,6 +15,9 @@ function applyLang(lang) {
     const text = lang === 'ko' ? el.dataset.ko : el.dataset.en;
     if (text !== undefined) el.innerHTML = text;
   });
+  document.querySelectorAll('[data-lang-body]').forEach(el => {
+    el.hidden = el.getAttribute('data-lang-body') !== lang;
+  });
 }
 
 const saved = localStorage.getItem(STORAGE_KEY) || 'ko';

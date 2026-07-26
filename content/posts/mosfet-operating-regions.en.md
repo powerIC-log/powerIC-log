@@ -1,0 +1,281 @@
++++
+title = "[Concept] MOSFET Operating Regions — cutoff · triode · saturation and pinch-off"
+date = 2026-07-12
+series = "Theory / Principle"
+description = "To understand LDOs and switching, you first need to know which region a MOSFET operates in. Here I organize the three regions and pinch-off from a channel-charge perspective."
+tags = ["개념정리", "MOSFET", "device", "pinch-off", "fundamentals"]
++++
+
+## Intro
+
+When you study LDOs, you inevitably run into the question of *"which region the pass FET operates in."* The same is true for the power MOSFET in a switching converter.
+
+This is a **concept note** I'm setting aside for that. Using an n-channel MOSFET as the reference, I'll pin down the three regions — <span class="pt">cutoff / triode / saturation</span> — and the <span class="pt">pinch-off</span> that divides them, from a *channel-charge* perspective.
+
+---
+
+## 1. Two knobs and one key equation
+
+A MOSFET is **voltage-controlled**. There are two knobs.
+
+- **$V_{GS}$** (gate-source voltage) — the force that *creates* the channel
+- **$V_{DS}$** (drain-source voltage) — the force that *pushes* carriers along the channel
+
+Along the channel, the channel potential $V(x)$ differs at each position (from $0$ at the source side → $V_{DS}$ at the drain side). The voltage the gate applies at that point, i.e. the **gate-channel voltage**, is
+
+$$V_{GC}(x) = V_{GS} - V(x)$$
+
+Here, only the **excess** beyond the threshold voltage $V_{th}$ actually forms the channel (the inversion layer). This excess is called the **overdrive voltage**.
+
+$$V_{OV}(x) = V_{GS} - V(x) - V_{th}$$
+
+And the **channel charge density** at that point is
+
+$$\boxed{\,Q_n(x) = C_{ox}\,\big(V_{GS} - V(x) - V_{th}\big)\,}$$
+
+- $C_{ox}$ : the gate oxide capacitance per unit area (how well the gate pulls in charge)
+- $Q_n$ is exactly the **"thickness of the channel pipe."** At the place where $Q_n = 0$, i.e. where $V(x) = V_{GS}-V_{th}$, the channel is pinched off → this is **pinch-off**.
+
+> Formal term vs. intuition: $V_{GC}$ (gate-channel voltage) = "gate pull", $V_{OV}$ (overdrive) = "channel strength", $Q_n$ (channel charge density) = "pipe thickness".
+
+---
+
+## 2. The three operating regions
+
+($V_{OV} \equiv V_{GS} - V_{th}$, referenced to source)
+
+| Region | Condition | Behavior |
+|------|------|------|
+| **Cutoff** | $V_{GS} < V_{th}$ | No channel, $I_D \approx 0$ (switch OFF) |
+| **Triode** (= ohmic = linear) | $V_{GS} > V_{th}$, $\;V_{DS} < V_{OV}$ | Voltage-controlled **resistor**, this is $R_{DS(on)}$ |
+| **Saturation** (= active) | $V_{GS} > V_{th}$, $\;V_{DS} \ge V_{OV}$ | Voltage-controlled **current source**, $I_D \approx \tfrac{1}{2}kV_{OV}^2$ |
+
+---
+
+## 3. Pinch-off — the moment the channel is cut off
+
+As you move toward the drain, $V(x)$ grows, so the overdrive $V_{GS}-V(x)-V_{th}$ shrinks. The instant the overdrive at the drain end reaches **0** ($V_{DS} = V_{OV}$), the channel is pinched off at the drain end. ($V_{GS}=5\text{V}$, $V_{th}=1\text{V}$ → $V_{OV}=4\text{V}$ example)
+
+<svg viewBox="0 0 620 580" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>The three states seen through MOSFET channel overdrive</title>
+  <desc>overdrive = VGS − V(x) − Vth. VGS=5V, Vth=1V. pinch-off where overdrive reaches 0.</desc>
+  <text x="10" y="14" font-size="12.5" font-weight="700" fill="currentColor">overdrive = V_GS − V(x) − V_th   (V_GS=5V, V_th=1V → V_OV=4V)</text>
+  <text x="10" y="30" font-size="11" fill="currentColor" fill-opacity="0.75">overdrive &gt; 0 means the channel conducts · pinch-off where overdrive = 0</text>
+  <g transform="translate(10,48)">
+    <text x="0" y="10" font-size="13" font-weight="700" fill="currentColor">① V_DS = 1V — channel nearly uniform → acts like a resistor (ohmic), V_DS↑ → I_D↑</text>
+    <rect x="140" y="26" width="290" height="13" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
+    <text x="285" y="22" font-size="10.5" text-anchor="middle" fill="currentColor">Gate  (V_GS = 5V)</text>
+    <line x1="140" y1="41" x2="430" y2="41" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 2"/>
+    <rect x="65" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
+    <rect x="435" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="100" y="82" font-size="11" text-anchor="middle" fill="currentColor">S</text>
+    <text x="100" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0V</text>
+    <text x="470" y="82" font-size="11" text-anchor="middle" fill="currentColor">D</text>
+    <text x="470" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">1V</text>
+    <rect x="65" y="112" width="440" height="24" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="285" y="128" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.6">p-body</text>
+    <polygon points="135,54 435,62 435,112 135,112" fill="#3b82f6" fill-opacity="0.40" stroke="#3b82f6" stroke-opacity="0.7"/>
+    <text x="150" y="50" font-size="9.5" fill="#3b82f6">overdrive 4V</text>
+    <text x="372" y="58" font-size="9.5" fill="#3b82f6">overdrive 3V</text>
+    <text x="285" y="92" font-size="10" text-anchor="middle" fill="currentColor" fill-opacity="0.85">channel →</text>
+    <line x1="135" y1="150" x2="435" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="435" y1="146" x2="435" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <text x="285" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">conducting channel L′ = full length</text>
+  </g>
+  <g transform="translate(10,228)">
+    <text x="0" y="10" font-size="13" font-weight="700" fill="currentColor">② V_DS = V_OV = 4V — overdrive at drain end = 0 → pinch-off (the boundary!)</text>
+    <rect x="140" y="26" width="290" height="13" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
+    <text x="285" y="22" font-size="10.5" text-anchor="middle" fill="currentColor">Gate  (V_GS = 5V)</text>
+    <line x1="140" y1="41" x2="430" y2="41" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 2"/>
+    <rect x="65" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
+    <rect x="435" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="100" y="82" font-size="11" text-anchor="middle" fill="currentColor">S</text>
+    <text x="100" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0V</text>
+    <text x="470" y="82" font-size="11" text-anchor="middle" fill="currentColor">D</text>
+    <text x="470" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4V</text>
+    <rect x="65" y="112" width="440" height="24" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="285" y="128" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.6">p-body</text>
+    <polygon points="135,52 435,112 135,112" fill="#3b82f6" fill-opacity="0.40" stroke="#3b82f6" stroke-opacity="0.7"/>
+    <text x="150" y="48" font-size="9.5" fill="#3b82f6">overdrive 4V</text>
+    <text x="412" y="106" font-size="16" fill="#e0533d" text-anchor="middle">✂</text>
+    <text x="437" y="120" font-size="9.5" fill="#e0533d">overdrive 0</text>
+    <text x="437" y="132" font-size="9.5" fill="#e0533d">cut off</text>
+    <line x1="135" y1="150" x2="435" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="435" y1="146" x2="435" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <text x="285" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">conducting channel L′ = full length (pinch-off at the drain end)</text>
+  </g>
+  <g transform="translate(10,408)">
+    <text x="0" y="10" font-size="13" font-weight="700" fill="currentColor">③ V_DS = 6V — overdrive already 0 before the drain, extra V_DS goes to depletion → I_D unchanged (saturation)</text>
+    <rect x="140" y="26" width="290" height="13" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
+    <text x="285" y="22" font-size="10.5" text-anchor="middle" fill="currentColor">Gate  (V_GS = 5V)</text>
+    <line x1="140" y1="41" x2="430" y2="41" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 2"/>
+    <rect x="65" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
+    <rect x="435" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
+    <text x="100" y="82" font-size="11" text-anchor="middle" fill="currentColor">S</text>
+    <text x="100" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0V</text>
+    <text x="470" y="82" font-size="11" text-anchor="middle" fill="currentColor">D</text>
+    <text x="470" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6V</text>
+    <rect x="65" y="112" width="440" height="24" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.4"/>
+    <text x="285" y="128" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.6">p-body</text>
+    <polygon points="135,52 380,112 135,112" fill="#3b82f6" fill-opacity="0.40" stroke="#3b82f6" stroke-opacity="0.7"/>
+    <rect x="380" y="46" width="55" height="66" fill="#e0533d" fill-opacity="0.18" stroke="#e0533d" stroke-opacity="0.5" stroke-dasharray="3 2"/>
+    <text x="407" y="82" font-size="9" text-anchor="middle" fill="#e0533d">depletion</text>
+    <text x="407" y="95" font-size="8.5" text-anchor="middle" fill="#e0533d">extra V_DS</text>
+    <text x="150" y="48" font-size="9.5" fill="#3b82f6">overdrive 4V</text>
+    <text x="330" y="108" font-size="8.5" fill="#e0533d">overdrive 0</text>
+    <line x1="135" y1="150" x2="380" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <line x1="380" y1="146" x2="380" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
+    <text x="257" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">conducting channel L′ = shortened (shortest) → channel-length modulation</text>
+  </g>
+</svg>
+
+Even if you raise $V_{DS}$ further, the pinch-off point is *"where the channel potential reaches $V_{OV}$,"* so it only shifts slightly toward the source, and the potential there is always $V_{OV}$. The remaining voltage $(V_{DS} - V_{OV})$ all drops across the depletion segment.
+
+> **How to read the figure (conducting channel length $L'$):** The blue bracket $L'$ in the figure above is the *conducting channel length* (source → pinch-off). **The physical S–D distance itself is the same in all three cases** — it's the same device, so that doesn't change. The only thing that changes is $L'$, and the larger $V_{DS}$ is, the more pinch-off is pushed toward the source, so $L'$ **gets shorter.** At ① 1V and ② 4V it is the full length; at ③ 6V it is the shortest. (Note: a shorter $L'$ does not mean more current. At ① 1V, $L'$ is the longest, but the pushing force $V_{DS}$ is small, so **the current is the smallest.** The slight increase in current from a shorter $L'$ is only a **second-order effect inside saturation (②↔③)** → see *A practical note* below.)
+
+> So **the conducting channel (source → pinch-off point) always sees only $0 \to V_{OV}$.** This is why the current stays constant in saturation.
+
+### A little deeper — why the current is "constant" in saturation (viewed as series resistance + voltage divider)
+
+The easiest way to grasp this by intuition without equations is to view a device that has developed pinch-off as **two resistors in series**.
+
+- **R_channel** (source → pinch-off point): a path packed with electrons → **small resistance** (a good conductor)
+- **R_depletion** (pinch-off point → drain): an empty segment with **no** electrons → **huge resistance** (nearly an insulator)
+
+$V_{DS}$ is divided across these two as a **voltage divider**. The logic has three steps.
+
+**① The conducting channel always sees only $0 \to V_{OV}$.** The very definition of the pinch-off point is *"the place where the channel potential = $V_{OV}$."* So whether you raise $V_{DS}$ to 3V or to 10V, **the voltage across R_channel is always fixed at $V_{OV}$**. The channel charge is set by $V_{GS}$, so it stays the same too. → **The current R_channel carries = fixed.**
+
+**② The added $V_{DS}$ is all absorbed by R_depletion.** In a voltage divider, the overwhelmingly larger resistor takes all the voltage. (E.g., with $V_{OV}=4\text{V}$: $V_{DS}=10\text{V}$ → channel 4V · depletion 6V; $V_{DS}=20\text{V}$ → channel still 4V · depletion 16V.)
+
+**③ So the extra voltage is trapped in the "empty electron-free segment"** and never reaches the channel that actually makes the current → $I_D$ unchanged.
+
+> **In one line:** What sets the current is the **conducting channel**, and the conditions it sees ($0\to V_{OV}$, the charge amount) don't change no matter what $V_{DS}$ is. All the added $V_{DS}$ is swallowed by the empty segment behind it. — It's like shooting water into the air with a hose: the amount of water per second is already set by the faucet ($V_{GS}$) and the pressure inside the hose ($V_{OV}$), so no matter how much you increase the drop height ($V_{DS}$), the flow rate doesn't change.
+
+---
+
+## 4. Why does raising $V_{DS}$ increase the current
+
+Current is **charge × velocity**.
+
+$$I_D \;\approx\; \underbrace{Q_n}_{\text{charge} \,\leftarrow\, V_{GS}} \times \underbrace{\mu \cdot \tfrac{V_{DS}}{L}}_{\text{push velocity} \,\leftarrow\, V_{DS}}$$
+
+- $V_{GS}$ sets the **charge amount** ($Q_n$, the pipe thickness).
+- $V_{DS}$ sets the **electric field** ($\approx V_{DS}/L$) that pushes along the channel → carrier **velocity**.
+
+In triode, raising $V_{DS}$ **strengthens the pushing force** so the current increases. (The channel thickness stays nearly the same.) The reason this isn't visible if you only look at the channel-shape figure is exactly this — the figure shows only the *charge (the pipe)*, not the *push velocity*.
+
+The exact triode equation is
+
+$$I_D = k\Big[\underbrace{V_{OV}\,V_{DS}}_{\text{first term: pushing effect}\;(\uparrow)} \;-\; \underbrace{\tfrac{1}{2}V_{DS}^2}_{\text{second term: thinning effect}\;(\downarrow)}\Big], \qquad k = \mu_n C_{ox}\frac{W}{L}$$
+
+- **First term $V_{OV}V_{DS}$** = pushing effect → current **↑**
+- **Second term $-\tfrac12 V_{DS}^2$** = the drain side thinning out → current **↓** (in the trimming direction)
+
+Here's what *"the drain side thins out"* means: the channel thickness (charge $Q_n$) is set by the overdrive $V_{GS}-V(x)-V_{th}$ at that point, and as you move toward the drain, $V(x)$ grows and the overdrive shrinks → **the channel thins out near the drain, and carries that much less current.** That's why the second term trims the current in the **(−)** direction. When you raise $V_{DS}$, the pushing effect (+) grows, but the drain-side thinning (−) grows along with it, and at $V_{DS}=V_{OV}$ the two balance and it flattens out. Looking at the slope,
+
+$$\frac{dI_D}{dV_{DS}} = k\,(V_{OV} - V_{DS})$$
+
+At $V_{DS} = V_{OV}$ the slope is **0** → no more increase, flat → entering saturation. The current at that boundary is
+
+$$I_D = k\Big[V_{OV}^2 - \tfrac12 V_{OV}^2\Big] = \tfrac{1}{2}kV_{OV}^2$$
+
+Inside saturation ($V_{DS} > V_{OV}$), it is **fixed** at this value (independent of $V_{DS}$):
+
+$$\boxed{\,I_{D,\text{sat}} = \tfrac{1}{2}\,k\,V_{OV}^2\,}$$
+
+#### Viewed as a parabola — the triode equation is valid only up to the peak
+
+Plotted against $V_{DS}$, the triode equation is a **downward-opening (concave) parabola**, and its peak is exactly at $V_{DS}=V_{OV}$ (that value being $\tfrac12 kV_{OV}^2$). A real device follows this parabola **only up to the peak.** If $V_{DS}$ exceeds $V_{OV}$, the equation says the parabola should bend down and the current should decrease (the dashed line below) — but physically that never happens. Instead, it stays **flat, fixed at the peak value.**
+
+<svg viewBox="0 0 620 350" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>The triode-equation parabola and the saturation flat line</title>
+  <desc>The triode equation is a downward-opening parabola in V_DS. At the peak V_DS=V_OV it is ½kV_OV². Beyond V_OV the equation goes down but the real device stays flat.</desc>
+  <line x1="70" y1="300" x2="580" y2="300" stroke="currentColor" stroke-opacity="0.7"/>
+  <line x1="70" y1="300" x2="70" y2="40" stroke="currentColor" stroke-opacity="0.7"/>
+  <text x="575" y="320" font-size="12" text-anchor="end" fill="currentColor">V_DS</text>
+  <text x="60" y="48" font-size="12" text-anchor="end" fill="currentColor">I_D</text>
+  <line x1="290" y1="76" x2="290" y2="300" stroke="currentColor" stroke-opacity="0.35" stroke-dasharray="4 3"/>
+  <text x="290" y="318" font-size="10.5" text-anchor="middle" fill="currentColor" fill-opacity="0.8">V_DS = V_OV</text>
+  <line x1="70" y1="76" x2="290" y2="76" stroke="currentColor" stroke-opacity="0.2" stroke-dasharray="3 3"/>
+  <path d="M290,76 Q410,100 510,300" fill="none" stroke="#e0533d" stroke-width="2" stroke-dasharray="6 4" stroke-opacity="0.85"/>
+  <text x="416" y="205" font-size="10.5" fill="#e0533d">what the equation predicts (down)</text>
+  <text x="416" y="221" font-size="9.5" fill="#e0533d" fill-opacity="0.85">(doesn't happen → equation discarded)</text>
+  <path d="M70,300 Q165,112 290,76" fill="none" stroke="#3b82f6" stroke-width="2.4"/>
+  <path d="M290,76 L560,76" fill="none" stroke="#3b82f6" stroke-width="2.4"/>
+  <circle cx="290" cy="76" r="4" fill="#3b82f6"/>
+  <text x="205" y="64" font-size="11" fill="#3b82f6">½k·V_OV² (peak)</text>
+  <text x="432" y="66" font-size="11" fill="#3b82f6">saturation — flat, fixed</text>
+  <text x="150" y="286" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.7">triode</text>
+  <text x="150" y="299" font-size="9" text-anchor="middle" fill="currentColor" fill-opacity="0.5">(equation valid, rising)</text>
+</svg>
+
+> In other words, the **$-\tfrac12 V_{DS}^2$ term only serves to bend the parabola over toward its peak**, and once $V_{OV}$ is exceeded, that equation itself is no longer used. (Since the conducting channel always sees a voltage of $V_{OV}$, you can equally view it as freezing at $\tfrac12 kV_{OV}^2$, the value obtained by plugging $V_{OV}$ into the $V_{DS}$ slot.)
+
+> *A practical note:* In reality it isn't perfectly flat. If you raise $V_{DS}$ further, the pinch-off point shifts and the channel gets slightly shorter (**channel-length modulation**), so the current rises slightly upward to the right — $I_D \approx \tfrac{1}{2}kV_{OV}^2(1+\lambda V_{DS})$. This slope is the finite output resistance $r_o$, and it is **central for analog (amplification · mirrors · LDOs)** but **can be ignored when used as a switch.** (This is the same story as the BJT's Early effect.)
+
+<svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>MOSFET output characteristic I_D vs V_DS</title>
+  <desc>As V_DS rises, the current increases in ohmic, then bends at V_OV and flattens in saturation.</desc>
+  <line x1="60" y1="280" x2="580" y2="280" stroke="currentColor" stroke-opacity="0.7"/>
+  <line x1="60" y1="280" x2="60" y2="30" stroke="currentColor" stroke-opacity="0.7"/>
+  <text x="575" y="300" font-size="12" text-anchor="end" fill="currentColor">V_DS</text>
+  <text x="52" y="40" font-size="12" text-anchor="end" fill="currentColor">I_D</text>
+  <!-- curve for higher VGS -->
+  <path d="M60,280 Q210,150 350,90 L560,90" fill="none" stroke="#3b82f6" stroke-width="2.2"/>
+  <line x1="350" y1="90" x2="350" y2="280" stroke="#3b82f6" stroke-opacity="0.4" stroke-dasharray="4 3"/>
+  <text x="350" y="296" font-size="10.5" text-anchor="middle" fill="#3b82f6">V_OV (large V_GS)</text>
+  <!-- curve for lower VGS -->
+  <path d="M60,280 Q150,210 220,185 L560,185" fill="none" stroke="#f59e0b" stroke-width="2.2"/>
+  <line x1="220" y1="185" x2="220" y2="280" stroke="#f59e0b" stroke-opacity="0.4" stroke-dasharray="4 3"/>
+  <text x="220" y="296" font-size="10.5" text-anchor="middle" fill="#f59e0b">V_OV (small V_GS)</text>
+  <!-- region labels -->
+  <text x="120" y="120" font-size="12" fill="currentColor" fill-opacity="0.8">ohmic</text>
+  <text x="120" y="136" font-size="9.5" fill="currentColor" fill-opacity="0.55">(resistor, rising)</text>
+  <text x="450" y="70" font-size="12" fill="currentColor" fill-opacity="0.8">saturation</text>
+  <text x="450" y="86" font-size="9.5" fill="currentColor" fill-opacity="0.55">(current source, flat)</text>
+  <text x="470" y="175" font-size="11" fill="#3b82f6">I_D,sat = ½·k·V_OV²</text>
+</svg>
+
+> In other words, the **pushing effect** increases the current, and the **thinning effect** presses it down, so in the end it flattens out.
+
+---
+
+## 5. Pitfall — "saturation" means the exact opposite
+
+The point that inevitably trips you up when you work with BJTs alongside.
+
+| Function | MOSFET | BJT |
+|------|--------|-----|
+| OFF | **cutoff** | **cutoff** |
+| Fully on (switch ON) | **triode** | **saturation** |
+| Amplification (current source) | **saturation** | **active** |
+
+- **MOSFET saturation = the amplification** region
+- **BJT saturation = the fully-on switch** region
+
+> <span class="pt">They're exact opposites.</span> "BJT saturation" pairs with "MOSFET triode," and "BJT active" pairs with "MOSFET saturation." (Details of the BJT's three regions in the next concept note.)
+
+---
+
+## 6. In practice
+
+- **Power MOSFET in a switching converter**: it shuttles between `cutoff ↔ triode`. When fully ON it is in **triode** (low $R_{DS(on)}$), so conduction loss is small. During the transition it briefly passes through saturation where $V\cdot I$ overlap → **switching loss**.
+- **Pass FET in an LDO**: it operates like a current source in **saturation (active)** and drops $(V_{in}-V_{out})$ → that voltage difference × current becomes **heat** directly. This is the root of the LDO efficiency $\eta = V_{out}/V_{in}$.
+
+---
+
+## Key takeaways
+
+- The channel charge is $Q_n = C_{ox}(V_{GS}-V(x)-V_{th})$, and where it reaches **0** is **pinch-off**.
+- The boundary of the three regions is $V_{DS} = V_{OV} = V_{GS}-V_{th}$.
+- $V_{GS}$ is the **charge**, $V_{DS}$ is the **pushing force**. Triode is a resistor, saturation is a current source $\tfrac12 kV_{OV}^2$.
+- **MOSFET saturation ≠ BJT saturation** (exact opposites).
+- A switch turns ON in **triode**; an LDO regulates in **saturation**.
+
+---
+
+*Reference: The device operating regions come from standard semiconductor device physics (Sedra/Smith, Razavi, etc.). The converter application context is from Erickson & Maksimović, Fundamentals of Power Electronics, 2nd Ed., Ch.1·4.*

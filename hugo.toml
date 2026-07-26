@@ -3,6 +3,15 @@ languageCode = "ko-kr"
 title = "Analog Notes"
 theme = "powerIC"
 defaultContentLanguage = "ko"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.ko]
+    languageName = "한국어"
+    weight = 1
+  [languages.en]
+    languageName = "English"
+    weight = 2
 
 [params]
   author = "Minha Hwang"

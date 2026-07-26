@@ -202,6 +202,7 @@ button.rrow:hover .rtitle{color:var(--accent);}
 .post-nav-item.next{text-align:right;}
 .post-nav-label{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:0.06em;display:block;margin-bottom:4px;}
 .post-nav-title{font-size:13px;color:var(--ink);}
+.lang-body[hidden]{display:none;}
 
 .series-nav{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line);}
 .series-nav-head{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.7rem;}

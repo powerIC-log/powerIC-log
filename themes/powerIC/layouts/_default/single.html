@@ -2,28 +2,38 @@
 <div class="reading-bar"><div class="reading-bar-fill" id="rbar"></div></div>
 <div class="post-wrap">
   <a class="post-back" href="{{ "posts/" | relURL }}" data-ko="← 포스트" data-en="← Posts">← 포스트</a>
+  {{ $ko := . }}{{ $en := "" }}
+  {{ range .AllTranslations }}{{ if eq .Language.Lang "ko" }}{{ $ko = . }}{{ end }}{{ if eq .Language.Lang "en" }}{{ $en = . }}{{ end }}{{ end }}
   <div class="post-header">
     <div class="post-meta">
-      <span class="post-cat">{{ .Params.series }}</span>
-      <span class="post-date">{{ .Date.Format "2006·01·02" }}</span>
-      <span class="post-rt">{{ .ReadingTime }}<span data-ko="분" data-en=" min read">분</span></span>
+      <span class="post-cat" data-ko="{{ $ko.Params.series }}" data-en="{{ with $en }}{{ .Params.series }}{{ else }}{{ $ko.Params.series }}{{ end }}">{{ $ko.Params.series }}</span>
+      <span class="post-date">{{ $ko.Date.Format "2006·01·02" }}</span>
+      <span class="post-rt">{{ $ko.ReadingTime }}<span data-ko="분" data-en=" min read">분</span></span>
     </div>
-    <h1 class="post-title-lg">{{ .Title }}</h1>
-    {{ with .Params.description }}<p class="post-subtitle">{{ . }}</p>{{ end }}
-    {{ with .Params.tags }}
+    <h1 class="post-title-lg" data-ko="{{ $ko.Title }}" data-en="{{ with $en }}{{ .Title }}{{ else }}{{ $ko.Title }}{{ end }}">{{ $ko.Title }}</h1>
+    {{ with $ko.Params.description }}<p class="post-subtitle" data-ko="{{ . }}" data-en="{{ with $en }}{{ .Params.description }}{{ else }}{{ . }}{{ end }}">{{ . }}</p>{{ end }}
+    {{ with $ko.Params.tags }}
     <div class="post-tags">
       {{ range . }}<span class="post-tag">#{{ . }}</span>{{ end }}
     </div>
     {{ end }}
   </div>
-  {{ if .Fragments.Headings }}
+  {{ if $ko.Fragments.Headings }}
   <details class="toc" open>
     <summary data-ko="목차" data-en="Contents">목차</summary>
-    {{ .TableOfContents }}
+    {{ if $en }}
+    <div class="lang-body" data-lang-body="ko">{{ $ko.TableOfContents }}</div>
+    <div class="lang-body" data-lang-body="en" hidden>{{ $en.TableOfContents }}</div>
+    {{ else }}{{ $ko.TableOfContents }}{{ end }}
   </details>
   {{ end }}
   <div class="post-content">
-    {{ .Content }}
+    {{ if $en }}
+    <div class="lang-body" data-lang-body="ko">{{ $ko.Content }}</div>
+    <div class="lang-body" data-lang-body="en" hidden>{{ $en.Content }}</div>
+    {{ else }}
+    {{ $ko.Content }}
+    {{ end }}
   </div>
   {{ $domainTags := slice "device" "converter" "control" "simulation" "RF" }}
   {{ $names := dict
@@ -40,14 +50,15 @@
     <div class="series-nav-head" data-ko="{{ $nm.ko }}" data-en="{{ $nm.en }}">{{ $nm.ko }}</div>
     <ul class="series-list">
       {{ range $sib }}
+      {{ $st := .Title }}{{ $se := .Title }}{{ range .AllTranslations }}{{ if eq .Language.Lang "en" }}{{ $se = .Title }}{{ end }}{{ end }}
       {{ if eq .Permalink $.Permalink }}
       <li class="series-item cur" aria-current="page">
-        <span class="series-t">{{ .Title }}</span>
+        <span class="series-t" data-ko="{{ $st }}" data-en="{{ $se }}">{{ $st }}</span>
         <span class="series-d">{{ .Date.Format "2006·01·02" }}</span>
       </li>
       {{ else }}
       <li class="series-item">
-        <a class="series-t" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <a class="series-t" href="{{ .RelPermalink }}" data-ko="{{ $st }}" data-en="{{ $se }}">{{ $st }}</a>
         <span class="series-d">{{ .Date.Format "2006·01·02" }}</span>
       </li>
       {{ end }}
