@@ -13,8 +13,9 @@
     <h1 class="post-title-lg" data-ko="{{ $ko.Title }}" data-en="{{ with $en }}{{ .Title }}{{ else }}{{ $ko.Title }}{{ end }}">{{ $ko.Title }}</h1>
     {{ with $ko.Params.description }}<p class="post-subtitle" data-ko="{{ . }}" data-en="{{ with $en }}{{ .Params.description }}{{ else }}{{ . }}{{ end }}">{{ . }}</p>{{ end }}
     {{ with $ko.Params.tags }}
+    {{ $tagEn := dict "개념정리" "Concept" }}
     <div class="post-tags">
-      {{ range . }}<span class="post-tag">#{{ . }}</span>{{ end }}
+      {{ range . }}{{ $t := . }}{{ $e := index $tagEn $t | default $t }}<span class="post-tag" data-ko="#{{ $t }}" data-en="#{{ $e }}">#{{ $t }}</span>{{ end }}
     </div>
     {{ end }}
   </div>
