@@ -1,5 +1,5 @@
 +++
-title = "[개념정리] 루프이득 — 왜 A/B가 루프이득인가, fc·PM·GM 읽는 법"
+title = "[개념정리] 제어공학 기초 (1) — 컨버터 안정도 측정법, Crossover frequency, Phase margin, Gain margin"
 date = 2026-08-08T00:30:00+09:00
 series = "이론/원리"
 description = "제어모드를 공부하다 루프이득에서 막혔다. 왜 저항 하나 끼워서 A/B를 재면 루프이득이 되는지, 주파수마다 왜 결과가 갈리는지, 보드선도에서 fc·PM·GM을 어떻게 읽는지 — 헷갈렸던 지점 위주로 정리한다."

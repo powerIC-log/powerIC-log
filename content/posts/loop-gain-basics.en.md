@@ -1,5 +1,5 @@
 +++
-title = "[Concept] Loop gain — why A/B is the loop gain, and how to read fc · PM · GM"
+title = "[Concept] Control theory basics (1) — measuring converter stability, crossover frequency, phase margin, gain margin"
 date = 2026-08-08T00:30:00+09:00
 series = "Theory / Principle"
 description = "Studying control modes, I got stuck on loop gain. Why does inserting one resistor and measuring A/B give you the loop gain? Why does the answer change with frequency? How do you read fc, PM and GM off a Bode plot — organized around the points that actually confused me."
