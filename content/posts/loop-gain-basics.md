@@ -98,15 +98,16 @@ $$T = \underbrace{G_c}_{\text{보상기}} \times \underbrace{G_{PWM}}_{\text{변
   <text x="666" y="222" font-size="11" fill="currentColor">R2</text>
   <line x1="640" y1="238" x2="640" y2="258" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <line x1="626" y1="258" x2="654" y2="258" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
-  <path d="M470,300 L470,360 L530,330 Z" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
-  <text x="492" y="335" font-size="10" fill="currentColor" fill-opacity="0.7">EA</text>
-  <path d="M640,185 L600,185 L600,312 L470,312" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1)"/>
-  <text x="455" y="309" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−</text>
-  <line x1="430" y1="348" x2="470" y2="348" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1)"/>
-  <text x="424" y="352" text-anchor="end" font-size="10.5" fill="currentColor" fill-opacity="0.7">Vref +</text>
-  <line x1="530" y1="330" x2="560" y2="330" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
-  <text x="545" y="322" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">COMP</text>
-  <path d="M560,330 L560,400 L300,400" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1)"/>
+  <path d="M530,300 L530,360 L470,330 Z" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="508" y="335" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">EA</text>
+  <path d="M640,185 L600,185 L600,312 L530,312" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1)"/>
+  <text x="542" y="309" font-size="10" fill="currentColor" fill-opacity="0.7">−</text>
+  <line x1="596" y1="348" x2="530" y2="348" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1)"/>
+  <text x="542" y="358" font-size="10" fill="currentColor" fill-opacity="0.7">+</text>
+  <text x="604" y="352" font-size="10.5" fill="currentColor" fill-opacity="0.7">Vref</text>
+  <line x1="470" y1="330" x2="430" y2="330" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="450" y="322" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">COMP</text>
+  <path d="M430,330 L430,400 L300,400" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1)"/>
   <rect x="160" y="378" width="140" height="44" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <text x="230" y="396" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">PWM 비교기</text>
   <text x="230" y="412" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">+ 톱니파</text>
@@ -129,7 +130,89 @@ $$B - A = V_{inj}$$
 
 **B가 얼마가 될지, A가 얼마가 될지는 주입원이 안 정한다.** 그건 루프가 정한다. 이 구분이 뒤에서 결정적이다.
 
-만약 신호발생기를 GND 기준으로 B에 직접 물리면 루프가 **진짜로** 끊겨서 출력이 레일로 튀어버린다. 플로팅이어야 **DC는 저항을 통해 그대로 이어져** 컨버터가 정상 동작하고, **AC만 살짝 얹힌다.**
+<svg viewBox="0 0 780 420" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>플로팅 주입과 GND 기준 직결의 비교</title>
+  <desc>왼쪽은 저항 양단에 트랜스로 플로팅 주입, 오른쪽은 신호발생기를 GND 기준으로 분압 상단에 직결한 잘못된 방법.</desc>
+  <text x="20" y="26" font-size="13" font-weight="700" fill="#16a34a">① 올바름 — 저항 양단에 플로팅 주입</text>
+  <text x="46" y="100" font-size="11" font-weight="700" fill="currentColor">Vout</text>
+  <circle cx="80" cy="118" r="4" fill="currentColor"/>
+  <line x1="40" y1="118" x2="150" y2="118" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="80" y1="118" x2="80" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="64" y1="146" x2="96" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="64" y1="154" x2="96" y2="154" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="80" y1="154" x2="80" y2="178" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="68" y1="178" x2="92" y2="178" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="104" y="152" font-size="10" fill="currentColor" fill-opacity="0.7">Cout</text>
+  <rect x="150" y="106" width="60" height="24" rx="3" fill="none" stroke="#e0533d" stroke-width="2.2"/>
+  <text x="180" y="123" text-anchor="middle" font-size="10.5" font-weight="700" fill="#e0533d">R_inj</text>
+  <line x1="210" y1="118" x2="270" y2="118" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="250" cy="118" r="4" fill="currentColor"/>
+  <text x="262" y="112" font-size="10.5" font-weight="700" fill="currentColor">R1 상단</text>
+  <line x1="250" y1="118" x2="250" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <rect x="238" y="146" width="24" height="40" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="274" y="170" font-size="10.5" fill="currentColor">R1</text>
+  <line x1="250" y1="186" x2="250" y2="216" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="250" cy="204" r="3.5" fill="currentColor"/>
+  <text x="274" y="208" font-size="10.5" font-weight="700" fill="currentColor">FB</text>
+  <rect x="238" y="216" width="24" height="40" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="274" y="240" font-size="10.5" fill="currentColor">R2</text>
+  <line x1="250" y1="256" x2="250" y2="278" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="238" y1="278" x2="262" y2="278" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="180" cy="52" r="15" fill="none" stroke="#16a34a" stroke-width="2"/>
+  <text x="180" y="57" text-anchor="middle" font-size="12" fill="#16a34a">~</text>
+  <path d="M165,52 L150,52 L150,106" fill="none" stroke="#16a34a" stroke-width="1.6"/>
+  <path d="M195,52 L210,52 L210,106" fill="none" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="20" y="322" font-size="11.5" fill="currentColor">· 신호발생기가 <tspan font-weight="700" fill="#16a34a">GND와 전혀 연결 없음</tspan> (트랜스로 절연)</text>
+  <text x="20" y="342" font-size="11.5" fill="currentColor">· 저항이 양쪽을 이어줘 <tspan font-weight="700">DC는 그대로 통과</tspan></text>
+  <text x="20" y="362" font-size="11.5" fill="currentColor">· FB는 계속 Vout을 대변 → 컨버터 정상 동작, 위에 <tspan font-weight="700">AC만 얹힘</tspan></text>
+  <line x1="392" y1="20" x2="392" y2="400" stroke="currentColor" stroke-opacity="0.3" stroke-dasharray="5 5"/>
+  <text x="412" y="26" font-size="13" font-weight="700" fill="#e0533d">② 잘못됨 — GND 기준으로 직결</text>
+  <text x="438" y="100" font-size="11" font-weight="700" fill="currentColor">Vout</text>
+  <circle cx="472" cy="118" r="4" fill="currentColor"/>
+  <line x1="432" y1="118" x2="542" y2="118" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="472" y1="118" x2="472" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="456" y1="146" x2="488" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="456" y1="154" x2="488" y2="154" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="472" y1="154" x2="472" y2="178" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="460" y1="178" x2="484" y2="178" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <rect x="542" y="106" width="60" height="24" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="572" y="123" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">R_inj</text>
+  <line x1="602" y1="118" x2="662" y2="118" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="642" cy="118" r="4.5" fill="#e0533d"/>
+  <text x="654" y="112" font-size="10.5" font-weight="700" fill="#e0533d">R1 상단</text>
+  <line x1="642" y1="118" x2="642" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <rect x="630" y="146" width="24" height="40" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="666" y="170" font-size="10.5" fill="currentColor">R1</text>
+  <line x1="642" y1="186" x2="642" y2="216" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="642" cy="204" r="3.5" fill="currentColor"/>
+  <text x="666" y="208" font-size="10.5" font-weight="700" fill="currentColor">FB</text>
+  <rect x="630" y="216" width="24" height="40" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="666" y="240" font-size="10.5" fill="currentColor">R2</text>
+  <line x1="642" y1="256" x2="642" y2="278" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="630" y1="278" x2="654" y2="278" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="700" cy="52" r="15" fill="none" stroke="#e0533d" stroke-width="2"/>
+  <text x="700" y="57" text-anchor="middle" font-size="12" fill="#e0533d">~</text>
+  <path d="M700,67 L700,90 L642,90 L642,114" fill="none" stroke="#e0533d" stroke-width="1.8"/>
+  <path d="M715,52 L740,52 L740,290" fill="none" stroke="#e0533d" stroke-width="1.8"/>
+  <line x1="728" y1="290" x2="752" y2="290" stroke="#e0533d" stroke-width="1.8"/>
+  <text x="740" y="308" text-anchor="middle" font-size="10" font-weight="700" fill="#e0533d">GND</text>
+  <text x="412" y="322" font-size="11.5" fill="currentColor">· 발전기가 R1 상단을 <tspan font-weight="700" fill="#e0533d">GND 기준으로 붙잡음</tspan></text>
+  <text x="412" y="342" font-size="11.5" fill="currentColor">· FB가 Vout이 아니라 <tspan font-weight="700">발전기를 대변</tspan> → 루프가 FB를 못 바꿈</text>
+  <text x="412" y="362" font-size="11.5" fill="currentColor">· 듀티 폭주 → <tspan font-weight="700" fill="#e0533d">출력이 레일로</tspan> → 측정 불가</text>
+  <text x="412" y="386" font-size="11" fill="currentColor" fill-opacity="0.7">(Vout은 오히려 안 흔들림 — 캡·루프가 수 mΩ으로 붙잡고 있어 발전기가 못 흔듦)</text>
+</svg>
+
+**흔한 오해:** GND 기준으로 물리면 "출력전압을 강제로 흔드는 것"이라고 생각하기 쉽다. **그렇지 않다.** Vout 노드는 출력캡과 루프가 수 mΩ으로 붙잡고 있어서, 20Ω 저항 너머의 신호발생기가 흔들 수 있는 대상이 아니다.
+
+실제로 벌어지는 일은 **루프의 절단**이다.
+
+1. 발전기가 R1 상단을 GND 기준으로 고정 → **FB가 Vout이 아니라 발전기를 대변**하게 된다
+2. 루프는 여전히 FB = Vref를 만들려 듀티를 조절하지만, **FB는 Vout과 무관**하므로 듀티를 아무리 움직여도 FB가 따라오지 않는다
+3. 멈출 조건이 없으므로 **듀티가 한쪽 끝까지 폭주** → 출력이 0V 또는 Vin으로 튄다
+
+즉 신호가 **한 바퀴를 못 돌고 반쪽에서 끊긴다.** 루프이득이라는 양 자체가 정의되지 않는다.
+
+**플로팅 주입에서는** 저항이 양쪽을 잇고 있어 **FB가 계속 Vout을 대변**한다. 다만 그 위에 20mV 오프셋이 얹힌 상태로 대변할 뿐이다. 그래서 컨버터는 정상 레귤레이션을 유지하고, 우리는 **그 오프셋에 루프가 어떻게 반응하는지**만 관찰할 수 있다.
 
 ### 왜 루프를 닫아둔 채로 재도 T가 나오나
 
@@ -177,7 +260,25 @@ $$A = \frac{T\,V_{inj}}{1-T}, \qquad B = \frac{V_{inj}}{1-T} \;\;\Rightarrow\;\;
   <text x="30" y="288" font-size="11.5" fill="currentColor" fill-opacity="0.7">ZL이 커야 주입 전류 자체가 작아 회로 동작을 안 건드린다 (DC 오차 0.1% 이하)</text>
 </svg>
 
-주입 지점에서 양쪽을 들여다본 임피던스가 **$Z_s \ll Z_L$** 이어야 한다. 벅에서 Vout 노드(출력캡이 붙어 수 mΩ)와 분압 저항(수십 kΩ) 사이가 이 조건을 1000배 이상으로 만족한다.
+주입 지점에서 양쪽을 들여다본 임피던스가 **$Z_s \ll Z_L$** 이어야 한다. 벅에서 Vout 노드와 분압 저항(수십 kΩ) 사이가 이 조건을 1000배 이상으로 만족한다.
+
+### Zs는 주파수대별로 다른 놈이 낮게 유지해준다
+
+보드선도를 그리려면 주입 주파수를 10Hz부터 1MHz까지 스윕하므로, **모든 주파수에서** 이 조건이 성립해야 한다. 그런데 Vout 노드를 붙잡아주는 주역이 주파수대마다 바뀐다.
+
+- **출력 커패시터 (수동)** — 전류를 삼켜 전압 변화를 막는다. 임피던스가 $1/2\pi f C$ 라 **고주파에 강하고 저주파에 약하다**. 100µF면 1MHz에서 0.0016Ω이지만 10Hz에서는 160Ω이다.
+- **루프 (능동)** — Vout이 움직이면 감지해 듀티로 되돌린다. 시간이 걸리므로 **느린 변화만 잡을 수 있다**. 닫힌루프 출력 임피던스는 $Z_{out,\text{open}}/(1+T)$ 이므로, T가 큰 저주파에서 강력하다.
+- **부하** — Cout과 병렬로 붙어 합성 임피던스를 더 낮춘다. **부하가 무거울수록 조건이 유리**해진다.
+
+둘의 담당 구간이 정확히 반대라서 합치면 전 대역이 덮인다.
+
+| 주파수 | 캡의 힘 | 루프의 힘 | 합쳐진 Zs |
+|---|---|---|---|
+| 10Hz | 약함 (160Ω) | **강함** (T=1000) | 약 **0.16Ω** |
+| fc 부근 | 중간 | 중간 | 작음 |
+| 1MHz | **강함** (0.002Ω) | 없음 | **0.002Ω** |
+
+10Hz에서 1µA를 밀어넣는 경우를 따라가 보면: 루프가 없다면 캡 임피던스 160Ω 때문에 160µV가 움직이겠지만, 루프가 이를 감지해 듀티로 되돌리므로 실제 변화는 $160\mu V/(1+1000) \approx 0.16\mu V$ 에 그친다. 어느 주파수에서도 Zs는 수십 kΩ에 한참 못 미친다.
 
 ### 헷갈렸던 지점 ③ — "그래도 전류는 흐르잖아?"
 
@@ -201,15 +302,17 @@ $$A = \frac{T\,V_{inj}}{1-T}, \qquad B = \frac{V_{inj}}{1-T} \;\;\Rightarrow\;\;
 <svg viewBox="0 0 740 400" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
   <title>주입한 20mV를 A와 B가 나눠 갖는 비율</title>
   <desc>저주파에서는 루프가 B를 붙잡아 A가 다 흔들리고, 고주파에서는 출력캡이 A를 붙잡아 B가 다 흔들린다.</desc>
-  <text x="30" y="28" font-size="12.5" font-weight="700" fill="currentColor">주입한 20mV를 A와 B가 나눠 갖는다 — 붙잡힌 쪽은 안 흔들린다</text>
+  <text x="30" y="28" font-size="12.5" font-weight="700" fill="currentColor">주입원은 B−A=20mV라는 차이만 강제한다 — 각각 얼마나 움직일지는 루프가 정한다</text>
   <text x="30" y="72" font-size="12.5" font-weight="700" fill="#3b82f6">저주파 — 루프가 강함 (T = 1000)</text>
-  <text x="30" y="90" font-size="10.5" fill="currentColor" fill-opacity="0.7">루프가 FB를 Vref에 붙들어놓음 → B가 못 움직임</text>
+  <text x="30" y="90" font-size="10.5" fill="currentColor" fill-opacity="0.7">루프가 감지하는 노드는 B다. 듀티를 조절해 B를 Vref에</text>
+  <text x="30" y="105" font-size="10.5" fill="currentColor" fill-opacity="0.7">맞출 시간이 충분하므로 B가 제자리로 돌아온다</text>
   <rect x="330" y="60" width="360" height="30" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.4"/>
   <rect x="330" y="60" width="352" height="30" rx="4" fill="#3b82f6" fill-opacity="0.35"/>
   <text x="500" y="80" text-anchor="middle" font-size="11.5" font-weight="700" fill="currentColor">A 가 20mV 거의 전부</text>
   <text x="330" y="108" font-size="10.5" fill="currentColor" fill-opacity="0.7">|A| ≈ 20mV, |B| ≈ 20µV → T = 1000</text>
-  <text x="30" y="185" font-size="12.5" font-weight="700" fill="currentColor">크로스오버 — 팽팽 (T = 1)</text>
-  <text x="30" y="203" font-size="10.5" fill="currentColor" fill-opacity="0.7">루프의 힘과 캡의 힘이 비슷</text>
+  <text x="30" y="185" font-size="12.5" font-weight="700" fill="currentColor">크로스오버 (T = 1)</text>
+  <text x="30" y="203" font-size="10.5" fill="currentColor" fill-opacity="0.7">T=1은 "한 바퀴 돌아도 크기가 그대로"라는 뜻이므로</text>
+  <text x="30" y="218" font-size="10.5" fill="currentColor" fill-opacity="0.7">정의상 |A| = |B| 가 되는 주파수</text>
   <rect x="330" y="173" width="360" height="30" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.4"/>
   <rect x="330" y="173" width="180" height="30" fill="#3b82f6" fill-opacity="0.35"/>
   <rect x="510" y="173" width="180" height="30" fill="#16a34a" fill-opacity="0.35"/>
@@ -217,7 +320,8 @@ $$A = \frac{T\,V_{inj}}{1-T}, \qquad B = \frac{V_{inj}}{1-T} \;\;\Rightarrow\;\;
   <text x="600" y="193" text-anchor="middle" font-size="11.5" font-weight="700" fill="currentColor">B</text>
   <text x="330" y="221" font-size="10.5" fill="currentColor" fill-opacity="0.7">|A| = |B| → T = 1 (0dB) ← 이 주파수가 fc</text>
   <text x="30" y="298" font-size="12.5" font-weight="700" fill="#16a34a">고주파 — 루프가 못 따라감 (T = 0.1)</text>
-  <text x="30" y="316" font-size="10.5" fill="currentColor" fill-opacity="0.7">출력캡이 Vout을 붙들어놓음 → A가 못 움직임</text>
+  <text x="30" y="316" font-size="10.5" fill="currentColor" fill-opacity="0.7">보상기 이득이 바닥이라 듀티가 거의 안 변해 A를 움직일</text>
+  <text x="30" y="331" font-size="10.5" fill="currentColor" fill-opacity="0.7">동력이 없고, 캡 임피던스도 낮아 A가 정지한다</text>
   <rect x="330" y="286" width="360" height="30" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.4"/>
   <rect x="330" y="286" width="36" height="30" fill="#3b82f6" fill-opacity="0.35"/>
   <rect x="366" y="286" width="324" height="30" fill="#16a34a" fill-opacity="0.35"/>
@@ -262,6 +366,38 @@ $V_{ref} = 1.0\text{V}$, $R_1 = R_2$ (즉 FB = B의 절반)라 하자. 루프의
 4. **출력캡이 Vout을 붙잡음** — 고주파일수록 캡 임피던스가 낮음
 
 이 넷의 곱이 곧 그 주파수의 루프이득이다. $T = 0.001$ 이면 A는 20nV 흔들린다 — 0은 아니지만 없는 것이나 마찬가지다. (보드선도가 고주파에서도 −40dB, −60dB로 **이어져 그려지는 이유**가 이것이다.)
+
+### 크로스오버에서 |A| = |B| 인 이유, 그리고 "각각 10mV"가 아닌 이유
+
+$T$ 의 정의가 $A/B$ 이므로, $|T| = 1$ 은 곧 **$|A| = |B|$** 라는 말과 같다. 크로스오버는 *"둘의 크기가 같아지는 주파수"* 로 정의된 지점이다.
+
+주의할 것은 **각각 10mV가 되는 것이 아니라는 점**이다. A와 B는 위상을 가진 벡터(페이저)이고, 강제되는 것은 **벡터 뺄셈** $B - A = 20\text{mV}$ 다.
+
+- **PM = 0°** (A와 B가 정확히 반대 위상) → 크기가 산술적으로 더해져 **각각 10mV**
+- **PM = 60°** (둘이 120° 벌어짐) → 벡터로 빼면 **각각 약 11.5mV**
+
+즉 항상 성립하는 것은 **"둘의 크기가 같다"** 이고, 실제 숫자는 위상여유에 따라 달라진다.
+
+### $T=1$ 은 "되는" 것이 아니라 "지나가는" 것
+
+크로스오버를 어떤 사건처럼 오해하기 쉬운데, 그렇지 않다. $T$ 는 저주파에서 크고 주파수가 올라갈수록 **연속적으로 작아진다**. 큰 값에서 작은 값으로 내려오니 **중간에 반드시 1을 통과**할 뿐이고, 그 통과 지점에 fc라는 이름을 붙인 것이다.
+
+물이 30도에서 10도로 식으면 반드시 20도를 지나는 것과 같다. 20도가 특별한 사건이라서가 아니라, 내려오다 보면 통과하는 지점이다.
+
+그렇다면 진짜 질문은 **"$T$ 는 왜 주파수가 올라가면 작아지는가"** 이고, 그 답이 다음 편의 **극점(pole)** 이다.
+
+### $T$ 를 끌어내리는 주범은 둘이다
+
+$T$ 는 네 블록의 곱이지만, 주파수에 따라 실제로 값을 떨어뜨리는 것은 두 개뿐이다.
+
+| 블록 | 주파수 의존성 |
+|---|---|
+| **보상기** | 적분기 형태라 주파수가 오를수록 이득이 급격히 감소 — **주범** |
+| **파워스테이지 (LC 필터)** | 공진점 위로 −40dB/decade 감쇠 |
+| PWM 변조기 | 대체로 상수 (톱니파 진폭으로 나누는 것) |
+| 피드백 분압 | 완전한 상수 ($R_2/(R_1+R_2)$) |
+
+따라서 fc를 결정하는 것은 실질적으로 **보상기 이득 곡선과 파워스테이지 감쇠 곡선이 만나 0dB를 지나는 지점**이다. 보상기를 설계한다는 것은 **그 만나는 지점을 원하는 주파수에 놓는 작업**이다.
 
 ---
 
@@ -341,6 +477,83 @@ PM은 각도지만 **fc에서만 잰다.** 그래서 fc를 올리면(대역폭 �
 | **fc** | 시간축 **스케일** | 회복 속도, 링잉 주파수 |
 
 PM 45°에 fc 10kHz와 PM 45°에 fc 100kHz는 **모양이 똑같고**, 뒤엣것이 10배 빠르게 그 과정을 끝낼 뿐이다.
+
+### 이득만 올려서 fc를 높이면 위상여유를 그대로 잃는다
+
+보상기 이득을 키우면 이득 곡선이 **위로 평행이동**한다. 모양은 그대로고 높이만 올라가므로, 0dB 교차점이 자연히 **오른쪽으로 밀려** fc가 커진다.
+
+문제는 **위상 곡선이 전혀 움직이지 않는다는 것**이다. 순수한 이득 변화는 위상에 영향을 주지 않는다.
+
+<svg viewBox="0 0 700 580" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>이득을 올리면 fc는 오른쪽으로 가고 위상여유는 사라진다</title>
+  <desc>이득 곡선만 위로 평행이동하고 위상 곡선은 그대로여서, 새 크로스오버에서 위상여유가 없어진다.</desc>
+  <text x="40" y="24" font-size="13" font-weight="700" fill="currentColor">보상기 이득만 올리면 — fc는 오른쪽으로, PM은 사라진다</text>
+  <text x="40" y="50" font-size="11.5" font-weight="700" fill="#3b82f6">이득 |T| (dB)</text>
+  <line x1="90" y1="44" x2="90" y2="240" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="240" x2="640" y2="240" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="140" x2="640" y2="140" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="5 4"/>
+  <text x="84" y="144" text-anchor="end" font-size="11" font-weight="700" fill="currentColor">0dB</text>
+  <text x="84" y="84" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">+40</text>
+  <text x="84" y="114" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">+20</text>
+  <text x="84" y="174" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−20</text>
+  <path d="M90,80 L227,110 L365,140 L431,170 L502,200 L575,224" fill="none" stroke="#3b82f6" stroke-width="2.6" stroke-opacity="0.45"/>
+  <text x="120" y="96" font-size="10" fill="#3b82f6" fill-opacity="0.7">원래</text>
+  <path d="M90,50 L227,80 L365,110 L431,140 L502,170 L575,194" fill="none" stroke="#3b82f6" stroke-width="2.8"/>
+  <text x="120" y="46" font-size="10.5" font-weight="700" fill="#3b82f6">이득 +20dB</text>
+  <defs>
+    <marker id="lgup" markerWidth="9" markerHeight="9" refX="3" refY="6" orient="auto"><path d="M3,0 L6,6 L0,6 Z" fill="#3b82f6"/></marker>
+  </defs>
+  <line x1="270" y1="115" x2="270" y2="92" stroke="#3b82f6" stroke-width="1.6" marker-end="url(#lgup)"/>
+  <line x1="470" y1="188" x2="470" y2="165" stroke="#3b82f6" stroke-width="1.6" marker-end="url(#lgup)"/>
+  <text x="286" y="108" font-size="10" fill="#3b82f6">곡선 전체가 위로 평행이동</text>
+  <circle cx="365" cy="140" r="5" fill="currentColor" fill-opacity="0.6"/>
+  <circle cx="431" cy="140" r="5.5" fill="#e0533d"/>
+  <line x1="365" y1="44" x2="365" y2="500" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <line x1="431" y1="44" x2="431" y2="500" stroke="#e0533d" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text x="352" y="36" text-anchor="end" font-size="10.5" fill="currentColor" fill-opacity="0.7">원래 fc</text>
+  <text x="352" y="48" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">10kHz</text>
+  <text x="440" y="36" font-size="11" font-weight="700" fill="#e0533d">새 fc</text>
+  <text x="440" y="48" font-size="10" fill="#e0533d">30kHz</text>
+  <text x="40" y="300" font-size="11.5" font-weight="700" fill="#f59e0b">위상 (°) — <tspan fill="currentColor">전혀 안 움직임</tspan></text>
+  <line x1="90" y1="300" x2="90" y2="480" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="480" x2="640" y2="480" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="390" x2="640" y2="390" stroke="#e0533d" stroke-dasharray="5 4" stroke-opacity="0.85"/>
+  <text x="84" y="394" text-anchor="end" font-size="11" font-weight="700" fill="#e0533d">−180°</text>
+  <text x="84" y="324" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−90°</text>
+  <text x="84" y="464" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−270°</text>
+  <path d="M90,320 L227,323 L300,331 L365,343 L400,362 L431,390 L470,412 L502,429 L575,447" fill="none" stroke="#f59e0b" stroke-width="2.8"/>
+  <circle cx="365" cy="343" r="5" fill="currentColor" fill-opacity="0.6"/>
+  <circle cx="431" cy="390" r="5.5" fill="#e0533d"/>
+  <line x1="347" y1="343" x2="347" y2="390" stroke="#16a34a" stroke-width="2.4"/>
+  <path d="M343,348 L347,341 L351,348 Z" fill="#16a34a"/>
+  <path d="M343,385 L347,392 L351,385 Z" fill="#16a34a"/>
+  <text x="338" y="360" text-anchor="end" font-size="11.5" font-weight="700" fill="#16a34a">PM 60°</text>
+  <text x="338" y="374" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">(원래)</text>
+  <text x="444" y="384" font-size="12" font-weight="700" fill="#e0533d">PM = 0°</text>
+  <text x="444" y="399" font-size="10" fill="#e0533d">발진 경계</text>
+  <g font-size="10" fill="currentColor" fill-opacity="0.7" text-anchor="middle">
+    <text x="90" y="256">100Hz</text><text x="227" y="256">1kHz</text><text x="365" y="256">10kHz</text>
+    <text x="502" y="256">100kHz</text><text x="640" y="256">1MHz</text>
+    <text x="90" y="496">100Hz</text><text x="227" y="496">1kHz</text><text x="365" y="496">10kHz</text>
+    <text x="502" y="496">100kHz</text><text x="640" y="496">1MHz</text>
+  </g>
+  <text x="40" y="528" font-size="12" fill="currentColor">이득 곡선은 <tspan font-weight="700" fill="#3b82f6">위로</tspan> 이동 → 0dB 교차점이 <tspan font-weight="700">오른쪽으로</tspan> 이동 (fc ↑)</text>
+  <text x="40" y="550" font-size="12" fill="currentColor">위상 곡선은 <tspan font-weight="700" fill="#f59e0b">그대로</tspan> → 새 fc에서 위상은 이미 −180° → <tspan font-weight="700" fill="#e0533d">PM을 통째로 잃음</tspan></text>
+  <text x="40" y="572" font-size="11.5" fill="currentColor" fill-opacity="0.7">→ 빠르면서도 안정하려면 위상 곡선 자체를 끌어올려야 한다 = <tspan font-weight="700">영점(zero)</tspan>의 역할</text>
+</svg>
+
+| | 이득 곡선 | 위상 곡선 | 새 fc에서의 위상 | PM |
+|---|---|---|---|---|
+| 원래 | — | — | −120° | **60°** |
+| 이득 +20dB (fc 30kHz) | 위로 이동 | **그대로** | −180° | **0°** |
+
+**공짜 대역폭은 없다.** 이득만 키우면 속도를 얻는 만큼 안정도를 정확히 잃는다. 그래서 보상기 설계의 실제 작업은 **위상 곡선 자체를 끌어올리는 것**이고, 그 도구가 **영점(zero)** 이다. 영점을 fc 근처에 배치하면 위상이 밀려 올라와 **fc를 높이면서도 PM을 지킬 수 있다.**
+
+### PM은 공칭이 아니라 최악 조건에서 확보한다
+
+세라믹 커패시터는 **DC 바이어스가 걸리면 실효 용량이 크게 줄어든다** (표기값의 절반 이하가 되기도 한다). 용량이 줄면 LC 공진점이 올라가고, 그만큼 **fc가 밀려 올라가 PM이 깎인다.** 온도·부품 편차·부하 범위까지 겹치면 공칭 45°가 실제 최악 조건에서 30° 밑으로 내려갈 수 있다.
+
+그래서 실무에서는 **공칭 55~60°** 를 잡아두고 최악 조건에서 45°를 지키는 식으로 설계한다.
 
 ---
 
@@ -451,11 +664,21 @@ $$Z_{out,\text{closed}} = \frac{Z_{out,\text{open}}}{1+T}$$
 
 부하 스텝은 **여러 주파수 성분의 합**이다. 날카로운 앞부분(고주파)은 루프이득이 작아 못 막으니 **캡이 감당**하고, 그 뒤 느린 성분은 루프이득이 커서 지워지므로 **결국 목표 전압으로 복귀**한다. 앞서 본 "외란의 90%가 남는다"가 눈에 보이는 형태가 바로 그 **딥**이다.
 
+### 딥의 깊이를 만드는 세 가지
+
+딥은 하나의 원인이 아니라 세 성분이 겹쳐 만들어진다.
+
+1. **ESL × di/dt** — 부하가 튀는 맨 처음 순간의 뾰족한 스파이크 (ns 영역)
+2. **ESR × ΔI** — 계단처럼 즉시 생기는 전압 강하
+3. **Cout 용량** — 인덕터 전류가 새 부하 수준까지 올라오는 동안 캡이 방전되며 생기는 하강 — **대개 이것이 가장 크다**
+
+**fc도 딥에 2차적인 영향은 준다.** 루프가 느리면 "듀티를 올려라"는 명령이 늦게 걸려 캡이 더 오래 방전되기 때문이다. 다만 루프를 아무리 빠르게 해도 **인덕터 전류 상승률 $(V_{in}-V_{out})/L$ 이라는 물리적 한계**에 부딪혀 거기서 멈춘다. 그 이상은 대역폭을 올려도 딥이 줄지 않는다.
+
 **그래서 파형을 보고 원인을 이렇게 나눈다.**
 
 | 증상 | 원인 | 처방 |
 |---|---|---|
-| **딥이 깊다** | 고주파는 루프가 못 막음 | **캡 용량↑ / ESR↓** (보상기를 만져도 효과 적음) |
+| **딥이 깊다** | 고주파는 루프가 못 막음 | **캡 용량↑ / ESR↓**, 필요시 **L↓** (대역폭은 효과 제한적) |
 | **회복이 굼뜨다** | fc가 낮음 | **대역폭 확보** (보상기 이득↑) |
 | **출렁임이 오래 감** | PM 부족 | **보상기 제로 배치 조정** |
 

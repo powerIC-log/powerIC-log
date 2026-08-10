@@ -98,15 +98,16 @@ Even with inverted timing, if the signal shrinks each trip (gain < 1) it dies ou
   <text x="666" y="222" font-size="11" fill="currentColor">R2</text>
   <line x1="640" y1="238" x2="640" y2="258" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <line x1="626" y1="258" x2="654" y2="258" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
-  <path d="M470,300 L470,360 L530,330 Z" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
-  <text x="492" y="335" font-size="10" fill="currentColor" fill-opacity="0.7">EA</text>
-  <path d="M640,185 L600,185 L600,312 L470,312" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1e)"/>
-  <text x="455" y="309" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−</text>
-  <line x1="430" y1="348" x2="470" y2="348" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1e)"/>
-  <text x="424" y="352" text-anchor="end" font-size="10.5" fill="currentColor" fill-opacity="0.7">Vref +</text>
-  <line x1="530" y1="330" x2="560" y2="330" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
-  <text x="545" y="322" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">COMP</text>
-  <path d="M560,330 L560,400 L300,400" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1e)"/>
+  <path d="M530,300 L530,360 L470,330 Z" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="508" y="335" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">EA</text>
+  <path d="M640,185 L600,185 L600,312 L530,312" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1e)"/>
+  <text x="542" y="309" font-size="10" fill="currentColor" fill-opacity="0.7">−</text>
+  <line x1="596" y1="348" x2="530" y2="348" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1e)"/>
+  <text x="542" y="358" font-size="10" fill="currentColor" fill-opacity="0.7">+</text>
+  <text x="604" y="352" font-size="10.5" fill="currentColor" fill-opacity="0.7">Vref</text>
+  <line x1="470" y1="330" x2="430" y2="330" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="450" y="322" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">COMP</text>
+  <path d="M430,330 L430,400 L300,400" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6" marker-end="url(#lg1e)"/>
   <rect x="160" y="378" width="140" height="44" rx="5" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <text x="230" y="396" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">PWM comparator</text>
   <text x="230" y="412" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">+ sawtooth</text>
@@ -129,7 +130,89 @@ $$B - A = V_{inj}$$
 
 **The source does not decide what A is, or what B is.** The loop decides that. This distinction turns out to be decisive.
 
-If you drove B from a ground-referenced generator instead, the loop would be **genuinely broken** — the converter would lose regulation and slam to a rail. Floating injection keeps **DC continuity through the resistor**, so the converter keeps regulating and only a small AC perturbation rides on top.
+<svg viewBox="0 0 780 420" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>Floating injection versus a wrong ground-referenced connection</title>
+  <desc>Left: floating injection across the resistor. Right: a generator tied to ground and driving the divider top, which breaks the loop.</desc>
+  <text x="20" y="26" font-size="13" font-weight="700" fill="#16a34a">① Correct — floating injection across the resistor</text>
+  <text x="46" y="100" font-size="11" font-weight="700" fill="currentColor">Vout</text>
+  <circle cx="80" cy="118" r="4" fill="currentColor"/>
+  <line x1="40" y1="118" x2="150" y2="118" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="80" y1="118" x2="80" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="64" y1="146" x2="96" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="64" y1="154" x2="96" y2="154" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="80" y1="154" x2="80" y2="178" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="68" y1="178" x2="92" y2="178" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="104" y="152" font-size="10" fill="currentColor" fill-opacity="0.7">Cout</text>
+  <rect x="150" y="106" width="60" height="24" rx="3" fill="none" stroke="#e0533d" stroke-width="2.2"/>
+  <text x="180" y="123" text-anchor="middle" font-size="10.5" font-weight="700" fill="#e0533d">R_inj</text>
+  <line x1="210" y1="118" x2="270" y2="118" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="250" cy="118" r="4" fill="currentColor"/>
+  <text x="262" y="112" font-size="10.5" font-weight="700" fill="currentColor">top of R1</text>
+  <line x1="250" y1="118" x2="250" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <rect x="238" y="146" width="24" height="40" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="274" y="170" font-size="10.5" fill="currentColor">R1</text>
+  <line x1="250" y1="186" x2="250" y2="216" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="250" cy="204" r="3.5" fill="currentColor"/>
+  <text x="274" y="208" font-size="10.5" font-weight="700" fill="currentColor">FB</text>
+  <rect x="238" y="216" width="24" height="40" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="274" y="240" font-size="10.5" fill="currentColor">R2</text>
+  <line x1="250" y1="256" x2="250" y2="278" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="238" y1="278" x2="262" y2="278" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="180" cy="52" r="15" fill="none" stroke="#16a34a" stroke-width="2"/>
+  <text x="180" y="57" text-anchor="middle" font-size="12" fill="#16a34a">~</text>
+  <path d="M165,52 L150,52 L150,106" fill="none" stroke="#16a34a" stroke-width="1.6"/>
+  <path d="M195,52 L210,52 L210,106" fill="none" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="20" y="322" font-size="11.5" fill="currentColor">· generator has <tspan font-weight="700" fill="#16a34a">no connection to ground</tspan> (transformer isolated)</text>
+  <text x="20" y="342" font-size="11.5" fill="currentColor">· the resistor still joins both sides → <tspan font-weight="700">DC passes through</tspan></text>
+  <text x="20" y="362" font-size="11.5" fill="currentColor">· FB still represents Vout → converter regulates, only <tspan font-weight="700">AC rides on top</tspan></text>
+  <line x1="392" y1="20" x2="392" y2="400" stroke="currentColor" stroke-opacity="0.3" stroke-dasharray="5 5"/>
+  <text x="412" y="26" font-size="13" font-weight="700" fill="#e0533d">② Wrong — driven against ground</text>
+  <text x="438" y="100" font-size="11" font-weight="700" fill="currentColor">Vout</text>
+  <circle cx="472" cy="118" r="4" fill="currentColor"/>
+  <line x1="432" y1="118" x2="542" y2="118" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="472" y1="118" x2="472" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="456" y1="146" x2="488" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="456" y1="154" x2="488" y2="154" stroke="currentColor" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="472" y1="154" x2="472" y2="178" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="460" y1="178" x2="484" y2="178" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <rect x="542" y="106" width="60" height="24" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="572" y="123" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">R_inj</text>
+  <line x1="602" y1="118" x2="662" y2="118" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="642" cy="118" r="4.5" fill="#e0533d"/>
+  <text x="654" y="112" font-size="10.5" font-weight="700" fill="#e0533d">top of R1</text>
+  <line x1="642" y1="118" x2="642" y2="146" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <rect x="630" y="146" width="24" height="40" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="666" y="170" font-size="10.5" fill="currentColor">R1</text>
+  <line x1="642" y1="186" x2="642" y2="216" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="642" cy="204" r="3.5" fill="currentColor"/>
+  <text x="666" y="208" font-size="10.5" font-weight="700" fill="currentColor">FB</text>
+  <rect x="630" y="216" width="24" height="40" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="666" y="240" font-size="10.5" fill="currentColor">R2</text>
+  <line x1="642" y1="256" x2="642" y2="278" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <line x1="630" y1="278" x2="654" y2="278" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <circle cx="700" cy="52" r="15" fill="none" stroke="#e0533d" stroke-width="2"/>
+  <text x="700" y="57" text-anchor="middle" font-size="12" fill="#e0533d">~</text>
+  <path d="M700,67 L700,90 L642,90 L642,114" fill="none" stroke="#e0533d" stroke-width="1.8"/>
+  <path d="M715,52 L740,52 L740,290" fill="none" stroke="#e0533d" stroke-width="1.8"/>
+  <line x1="728" y1="290" x2="752" y2="290" stroke="#e0533d" stroke-width="1.8"/>
+  <text x="740" y="308" text-anchor="middle" font-size="10" font-weight="700" fill="#e0533d">GND</text>
+  <text x="412" y="322" font-size="11.5" fill="currentColor">· the generator <tspan font-weight="700" fill="#e0533d">pins the top of R1 against ground</tspan></text>
+  <text x="412" y="342" font-size="11.5" fill="currentColor">· FB now represents <tspan font-weight="700">the generator, not Vout</tspan> → the loop cannot move FB</text>
+  <text x="412" y="362" font-size="11.5" fill="currentColor">· duty runs away → <tspan font-weight="700" fill="#e0533d">output hits a rail</tspan> → nothing to measure</text>
+  <text x="412" y="386" font-size="11" fill="currentColor" fill-opacity="0.7">(Vout barely moves — cap and loop hold it at a few mΩ)</text>
+</svg>
+
+**A common misconception:** it is tempting to think a ground-referenced connection "forcibly shakes the output voltage". **It does not.** The Vout node is held at a few mΩ by the output cap and the loop, so a generator sitting behind a 20Ω resistor cannot move it.
+
+What actually happens is that the **loop is severed**:
+
+1. The generator pins the top of R1 against ground → **FB now represents the generator, not Vout**
+2. The loop still tries to make FB = Vref, but **FB no longer depends on Vout**, so no amount of duty change moves it
+3. With no condition to stop at, **duty runs to one extreme** → the output goes to 0V or Vin
+
+The signal never completes the round trip — it is cut halfway. The very quantity "loop gain" is undefined.
+
+**With floating injection**, the resistor still joins both sides, so **FB keeps representing Vout** — just with a 20mV offset added. The converter keeps regulating, and we get to watch **how the loop responds to that offset**.
 
 ### Why it still works with the loop closed
 
@@ -177,7 +260,25 @@ $$A = \frac{T\,V_{inj}}{1-T}, \qquad B = \frac{V_{inj}}{1-T} \;\;\Rightarrow\;\;
   <text x="30" y="288" font-size="11.5" fill="currentColor" fill-opacity="0.7">ZL must be large so the injection current itself is tiny (DC error below 0.1%)</text>
 </svg>
 
-Looking both ways from the injection point you need **$Z_s \ll Z_L$**. In a buck, the Vout node (a few mΩ thanks to the output cap) and the feedback divider (tens of kΩ) satisfy this by more than 1000×.
+Looking both ways from the injection point you need **$Z_s \ll Z_L$**. In a buck, the Vout node and the feedback divider (tens of kΩ) satisfy this by more than 1000×.
+
+### Different players keep Zs low in different frequency bands
+
+A Bode plot means sweeping from 10Hz to 1MHz, so the condition must hold **at every frequency**. What holds the Vout node down changes with band.
+
+- **Output capacitor (passive)** — swallows current with little voltage change. Its impedance is $1/2\pi f C$, so it is **strong at high frequency and weak at low**. 100µF is 0.0016Ω at 1MHz but 160Ω at 10Hz.
+- **The loop (active)** — senses any Vout movement and corrects it via duty. It takes time, so it can only catch **slow** changes. Closed-loop output impedance is $Z_{out,\text{open}}/(1+T)$, which is powerful at low frequency where T is large.
+- **The load** — sits in parallel with Cout and lowers the combination further, so a **heavier load makes the condition easier**.
+
+Their strong bands are exactly complementary, so together they cover the whole sweep.
+
+| Frequency | Cap | Loop | Combined Zs |
+|---|---|---|---|
+| 10Hz | weak (160Ω) | **strong** (T=1000) | about **0.16Ω** |
+| near fc | medium | medium | small |
+| 1MHz | **strong** (0.002Ω) | none | **0.002Ω** |
+
+Push 1µA into the node at 10Hz: without the loop the 160Ω cap impedance would let it move 160µV, but the loop senses that and corrects through duty, so the actual movement is only $160\mu V/(1+1000) \approx 0.16\mu V$. At no frequency does Zs come near tens of kΩ.
 
 ### Sticking point ③ — "but current *does* flow there"
 
@@ -201,15 +302,17 @@ A factor of two million — negligible. Violate the condition ($Z_s$ = 5kΩ) and
 <svg viewBox="0 0 740 400" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
   <title>How the injected 20 mV splits between nodes A and B versus frequency</title>
   <desc>At low frequency the loop pins B so A takes it all; at high frequency the output cap pins A so B takes it all.</desc>
-  <text x="30" y="28" font-size="12.5" font-weight="700" fill="currentColor">A and B share the injected 20mV — whichever is held down does not move</text>
+  <text x="30" y="28" font-size="12.5" font-weight="700" fill="currentColor">The source forces only the difference B−A=20mV — how much each moves is decided by the loop</text>
   <text x="30" y="72" font-size="12.5" font-weight="700" fill="#3b82f6">Low frequency — strong loop (T = 1000)</text>
-  <text x="30" y="90" font-size="10.5" fill="currentColor" fill-opacity="0.7">the loop pins FB to Vref → B cannot move</text>
+  <text x="30" y="90" font-size="10.5" fill="currentColor" fill-opacity="0.7">The loop senses B. It has time to drive duty until B is back</text>
+  <text x="30" y="105" font-size="10.5" fill="currentColor" fill-opacity="0.7">at the value that makes FB = Vref, so B returns to place</text>
   <rect x="330" y="60" width="360" height="30" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.4"/>
   <rect x="330" y="60" width="352" height="30" rx="4" fill="#3b82f6" fill-opacity="0.35"/>
   <text x="500" y="80" text-anchor="middle" font-size="11.5" font-weight="700" fill="currentColor">A takes nearly all 20mV</text>
   <text x="330" y="108" font-size="10.5" fill="currentColor" fill-opacity="0.7">|A| ≈ 20mV, |B| ≈ 20µV → T = 1000</text>
-  <text x="30" y="185" font-size="12.5" font-weight="700" fill="currentColor">Crossover — evenly matched (T = 1)</text>
-  <text x="30" y="203" font-size="10.5" fill="currentColor" fill-opacity="0.7">loop strength ≈ cap strength</text>
+  <text x="30" y="185" font-size="12.5" font-weight="700" fill="currentColor">Crossover (T = 1)</text>
+  <text x="30" y="203" font-size="10.5" fill="currentColor" fill-opacity="0.7">T=1 means "same size after one trip", so by definition</text>
+  <text x="30" y="218" font-size="10.5" fill="currentColor" fill-opacity="0.7">this is the frequency where |A| = |B|</text>
   <rect x="330" y="173" width="360" height="30" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.4"/>
   <rect x="330" y="173" width="180" height="30" fill="#3b82f6" fill-opacity="0.35"/>
   <rect x="510" y="173" width="180" height="30" fill="#16a34a" fill-opacity="0.35"/>
@@ -217,7 +320,8 @@ A factor of two million — negligible. Violate the condition ($Z_s$ = 5kΩ) and
   <text x="600" y="193" text-anchor="middle" font-size="11.5" font-weight="700" fill="currentColor">B</text>
   <text x="330" y="221" font-size="10.5" fill="currentColor" fill-opacity="0.7">|A| = |B| → T = 1 (0dB) ← this frequency is fc</text>
   <text x="30" y="298" font-size="12.5" font-weight="700" fill="#16a34a">High frequency — loop cannot keep up (T = 0.1)</text>
-  <text x="30" y="316" font-size="10.5" fill="currentColor" fill-opacity="0.7">the output cap pins Vout → A cannot move</text>
+  <text x="30" y="316" font-size="10.5" fill="currentColor" fill-opacity="0.7">Compensator gain is at the floor, so duty barely changes and</text>
+  <text x="30" y="331" font-size="10.5" fill="currentColor" fill-opacity="0.7">nothing drives A; the cap's low impedance also holds it still</text>
   <rect x="330" y="286" width="360" height="30" rx="4" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.4"/>
   <rect x="330" y="286" width="36" height="30" fill="#3b82f6" fill-opacity="0.35"/>
   <rect x="366" y="286" width="324" height="30" fill="#16a34a" fill-opacity="0.35"/>
@@ -262,6 +366,38 @@ People say fast wiggles are simply ignored, but that is not accurate. FB does mo
 4. **Output cap pins Vout** — its impedance keeps falling with frequency
 
 The product of those four *is* the loop gain at that frequency. At $T = 0.001$, A moves by 20nV — not zero, just invisible. (This is also **why a Bode plot keeps going** at −40dB, −60dB instead of ending.)
+
+### Why |A| = |B| at crossover — and why it is not "10mV each"
+
+Since $T$ is defined as $A/B$, saying $|T| = 1$ is the same as saying **$|A| = |B|$**. Crossover is by definition *the frequency where the two are equal*.
+
+Note that this does **not** mean 10mV each. A and B are phasors, and what is forced is the **vector difference** $B - A = 20\text{mV}$.
+
+- **PM = 0°** (A and B exactly out of phase) → magnitudes add arithmetically → **10mV each**
+- **PM = 60°** (120° apart) → subtract as vectors → **about 11.5mV each**
+
+What always holds is that **their magnitudes are equal**; the actual number depends on phase margin.
+
+### $T=1$ is not something that "happens" — it is simply passed through
+
+Crossover is easy to mistake for an event. It is not. $T$ is large at low frequency and **falls continuously** as frequency rises. Coming down from a large value to a small one, it **must pass through 1** somewhere — and we named that frequency fc.
+
+Water cooling from 30°C to 10°C must pass 20°C. Not because 20°C is special, but because it is on the way.
+
+So the real question is **"why does $T$ fall with frequency?"**, and that answer is **poles** — the next post.
+
+### Only two blocks actually pull $T$ down
+
+$T$ is the product of four blocks, but only two of them vary meaningfully with frequency.
+
+| Block | Frequency dependence |
+|---|---|
+| **Compensator** | integrator-like, so gain drops steeply with frequency — **the main driver** |
+| **Power stage (LC filter)** | −40dB/decade above resonance |
+| PWM modulator | roughly constant (dividing by the sawtooth amplitude) |
+| Feedback divider | strictly constant ($R_2/(R_1+R_2)$) |
+
+So fc is effectively **where the compensator's gain curve and the power stage's attenuation curve meet at 0dB**. Designing a compensator means **placing that meeting point at the frequency you want**.
 
 ---
 
@@ -341,6 +477,83 @@ PM is an angle, but it is **only evaluated at fc**. Push fc higher (chasing band
 | **fc** | the **time scale** | recovery speed, ringing frequency |
 
 PM 45° with fc 10kHz and PM 45° with fc 100kHz have the **same shape** — the latter simply finishes 10× faster.
+
+### Raising fc with gain alone costs you the entire phase margin
+
+Increasing compensator gain shifts the magnitude curve **straight up**. The shape is unchanged and only the height moves, so the 0dB crossing slides **to the right** and fc increases.
+
+The catch is that **the phase curve does not move at all** — a pure gain change has no effect on phase.
+
+<svg viewBox="0 0 700 580" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>Raising gain moves fc right while phase margin disappears</title>
+  <desc>The magnitude curve shifts up and the phase curve stays put, so the new crossover has no phase margin.</desc>
+  <text x="40" y="24" font-size="13" font-weight="700" fill="currentColor">Raising compensator gain alone — fc moves right, PM disappears</text>
+  <text x="40" y="50" font-size="11.5" font-weight="700" fill="#3b82f6">Magnitude |T| (dB)</text>
+  <line x1="90" y1="44" x2="90" y2="240" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="240" x2="640" y2="240" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="140" x2="640" y2="140" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="5 4"/>
+  <text x="84" y="144" text-anchor="end" font-size="11" font-weight="700" fill="currentColor">0dB</text>
+  <text x="84" y="84" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">+40</text>
+  <text x="84" y="114" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">+20</text>
+  <text x="84" y="174" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−20</text>
+  <path d="M90,80 L227,110 L365,140 L431,170 L502,200 L575,224" fill="none" stroke="#3b82f6" stroke-width="2.6" stroke-opacity="0.45"/>
+  <text x="120" y="96" font-size="10" fill="#3b82f6" fill-opacity="0.7">original</text>
+  <path d="M90,50 L227,80 L365,110 L431,140 L502,170 L575,194" fill="none" stroke="#3b82f6" stroke-width="2.8"/>
+  <text x="120" y="46" font-size="10.5" font-weight="700" fill="#3b82f6">gain +20dB</text>
+  <defs>
+    <marker id="lgupe" markerWidth="9" markerHeight="9" refX="3" refY="6" orient="auto"><path d="M3,0 L6,6 L0,6 Z" fill="#3b82f6"/></marker>
+  </defs>
+  <line x1="270" y1="115" x2="270" y2="92" stroke="#3b82f6" stroke-width="1.6" marker-end="url(#lgupe)"/>
+  <line x1="470" y1="188" x2="470" y2="165" stroke="#3b82f6" stroke-width="1.6" marker-end="url(#lgupe)"/>
+  <text x="286" y="108" font-size="10" fill="#3b82f6">whole curve shifts straight up</text>
+  <circle cx="365" cy="140" r="5" fill="currentColor" fill-opacity="0.6"/>
+  <circle cx="431" cy="140" r="5.5" fill="#e0533d"/>
+  <line x1="365" y1="44" x2="365" y2="500" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <line x1="431" y1="44" x2="431" y2="500" stroke="#e0533d" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text x="352" y="36" text-anchor="end" font-size="10.5" fill="currentColor" fill-opacity="0.7">original fc</text>
+  <text x="352" y="48" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">10kHz</text>
+  <text x="440" y="36" font-size="11" font-weight="700" fill="#e0533d">new fc</text>
+  <text x="440" y="48" font-size="10" fill="#e0533d">30kHz</text>
+  <text x="40" y="300" font-size="11.5" font-weight="700" fill="#f59e0b">Phase (°) — <tspan fill="currentColor">does not move at all</tspan></text>
+  <line x1="90" y1="300" x2="90" y2="480" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="480" x2="640" y2="480" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="390" x2="640" y2="390" stroke="#e0533d" stroke-dasharray="5 4" stroke-opacity="0.85"/>
+  <text x="84" y="394" text-anchor="end" font-size="11" font-weight="700" fill="#e0533d">−180°</text>
+  <text x="84" y="324" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−90°</text>
+  <text x="84" y="464" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−270°</text>
+  <path d="M90,320 L227,323 L300,331 L365,343 L400,362 L431,390 L470,412 L502,429 L575,447" fill="none" stroke="#f59e0b" stroke-width="2.8"/>
+  <circle cx="365" cy="343" r="5" fill="currentColor" fill-opacity="0.6"/>
+  <circle cx="431" cy="390" r="5.5" fill="#e0533d"/>
+  <line x1="347" y1="343" x2="347" y2="390" stroke="#16a34a" stroke-width="2.4"/>
+  <path d="M343,348 L347,341 L351,348 Z" fill="#16a34a"/>
+  <path d="M343,385 L347,392 L351,385 Z" fill="#16a34a"/>
+  <text x="338" y="360" text-anchor="end" font-size="11.5" font-weight="700" fill="#16a34a">PM 60°</text>
+  <text x="338" y="374" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">(original)</text>
+  <text x="444" y="384" font-size="12" font-weight="700" fill="#e0533d">PM = 0°</text>
+  <text x="444" y="399" font-size="10" fill="#e0533d">on the edge</text>
+  <g font-size="10" fill="currentColor" fill-opacity="0.7" text-anchor="middle">
+    <text x="90" y="256">100Hz</text><text x="227" y="256">1kHz</text><text x="365" y="256">10kHz</text>
+    <text x="502" y="256">100kHz</text><text x="640" y="256">1MHz</text>
+    <text x="90" y="496">100Hz</text><text x="227" y="496">1kHz</text><text x="365" y="496">10kHz</text>
+    <text x="502" y="496">100kHz</text><text x="640" y="496">1MHz</text>
+  </g>
+  <text x="40" y="528" font-size="12" fill="currentColor">Magnitude shifts <tspan font-weight="700" fill="#3b82f6">up</tspan> → the 0dB crossing slides <tspan font-weight="700">right</tspan> (fc ↑)</text>
+  <text x="40" y="550" font-size="12" fill="currentColor">Phase stays <tspan font-weight="700" fill="#f59e0b">exactly where it was</tspan> → at the new fc it is already −180° → <tspan font-weight="700" fill="#e0533d">all margin gone</tspan></text>
+  <text x="40" y="572" font-size="11.5" fill="currentColor" fill-opacity="0.7">→ to be fast *and* stable you must lift the phase curve itself = what a <tspan font-weight="700">zero</tspan> does</text>
+</svg>
+
+| | Magnitude | Phase | Phase at new fc | PM |
+|---|---|---|---|---|
+| Original | — | — | −120° | **60°** |
+| Gain +20dB (fc 30kHz) | shifts up | **unchanged** | −180° | **0°** |
+
+**There is no free bandwidth.** Gain alone buys speed and loses exactly that much stability. The real work of compensator design is **lifting the phase curve**, and the tool for that is the **zero**. Place a zero near fc and the phase comes back up, so you can **raise fc while keeping PM**.
+
+### PM is secured at worst case, not nominal
+
+Ceramic capacitors **lose a large fraction of their effective capacitance under DC bias** (sometimes more than half). Less capacitance raises the LC resonance, which pushes **fc up and eats PM**. Add temperature, part tolerance and load range, and a nominal 45° can fall below 30° in the worst corner.
+
+So designs typically target **55~60° nominal** so that 45° survives worst case.
 
 ---
 
@@ -451,11 +664,21 @@ An error that creeps into the feedback path is **mistaken for a command and fait
 
 A load step is a **sum of frequency components**. Its sharp leading edge sits where loop gain is small, so the **cap** carries it; the slower content sits where loop gain is large, so it is erased and the output **returns to target**. The "90% of the disturbance remains" from earlier is exactly what that **dip** is.
 
+### Three things set the depth of the dip
+
+The dip is not one effect but three stacked together.
+
+1. **ESL × di/dt** — the sharp spike in the first instant of the load step (ns scale)
+2. **ESR × ΔI** — an immediate step-like drop
+3. **Cout capacitance** — the sag while the inductor current ramps to the new load level — **usually the largest term**
+
+**fc does have a secondary effect**: a slow loop commands "raise duty" late, so the cap discharges longer and the dip deepens. But however fast the loop is, it runs into the physical limit of the **inductor current slew rate $(V_{in}-V_{out})/L$** and stops there. Past that point more bandwidth does not shrink the dip.
+
 **So a waveform tells you which knob to turn.**
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| **Dip too deep** | loop is powerless at those frequencies | **more capacitance / lower ESR** (touching the compensator barely helps) |
+| **Dip too deep** | loop is powerless at those frequencies | **more capacitance / lower ESR**, possibly **lower L** (bandwidth helps little) |
 | **Sluggish recovery** | fc too low | **more bandwidth** (raise compensator gain) |
 | **Rings for a long time** | insufficient PM | **re-place the compensator zeros** |
 
