@@ -26,7 +26,6 @@ tags = ["개념정리", "극점", "영점", "보드선도", "control", "fundamen
 <svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
   <title>극점과 영점의 이득·위상 곡선</title>
   <desc>극점은 이득을 -20dB/dec로 꺾고 위상을 -90도로 밀며, 영점은 +20dB/dec로 세우고 위상을 +90도 되돌린다.</desc>
-
   <text x="30" y="24" font-size="13" font-weight="700" fill="#3b82f6">극점 (pole)</text>
   <text x="30" y="52" font-size="10.5" fill="currentColor" fill-opacity="0.7">이득</text>
   <line x1="70" y1="40" x2="70" y2="150" stroke="currentColor" stroke-opacity="0.45"/>
@@ -36,7 +35,6 @@ tags = ["개념정리", "극점", "영점", "보드선도", "control", "fundamen
   <circle cx="180" cy="70" r="4.5" fill="#e0533d"/>
   <line x1="180" y1="70" x2="180" y2="150" stroke="#e0533d" stroke-dasharray="4 3" stroke-width="1.3"/>
   <text x="180" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="#e0533d">fp</text>
-
   <text x="30" y="206" font-size="10.5" fill="currentColor" fill-opacity="0.7">위상</text>
   <line x1="70" y1="194" x2="70" y2="300" stroke="currentColor" stroke-opacity="0.45"/>
   <line x1="70" y1="300" x2="330" y2="300" stroke="currentColor" stroke-opacity="0.45"/>
@@ -47,9 +45,7 @@ tags = ["개념정리", "극점", "영점", "보드선도", "control", "fundamen
   <circle cx="180" cy="247" r="4.5" fill="#e0533d"/>
   <line x1="180" y1="194" x2="180" y2="300" stroke="#e0533d" stroke-dasharray="4 3" stroke-width="1.3"/>
   <text x="188" y="243" font-size="9.5" fill="#e0533d">fp에서 −45°</text>
-
   <line x1="366" y1="16" x2="366" y2="440" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="5 5"/>
-
   <text x="396" y="24" font-size="13" font-weight="700" fill="#16a34a">영점 (zero)</text>
   <text x="396" y="52" font-size="10.5" fill="currentColor" fill-opacity="0.7">이득</text>
   <line x1="436" y1="40" x2="436" y2="150" stroke="currentColor" stroke-opacity="0.45"/>
@@ -59,7 +55,6 @@ tags = ["개념정리", "극점", "영점", "보드선도", "control", "fundamen
   <circle cx="546" cy="130" r="4.5" fill="#e0533d"/>
   <line x1="546" y1="70" x2="546" y2="150" stroke="#e0533d" stroke-dasharray="4 3" stroke-width="1.3"/>
   <text x="546" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="#e0533d">fz</text>
-
   <text x="396" y="206" font-size="10.5" fill="currentColor" fill-opacity="0.7">위상</text>
   <line x1="436" y1="194" x2="436" y2="300" stroke="currentColor" stroke-opacity="0.45"/>
   <line x1="436" y1="300" x2="696" y2="300" stroke="currentColor" stroke-opacity="0.45"/>
@@ -69,7 +64,6 @@ tags = ["개념정리", "극점", "영점", "보드선도", "control", "fundamen
   <path d="M436,284 L486,283 L546,247 L616,210 L696,210" fill="none" stroke="#f59e0b" stroke-width="2.8"/>
   <circle cx="546" cy="247" r="4.5" fill="#e0533d"/>
   <text x="554" y="243" font-size="9.5" fill="#e0533d">fz에서 +45°</text>
-
   <text x="30" y="410" font-size="12" fill="currentColor">두 곡선은 <tspan font-weight="700">같은 주파수(fp 또는 fz)를 중심으로 함께</tspan> 움직인다 — 하나의 극점/영점이 이득과 위상을 동시에 만든다</text>
   <text x="30" y="434" font-size="11.5" fill="currentColor" fill-opacity="0.7">위상은 그 주파수의 1/10 지점부터 밀리기 시작해, 해당 주파수에서 절반(±45°), 10배 지점에서 ±90°에 도달한다</text>
 </svg>
@@ -151,7 +145,6 @@ $$f = \frac{1}{2\pi\tau}, \qquad \tau_{RC} = RC, \quad \tau_{LR} = \frac{L}{R}$$
   <title>배치에 따라 극점이 되는 경우와 영점이 되는 경우</title>
   <desc>직렬 C는 영점, shunt C는 극점, 직렬 L은 극점, shunt L은 영점이다.</desc>
   <text x="30" y="24" font-size="12.5" font-weight="700" fill="currentColor">주파수를 올렸을 때 출력이 <tspan fill="#e0533d">작아지면 극점</tspan> · <tspan fill="#16a34a">커지면 영점</tspan></text>
-
   <text x="40" y="58" font-size="12" font-weight="700" fill="#16a34a">직렬 C → 영점</text>
   <line x1="50" y1="100" x2="110" y2="100" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <line x1="110" y1="86" x2="110" y2="114" stroke="currentColor" stroke-opacity="0.6" stroke-width="2.2"/>
@@ -168,7 +161,6 @@ $$f = \frac{1}{2\pi\tau}, \qquad \tau_{RC} = RC, \quad \tau_{LR} = \frac{L}{R}$$
   <text x="240" y="112" font-size="10.5" fill="currentColor" fill-opacity="0.75">고주파 → C가 통함</text>
   <text x="240" y="128" font-size="10.5" font-weight="700" fill="#16a34a">→ 출력 커짐 = 영점</text>
   <text x="40" y="192" font-size="10.5" fill="currentColor" fill-opacity="0.6">저주파엔 C가 막아서 출력이 작았음</text>
-
   <text x="400" y="58" font-size="12" font-weight="700" fill="#e0533d">Shunt C → 극점</text>
   <line x1="410" y1="100" x2="450" y2="100" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <rect x="450" y="88" width="34" height="24" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
@@ -184,9 +176,7 @@ $$f = \frac{1}{2\pi\tau}, \qquad \tau_{RC} = RC, \quad \tau_{LR} = \frac{L}{R}$$
   <line x1="530" y1="160" x2="550" y2="160" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <text x="400" y="192" font-size="10.5" fill="currentColor" fill-opacity="0.75">고주파 → C가 통함 = 신호가 GND로 샘</text>
   <text x="400" y="208" font-size="10.5" font-weight="700" fill="#e0533d">→ 출력 작아짐 = 극점</text>
-
   <line x1="30" y1="232" x2="700" y2="232" stroke="currentColor" stroke-opacity="0.25"/>
-
   <text x="40" y="266" font-size="12" font-weight="700" fill="#e0533d">직렬 L → 극점</text>
   <line x1="50" y1="308" x2="100" y2="308" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <rect x="100" y="296" width="40" height="24" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
@@ -201,7 +191,6 @@ $$f = \frac{1}{2\pi\tau}, \qquad \tau_{RC} = RC, \quad \tau_{LR} = \frac{L}{R}$$
   <line x1="170" y1="384" x2="190" y2="384" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <text x="240" y="320" font-size="10.5" fill="currentColor" fill-opacity="0.75">고주파 → L이 막음</text>
   <text x="240" y="336" font-size="10.5" font-weight="700" fill="#e0533d">→ 출력 작아짐 = 극점</text>
-
   <text x="400" y="266" font-size="12" font-weight="700" fill="#16a34a">Shunt L → 영점</text>
   <line x1="410" y1="308" x2="450" y2="308" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
   <rect x="450" y="296" width="34" height="24" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
@@ -317,9 +306,7 @@ $$f = \frac{1}{2\pi\tau}, \qquad \tau_{RC} = RC, \quad \tau_{LR} = \frac{L}{R}$$
   <text x="30" y="400" font-size="11.5" fill="currentColor">저주파: 캡 임피던스 &gt; R → 평평</text>
   <text x="30" y="420" font-size="11.5" fill="currentColor">고주파: 캡 임피던스 &lt; R → 떨어짐</text>
   <text x="30" y="444" font-size="11.5" font-weight="700" fill="#e0533d">→ 둘이 같아지는 곳(fp)에서 꺾인다</text>
-
   <line x1="370" y1="16" x2="370" y2="460" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="5 5"/>
-
   <text x="400" y="26" font-size="13" font-weight="700" fill="#16a34a">② 적분기 (저항 없음)</text>
   <text x="400" y="44" font-size="10.5" fill="currentColor" fill-opacity="0.7">꺾이는 곳이 없다</text>
   <text x="400" y="70" font-size="11" font-weight="700" fill="currentColor">이득</text>
