@@ -121,8 +121,47 @@ $$f = \frac{1}{2\pi\tau}, \qquad \tau_{RC} = RC, \quad \tau_{LR} = \frac{L}{R}$$
 
 **시정수가 크면(느린 회로) 꺾이는 주파수가 낮다.** "느린 회로일수록 일찍부터 못 따라간다"는 뜻이다.
 
-- $R=1\text{k}\Omega$, $C=100\text{nF}$ → $\tau = 100\mu s$ → $f \approx 1.6\text{kHz}$
-- $R=10\Omega$, $L=100\mu H$ → $\tau = 10\mu s$ → $f \approx 16\text{kHz}$
+같은 RC 회로에서 **C만 10배 바꿔** 비교하면 효과가 그대로 보인다.
+
+| | R | C | 시정수 τ | 꺾임 주파수 |
+|---|---|---|---|---|
+| **느린 회로** | 1kΩ | 100nF | **100µs** | **1.6kHz** |
+| **빠른 회로** | 1kΩ | 10nF | **10µs** | **16kHz** |
+
+**시정수가 1/10이 되니 꺾임 주파수가 정확히 10배**로 올라간다 — 로그 축에서 한 칸(decade) 오른쪽으로 이동한 것이다.
+
+<svg viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>시정수가 다른 두 RC의 이득 곡선 비교</title>
+  <desc>시정수가 10배 작아지면 꺾임 주파수가 10배 높아져 곡선이 오른쪽으로 한 decade 이동한다.</desc>
+  <text x="30" y="24" font-size="12.5" font-weight="700" fill="currentColor">같은 R(1kΩ), C만 10배 차이 — 시정수가 작을수록 늦게 꺾인다</text>
+  <line x1="90" y1="50" x2="90" y2="240" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="240" x2="660" y2="240" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="82" y="94" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">0dB</text>
+  <text x="82" y="139" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−20</text>
+  <text x="82" y="184" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−40</text>
+  <line x1="90" y1="90" x2="660" y2="90" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="3 3"/>
+  <path d="M90,90 L256,90 L640,215" fill="none" stroke="#e0533d" stroke-width="2.8"/>
+  <path d="M90,90 L393,90 L640,171" fill="none" stroke="#3b82f6" stroke-width="2.8"/>
+  <circle cx="256" cy="90" r="5" fill="#e0533d"/>
+  <circle cx="393" cy="90" r="5" fill="#3b82f6"/>
+  <line x1="256" y1="90" x2="256" y2="240" stroke="#e0533d" stroke-dasharray="4 3" stroke-width="1.3"/>
+  <line x1="393" y1="90" x2="393" y2="240" stroke="#3b82f6" stroke-dasharray="4 3" stroke-width="1.3"/>
+  <text x="256" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#e0533d">1.6kHz</text>
+  <text x="393" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#3b82f6">16kHz</text>
+  <text x="256" y="274" text-anchor="middle" font-size="9.5" fill="#e0533d">τ = 100µs</text>
+  <text x="393" y="274" text-anchor="middle" font-size="9.5" fill="#3b82f6">τ = 10µs</text>
+  <text x="150" y="80" font-size="10.5" fill="currentColor" fill-opacity="0.7">둘 다 저주파에선 평평</text>
+  <text x="470" y="150" font-size="10.5" font-weight="700" fill="#e0533d">느린 회로 — 먼저 떨어지기 시작</text>
+  <text x="470" y="196" font-size="10.5" font-weight="700" fill="#3b82f6">빠른 회로 — 더 오래 버팀</text>
+  <line x1="256" y1="286" x2="393" y2="286" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="324" y="302" text-anchor="middle" font-size="10.5" fill="currentColor">1 decade (10배)</text>
+  <g font-size="10" fill="currentColor" fill-opacity="0.6" text-anchor="middle">
+    <text x="90" y="322">100Hz</text><text x="227" y="322">1kHz</text><text x="365" y="322">10kHz</text>
+    <text x="502" y="322">100kHz</text><text x="640" y="322">1MHz</text>
+  </g>
+</svg>
+
+**두 곡선의 모양은 완전히 같고 위치만 다르다.** 극점의 성격(−20dB/dec, −90°)은 시정수와 무관하고, **시정수는 그 꺾임을 주파수 축의 어디에 놓을지만 정한다.** 보상기 설계에서 "영점을 몇 Hz에 놓을까"를 R·C 값으로 정하는 작업이 바로 이것이다.
 
 ---
 

@@ -119,8 +119,47 @@ $$f = \frac{1}{2\pi\tau}, \qquad \tau_{RC} = RC, \quad \tau_{LR} = \frac{L}{R}$$
 
 **A larger time constant (a slower circuit) means a lower break frequency** — a slow circuit starts failing to keep up sooner.
 
-- $R=1\text{k}\Omega$, $C=100\text{nF}$ → $\tau = 100\mu s$ → $f \approx 1.6\text{kHz}$
-- $R=10\Omega$, $L=100\mu H$ → $\tau = 10\mu s$ → $f \approx 16\text{kHz}$
+Change **only C, by 10×**, in the same RC circuit and the effect is plain.
+
+| | R | C | Time constant τ | Break frequency |
+|---|---|---|---|---|
+| **Slow circuit** | 1kΩ | 100nF | **100µs** | **1.6kHz** |
+| **Fast circuit** | 1kΩ | 10nF | **10µs** | **16kHz** |
+
+**A 10× smaller time constant puts the break exactly 10× higher** — one decade to the right on a log axis.
+
+<svg viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>Gain curves of two RC circuits with different time constants</title>
+  <desc>A ten times smaller time constant moves the break frequency one decade to the right.</desc>
+  <text x="30" y="24" font-size="12.5" font-weight="700" fill="currentColor">Same R (1kΩ), C differs by 10× — a smaller time constant breaks later</text>
+  <line x1="90" y1="50" x2="90" y2="240" stroke="currentColor" stroke-opacity="0.45"/>
+  <line x1="90" y1="240" x2="660" y2="240" stroke="currentColor" stroke-opacity="0.45"/>
+  <text x="82" y="94" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">0dB</text>
+  <text x="82" y="139" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−20</text>
+  <text x="82" y="184" text-anchor="end" font-size="10" fill="currentColor" fill-opacity="0.7">−40</text>
+  <line x1="90" y1="90" x2="660" y2="90" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="3 3"/>
+  <path d="M90,90 L256,90 L640,215" fill="none" stroke="#e0533d" stroke-width="2.8"/>
+  <path d="M90,90 L393,90 L640,171" fill="none" stroke="#3b82f6" stroke-width="2.8"/>
+  <circle cx="256" cy="90" r="5" fill="#e0533d"/>
+  <circle cx="393" cy="90" r="5" fill="#3b82f6"/>
+  <line x1="256" y1="90" x2="256" y2="240" stroke="#e0533d" stroke-dasharray="4 3" stroke-width="1.3"/>
+  <line x1="393" y1="90" x2="393" y2="240" stroke="#3b82f6" stroke-dasharray="4 3" stroke-width="1.3"/>
+  <text x="256" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#e0533d">1.6kHz</text>
+  <text x="393" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#3b82f6">16kHz</text>
+  <text x="256" y="274" text-anchor="middle" font-size="9.5" fill="#e0533d">τ = 100µs</text>
+  <text x="393" y="274" text-anchor="middle" font-size="9.5" fill="#3b82f6">τ = 10µs</text>
+  <text x="150" y="80" font-size="10.5" fill="currentColor" fill-opacity="0.7">both flat at low frequency</text>
+  <text x="470" y="150" font-size="10.5" font-weight="700" fill="#e0533d">slow circuit — starts falling first</text>
+  <text x="470" y="196" font-size="10.5" font-weight="700" fill="#3b82f6">fast circuit — holds on longer</text>
+  <line x1="256" y1="286" x2="393" y2="286" stroke="currentColor" stroke-opacity="0.6" stroke-width="1.6"/>
+  <text x="324" y="302" text-anchor="middle" font-size="10.5" fill="currentColor">1 decade (10×)</text>
+  <g font-size="10" fill="currentColor" fill-opacity="0.6" text-anchor="middle">
+    <text x="90" y="322">100Hz</text><text x="227" y="322">1kHz</text><text x="365" y="322">10kHz</text>
+    <text x="502" y="322">100kHz</text><text x="640" y="322">1MHz</text>
+  </g>
+</svg>
+
+**The two curves have identical shape and differ only in position.** The nature of a pole (−20dB/dec, −90°) has nothing to do with the time constant; **the time constant only decides where on the frequency axis that break sits.** Choosing R and C to place a zero at a particular frequency in a compensator is exactly this operation.
 
 ---
 
