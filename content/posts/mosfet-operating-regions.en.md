@@ -56,79 +56,82 @@ $$\boxed{\,Q_n(x) = C_{ox}\,\big(V_{GS} - V(x) - V_{th}\big)\,}$$
 
 As you move toward the drain, $V(x)$ grows, so the overdrive $V_{GS}-V(x)-V_{th}$ shrinks. The instant the overdrive at the drain end reaches **0** ($V_{DS} = V_{OV}$), the channel is pinched off at the drain end. ($V_{GS}=5\text{V}$, $V_{th}=1\text{V}$ → $V_{OV}=4\text{V}$ example)
 
-<svg viewBox="0 0 620 580" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
-  <title>The three states seen through MOSFET channel overdrive</title>
-  <desc>overdrive = VGS − V(x) − Vth. VGS=5V, Vth=1V. pinch-off where overdrive reaches 0.</desc>
-  <text x="10" y="14" font-size="12.5" font-weight="700" fill="currentColor">overdrive = V_GS − V(x) − V_th   (V_GS=5V, V_th=1V → V_OV=4V)</text>
-  <text x="10" y="30" font-size="11" fill="currentColor" fill-opacity="0.75">overdrive &gt; 0 means the channel conducts · pinch-off where overdrive = 0</text>
-  <g transform="translate(10,48)">
-    <text x="0" y="10" font-size="13" font-weight="700" fill="currentColor">① V_DS = 1V — channel nearly uniform → acts like a resistor (ohmic), V_DS↑ → I_D↑</text>
-    <rect x="140" y="26" width="290" height="13" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
-    <text x="285" y="22" font-size="10.5" text-anchor="middle" fill="currentColor">Gate  (V_GS = 5V)</text>
-    <line x1="140" y1="41" x2="430" y2="41" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 2"/>
-    <rect x="65" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
-    <rect x="435" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
-    <text x="100" y="82" font-size="11" text-anchor="middle" fill="currentColor">S</text>
-    <text x="100" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0V</text>
-    <text x="470" y="82" font-size="11" text-anchor="middle" fill="currentColor">D</text>
-    <text x="470" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">1V</text>
-    <rect x="65" y="112" width="440" height="24" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.4"/>
-    <text x="285" y="128" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.6">p-body</text>
-    <polygon points="135,54 435,62 435,112 135,112" fill="#3b82f6" fill-opacity="0.40" stroke="#3b82f6" stroke-opacity="0.7"/>
-    <text x="150" y="50" font-size="9.5" fill="#3b82f6">overdrive 4V</text>
-    <text x="372" y="58" font-size="9.5" fill="#3b82f6">overdrive 3V</text>
-    <text x="285" y="92" font-size="10" text-anchor="middle" fill="currentColor" fill-opacity="0.85">channel →</text>
-    <line x1="135" y1="150" x2="435" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
-    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
-    <line x1="435" y1="146" x2="435" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
-    <text x="285" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">conducting channel L′ = full length</text>
+<svg viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>N-channel MOSFET cross-section in three conditions</title>
+  <desc>Ohmic, pinch-off boundary and saturation drawn on a conventional MOSFET cross-section.</desc>
+  <text x="20" y="20" font-size="12.5" font-weight="700" fill="currentColor">① V_DS = 1V — channel reaches the drain · all of V_DS sits across it → resistor (ohmic)</text>
+  <g transform="translate(0,26)">
+    <rect x="60" y="60" width="500" height="90" fill="#7fb3d5" fill-opacity="0.18" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.4"/>
+    <text x="310" y="140" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">P-substrate</text>
+    <rect x="70" y="60" width="100" height="40" rx="8" fill="#e8c86a" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="120" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">N+</text>
+    <rect x="450" y="60" width="100" height="40" rx="8" fill="#e8c86a" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="500" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">N+</text>
+    <rect x="180" y="30" width="260" height="30" fill="#7fd5a5" fill-opacity="0.3" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="310" y="50" text-anchor="middle" font-size="11" fill="currentColor">SiO2</text>
+    <rect x="175" y="14" width="270" height="16" fill="#e8c86a" fill-opacity="0.5" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <line x1="310" y1="14" x2="310" y2="2" stroke="currentColor" stroke-width="1.4"/>
+    <text x="318" y="10" font-size="10.5" font-weight="700" fill="currentColor">Gate 5V</text>
+    <line x1="120" y1="60" x2="120" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="112" y="30" text-anchor="end" font-size="10.5" font-weight="700" fill="currentColor">S 0V</text>
+    <line x1="500" y1="60" x2="500" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="508" y="30" font-size="10.5" font-weight="700" fill="currentColor">D 1V</text>
+    <polygon points="170,60 450,60 450,72 170,75" fill="#3b82f6" fill-opacity="0.5" stroke="#3b82f6" stroke-opacity="0.8"/>
+    <text x="310" y="92" text-anchor="middle" font-size="10" fill="#3b82f6">channel — nearly uniform thickness</text>
+    <line x1="170" y1="160" x2="450" y2="160" stroke="#3b82f6" stroke-width="1.4"/>
+    <line x1="170" y1="156" x2="170" y2="164" stroke="#3b82f6" stroke-width="1.4"/>
+    <line x1="450" y1="156" x2="450" y2="164" stroke="#3b82f6" stroke-width="1.4"/>
+    <text x="310" y="176" text-anchor="middle" font-size="10" fill="#3b82f6">conducting channel L&#8242; — 1V across it (all of V_DS)</text>
   </g>
-  <g transform="translate(10,228)">
-    <text x="0" y="10" font-size="13" font-weight="700" fill="currentColor">② V_DS = V_OV = 4V — overdrive at drain end = 0 → pinch-off (the boundary!)</text>
-    <rect x="140" y="26" width="290" height="13" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
-    <text x="285" y="22" font-size="10.5" text-anchor="middle" fill="currentColor">Gate  (V_GS = 5V)</text>
-    <line x1="140" y1="41" x2="430" y2="41" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 2"/>
-    <rect x="65" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
-    <rect x="435" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
-    <text x="100" y="82" font-size="11" text-anchor="middle" fill="currentColor">S</text>
-    <text x="100" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0V</text>
-    <text x="470" y="82" font-size="11" text-anchor="middle" fill="currentColor">D</text>
-    <text x="470" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">4V</text>
-    <rect x="65" y="112" width="440" height="24" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.4"/>
-    <text x="285" y="128" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.6">p-body</text>
-    <polygon points="135,52 435,112 135,112" fill="#3b82f6" fill-opacity="0.40" stroke="#3b82f6" stroke-opacity="0.7"/>
-    <text x="150" y="48" font-size="9.5" fill="#3b82f6">overdrive 4V</text>
-    <text x="412" y="106" font-size="16" fill="#e0533d" text-anchor="middle">✂</text>
-    <text x="437" y="120" font-size="9.5" fill="#e0533d">overdrive 0</text>
-    <text x="437" y="132" font-size="9.5" fill="#e0533d">cut off</text>
-    <line x1="135" y1="150" x2="435" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
-    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
-    <line x1="435" y1="146" x2="435" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
-    <text x="285" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">conducting channel L′ = full length (pinch-off at the drain end)</text>
+  <text x="20" y="238" font-size="12.5" font-weight="700" fill="currentColor">② V_DS = V_OV = 4V — thickness reaches 0 at the drain → pinch-off (boundary)</text>
+  <g transform="translate(0,244)">
+    <rect x="60" y="60" width="500" height="90" fill="#7fb3d5" fill-opacity="0.18" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.4"/>
+    <text x="310" y="140" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">P-substrate</text>
+    <rect x="70" y="60" width="100" height="40" rx="8" fill="#e8c86a" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="120" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">N+</text>
+    <rect x="450" y="60" width="100" height="40" rx="8" fill="#e8c86a" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="500" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">N+</text>
+    <rect x="180" y="30" width="260" height="30" fill="#7fd5a5" fill-opacity="0.3" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="310" y="50" text-anchor="middle" font-size="11" fill="currentColor">SiO2</text>
+    <rect x="175" y="14" width="270" height="16" fill="#e8c86a" fill-opacity="0.5" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <line x1="310" y1="14" x2="310" y2="2" stroke="currentColor" stroke-width="1.4"/>
+    <text x="318" y="10" font-size="10.5" font-weight="700" fill="currentColor">Gate 5V</text>
+    <line x1="120" y1="60" x2="120" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="112" y="30" text-anchor="end" font-size="10.5" font-weight="700" fill="currentColor">S 0V</text>
+    <line x1="500" y1="60" x2="500" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="508" y="30" font-size="10.5" font-weight="700" fill="currentColor">D 4V</text>
+    <polygon points="170,60 450,60 170,75" fill="#3b82f6" fill-opacity="0.5" stroke="#3b82f6" stroke-opacity="0.8"/>
+    <text x="441" y="72" font-size="13" fill="#e0533d">&#9986;</text>
+    <text x="386" y="92" font-size="9.5" fill="#e0533d">thickness 0 here</text>
+    <line x1="170" y1="160" x2="450" y2="160" stroke="#3b82f6" stroke-width="1.4"/>
+    <line x1="170" y1="156" x2="170" y2="164" stroke="#3b82f6" stroke-width="1.4"/>
+    <line x1="450" y1="156" x2="450" y2="164" stroke="#3b82f6" stroke-width="1.4"/>
+    <text x="310" y="176" text-anchor="middle" font-size="10" fill="#3b82f6">conducting channel L&#8242; — 4V across it (= V_OV)</text>
   </g>
-  <g transform="translate(10,408)">
-    <text x="0" y="10" font-size="13" font-weight="700" fill="currentColor">③ V_DS = 6V — overdrive already 0 before the drain, extra V_DS goes to depletion → I_D unchanged (saturation)</text>
-    <rect x="140" y="26" width="290" height="13" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
-    <text x="285" y="22" font-size="10.5" text-anchor="middle" fill="currentColor">Gate  (V_GS = 5V)</text>
-    <line x1="140" y1="41" x2="430" y2="41" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="3 2"/>
-    <rect x="65" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
-    <rect x="435" y="46" width="70" height="66" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-opacity="0.5"/>
-    <text x="100" y="82" font-size="11" text-anchor="middle" fill="currentColor">S</text>
-    <text x="100" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">0V</text>
-    <text x="470" y="82" font-size="11" text-anchor="middle" fill="currentColor">D</text>
-    <text x="470" y="97" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.7">6V</text>
-    <rect x="65" y="112" width="440" height="24" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.4"/>
-    <text x="285" y="128" font-size="9.5" text-anchor="middle" fill="currentColor" fill-opacity="0.6">p-body</text>
-    <polygon points="135,52 380,112 135,112" fill="#3b82f6" fill-opacity="0.40" stroke="#3b82f6" stroke-opacity="0.7"/>
-    <rect x="380" y="46" width="55" height="66" fill="#e0533d" fill-opacity="0.18" stroke="#e0533d" stroke-opacity="0.5" stroke-dasharray="3 2"/>
-    <text x="407" y="82" font-size="9" text-anchor="middle" fill="#e0533d">depletion</text>
-    <text x="407" y="95" font-size="8.5" text-anchor="middle" fill="#e0533d">extra V_DS</text>
-    <text x="150" y="48" font-size="9.5" fill="#3b82f6">overdrive 4V</text>
-    <text x="330" y="108" font-size="8.5" fill="#e0533d">overdrive 0</text>
-    <line x1="135" y1="150" x2="380" y2="150" stroke="#3b82f6" stroke-width="1.3"/>
-    <line x1="135" y1="146" x2="135" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
-    <line x1="380" y1="146" x2="380" y2="154" stroke="#3b82f6" stroke-width="1.3"/>
-    <text x="257" y="165" font-size="9.5" text-anchor="middle" fill="#3b82f6">conducting channel L′ = shortened (shortest) → channel-length modulation</text>
+  <text x="20" y="456" font-size="12.5" font-weight="700" fill="currentColor">③ V_DS = 6V — the extra 2V goes to the depletion gap · the channel still sees only 4V → constant current</text>
+  <g transform="translate(0,462)">
+    <rect x="60" y="60" width="500" height="90" fill="#7fb3d5" fill-opacity="0.18" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.4"/>
+    <text x="310" y="140" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">P-substrate</text>
+    <rect x="70" y="60" width="100" height="40" rx="8" fill="#e8c86a" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="120" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">N+</text>
+    <rect x="450" y="60" width="100" height="40" rx="8" fill="#e8c86a" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="500" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">N+</text>
+    <rect x="180" y="30" width="260" height="30" fill="#7fd5a5" fill-opacity="0.3" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="310" y="50" text-anchor="middle" font-size="11" fill="currentColor">SiO2</text>
+    <rect x="175" y="14" width="270" height="16" fill="#e8c86a" fill-opacity="0.5" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <line x1="310" y1="14" x2="310" y2="2" stroke="currentColor" stroke-width="1.4"/>
+    <text x="318" y="10" font-size="10.5" font-weight="700" fill="currentColor">Gate 5V</text>
+    <line x1="120" y1="60" x2="120" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="112" y="30" text-anchor="end" font-size="10.5" font-weight="700" fill="currentColor">S 0V</text>
+    <line x1="500" y1="60" x2="500" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="508" y="30" font-size="10.5" font-weight="700" fill="currentColor">D 6V</text>
+    <polygon points="170,60 390,60 170,75" fill="#3b82f6" fill-opacity="0.5" stroke="#3b82f6" stroke-opacity="0.8"/>
+    <rect x="390" y="60" width="60" height="16" fill="#e0533d" fill-opacity="0.16" stroke="#e0533d" stroke-opacity="0.6" stroke-dasharray="3 2"/>
+    <text x="420" y="92" text-anchor="middle" font-size="9.5" fill="#e0533d">depletion (extra 2V)</text>
+    <line x1="170" y1="160" x2="390" y2="160" stroke="#3b82f6" stroke-width="1.4"/>
+    <line x1="170" y1="156" x2="170" y2="164" stroke="#3b82f6" stroke-width="1.4"/>
+    <line x1="390" y1="156" x2="390" y2="164" stroke="#3b82f6" stroke-width="1.4"/>
+    <text x="280" y="176" text-anchor="middle" font-size="10" fill="#3b82f6">L&#8242; shortens — but still 4V across it</text>
   </g>
 </svg>
 

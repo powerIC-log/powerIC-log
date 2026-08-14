@@ -33,39 +33,55 @@ So this post focuses on *"what differs from NMOS."* The reason to know PMOS is c
 
 ## 2. Structure — only the polarity is flipped
 
-<svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
-  <title>NMOS vs PMOS cross-section comparison</title>
-  <desc>NMOS has n+ source/drain in a p-body with an electron channel. PMOS has p+ source/drain in an n-body with a hole channel. The polarity is reversed.</desc>
-  <!-- NMOS -->
-  <text x="30" y="24" font-size="13" font-weight="700" fill="currentColor">NMOS — electron channel</text>
-  <rect x="40" y="40" width="180" height="12" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
-  <text x="130" y="36" font-size="10" text-anchor="middle" fill="currentColor">Gate</text>
-  <line x1="40" y1="54" x2="220" y2="54" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
-  <rect x="20" y="58" width="220" height="70" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
-  <text x="130" y="120" font-size="10" text-anchor="middle" fill="currentColor" fill-opacity="0.6">p-body</text>
-  <rect x="20" y="58" width="48" height="42" fill="#3b82f6" fill-opacity="0.28" stroke="#3b82f6" stroke-opacity="0.6"/>
-  <rect x="192" y="58" width="48" height="42" fill="#3b82f6" fill-opacity="0.28" stroke="#3b82f6" stroke-opacity="0.6"/>
-  <text x="44" y="83" font-size="10" text-anchor="middle" fill="currentColor">S (n+)</text>
-  <text x="216" y="83" font-size="10" text-anchor="middle" fill="currentColor">D (n+)</text>
-  <text x="130" y="83" font-size="11" text-anchor="middle" fill="#3b82f6">electron e⁻ →</text>
-  <text x="30" y="160" font-size="11" fill="currentColor">source = low side · raise gate <tspan font-weight="700">↑</tspan> above source to turn ON</text>
-  <text x="30" y="178" font-size="11" fill="currentColor">V_GS &gt; V_th  (V_th positive)</text>
-  <!-- PMOS -->
-  <text x="360" y="24" font-size="13" font-weight="700" fill="currentColor">PMOS — hole channel</text>
-  <rect x="370" y="40" width="180" height="12" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
-  <text x="460" y="36" font-size="10" text-anchor="middle" fill="currentColor">Gate</text>
-  <line x1="370" y1="54" x2="550" y2="54" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
-  <rect x="350" y="58" width="220" height="70" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
-  <text x="460" y="120" font-size="10" text-anchor="middle" fill="currentColor" fill-opacity="0.6">n-body</text>
-  <rect x="350" y="58" width="48" height="42" fill="#e0533d" fill-opacity="0.26" stroke="#e0533d" stroke-opacity="0.6"/>
-  <rect x="522" y="58" width="48" height="42" fill="#e0533d" fill-opacity="0.26" stroke="#e0533d" stroke-opacity="0.6"/>
-  <text x="374" y="83" font-size="10" text-anchor="middle" fill="currentColor">S (p+)</text>
-  <text x="546" y="83" font-size="10" text-anchor="middle" fill="currentColor">D (p+)</text>
-  <text x="460" y="83" font-size="11" text-anchor="middle" fill="#e0533d">← hole h⁺</text>
-  <text x="360" y="160" font-size="11" fill="currentColor">source = high side · lower gate <tspan font-weight="700">↓</tspan> below source to turn ON</text>
-  <text x="360" y="178" font-size="11" fill="currentColor">V_GS &lt; V_th  (V_th negative)</text>
-  <!-- note -->
-  <text x="30" y="215" font-size="11" fill="currentColor" fill-opacity="0.8">Symbol: the source arrow points the opposite way (NMOS inward ↔ PMOS outward); PMOS is also marked with a bubble (◦) on the gate.</text>
+<svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>NMOS and PMOS cross-sections compared</title>
+  <desc>NMOS has n+ source/drain in a p-substrate with an electron channel; PMOS has p+ source/drain in an n-substrate with a hole channel.</desc>
+  <text x="20" y="24" font-size="12.5" font-weight="700" fill="#3b82f6">NMOS — electron channel</text>
+  <g transform="translate(0,34)">
+    <rect x="20" y="60" width="290" height="70" fill="#7fb3d5" fill-opacity="0.16" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="165" y="122" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">P-substrate</text>
+    <rect x="26" y="60" width="62" height="34" rx="7" fill="#e8c86a" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.2"/>
+    <text x="57" y="81" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">N+</text>
+    <rect x="242" y="60" width="62" height="34" rx="7" fill="#e8c86a" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.2"/>
+    <text x="273" y="81" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">N+</text>
+    <rect x="100" y="34" width="130" height="26" fill="#7fd5a5" fill-opacity="0.3" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.2"/>
+    <text x="165" y="52" text-anchor="middle" font-size="10" fill="currentColor">SiO2</text>
+    <rect x="96" y="20" width="138" height="14" fill="#e8c86a" fill-opacity="0.5" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.2"/>
+    <line x1="165" y1="20" x2="165" y2="8" stroke="currentColor" stroke-width="1.3"/>
+    <text x="171" y="16" font-size="10" font-weight="700" fill="currentColor">Gate</text>
+    <line x1="57" y1="60" x2="57" y2="40" stroke="currentColor" stroke-width="1.3"/>
+    <text x="51" y="36" text-anchor="end" font-size="10" font-weight="700" fill="currentColor">S (low side)</text>
+    <line x1="273" y1="60" x2="273" y2="40" stroke="currentColor" stroke-width="1.3"/>
+    <text x="279" y="36" font-size="10" font-weight="700" fill="currentColor">D</text>
+    <polygon points="88,60 242,60 242,70 88,70" fill="#3b82f6" fill-opacity="0.45" stroke="#3b82f6" stroke-opacity="0.8"/>
+    <text x="165" y="88" text-anchor="middle" font-size="10.5" fill="#3b82f6">electrons e&#8315; →</text>
+  </g>
+  <text x="20" y="200" font-size="11" fill="currentColor">source sits at the low side · gate goes above the source to turn on</text>
+  <text x="20" y="219" font-size="11" fill="currentColor">V_GS &gt; V_th (V_th positive)</text>
+  <text x="360" y="24" font-size="12.5" font-weight="700" fill="#e0533d">PMOS — hole channel</text>
+  <g transform="translate(340,34)">
+    <rect x="20" y="60" width="290" height="70" fill="#e8a06a" fill-opacity="0.16" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="165" y="122" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity="0.7">N-substrate (n-well)</text>
+    <rect x="26" y="60" width="62" height="34" rx="7" fill="#7fb3d5" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.2"/>
+    <text x="57" y="81" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">P+</text>
+    <rect x="242" y="60" width="62" height="34" rx="7" fill="#7fb3d5" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.2"/>
+    <text x="273" y="81" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">P+</text>
+    <rect x="100" y="34" width="130" height="26" fill="#7fd5a5" fill-opacity="0.3" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.2"/>
+    <text x="165" y="52" text-anchor="middle" font-size="10" fill="currentColor">SiO2</text>
+    <rect x="96" y="20" width="138" height="14" fill="#e8c86a" fill-opacity="0.5" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.2"/>
+    <line x1="165" y1="20" x2="165" y2="8" stroke="currentColor" stroke-width="1.3"/>
+    <text x="171" y="16" font-size="10" font-weight="700" fill="currentColor">Gate</text>
+    <line x1="57" y1="60" x2="57" y2="40" stroke="currentColor" stroke-width="1.3"/>
+    <text x="51" y="36" text-anchor="end" font-size="10" font-weight="700" fill="currentColor">S (high side)</text>
+    <line x1="273" y1="60" x2="273" y2="40" stroke="currentColor" stroke-width="1.3"/>
+    <text x="279" y="36" font-size="10" font-weight="700" fill="currentColor">D</text>
+    <polygon points="88,60 242,60 242,70 88,70" fill="#e0533d" fill-opacity="0.45" stroke="#e0533d" stroke-opacity="0.8"/>
+    <text x="165" y="88" text-anchor="middle" font-size="10.5" fill="#e0533d">← holes h&#8314;</text>
+  </g>
+  <text x="360" y="200" font-size="11" fill="currentColor">source sits at the high side · gate goes below the source to turn on</text>
+  <text x="360" y="219" font-size="11" fill="currentColor">V_GS &lt; V_th (V_th negative)</text>
+  <line x1="332" y1="14" x2="332" y2="228" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="4 4"/>
+  <text x="20" y="242" font-size="10.5" fill="currentColor" fill-opacity="0.7">Only n-type and p-type are swapped; the structure is symmetric. In the symbol the source arrow points the other way, and PMOS is often drawn with a bubble at the gate.</text>
 </svg>
 
 Only the n-type and p-type are swapped; the structure is symmetric. Where NMOS has n+ source/drain in a p-body, PMOS has p+ source/drain in an n-body.
@@ -126,61 +142,83 @@ The vertical axis is the current magnitude $I_D$, and the horizontal axis is $V_
 
 Now let's see, region by region, **where the voltage falls and how the holes flow**.
 
-<svg viewBox="0 0 640 470" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
-  <title>PMOS bias and hole current flow by region</title>
-  <desc>S·G·D voltages and the hole current path in each of Cutoff/Triode/Saturation.</desc>
-  <defs>
-    <marker id="ph" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#e0533d"/></marker>
-  </defs>
-  <g transform="translate(0,20)">
-    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">① Cutoff — gate as high as source (V_SG=0) → no channel</text>
-    <text x="255" y="26" font-size="10" text-anchor="middle" fill="currentColor">Gate</text>
-    <rect x="175" y="28" width="160" height="11" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
-    <line x1="175" y1="41" x2="335" y2="41" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
-    <rect x="155" y="44" width="200" height="50" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
-    <text x="255" y="88" font-size="9" text-anchor="middle" fill="currentColor" fill-opacity="0.55">n-body</text>
-    <rect x="155" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
-    <rect x="313" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
-    <text x="176" y="67" font-size="10" text-anchor="middle" fill="currentColor">S</text>
-    <text x="334" y="67" font-size="10" text-anchor="middle" fill="currentColor">D</text>
-    <text x="390" y="46" font-size="11" fill="currentColor">S=5V · G=5V · D=0V</text>
-    <text x="390" y="65" font-size="11" fill="#e0533d">V_SG = 0 → no channel</text>
-    <text x="390" y="84" font-size="11" fill="currentColor">I_D = 0 (OFF)</text>
+<svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
+  <title>PMOS (p-channel) cross-section in three conditions</title>
+  <desc>Ohmic, pinch-off boundary and saturation on a PMOS cross-section. The source sits at the high side and holes flow from source to drain.</desc>
+  <text x="20" y="16" font-size="10.5" fill="currentColor" fill-opacity="0.7">V_SG = 5V, |V_th| = 1V → V_OV = 4V (gate pulled 5V below the source to turn it on)</text>
+  <text x="20" y="36" font-size="12.5" font-weight="700" fill="currentColor">① V_SD = 1V — channel reaches the drain · all of V_SD sits across it → resistor (triode)</text>
+  <g transform="translate(0,42)">
+    <rect x="60" y="60" width="500" height="90" fill="#e8a06a" fill-opacity="0.16" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.4"/>
+    <text x="310" y="140" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">N-substrate (n-well)</text>
+    <rect x="70" y="60" width="100" height="40" rx="8" fill="#7fb3d5" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="120" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">P+</text>
+    <rect x="450" y="60" width="100" height="40" rx="8" fill="#7fb3d5" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="500" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">P+</text>
+    <rect x="180" y="30" width="260" height="30" fill="#7fd5a5" fill-opacity="0.3" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="310" y="50" text-anchor="middle" font-size="11" fill="currentColor">SiO2</text>
+    <rect x="175" y="14" width="270" height="16" fill="#e8c86a" fill-opacity="0.5" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <line x1="310" y1="14" x2="310" y2="2" stroke="currentColor" stroke-width="1.4"/>
+    <text x="318" y="10" font-size="10.5" font-weight="700" fill="currentColor">Gate 1V</text>
+    <line x1="120" y1="60" x2="120" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="112" y="30" text-anchor="end" font-size="10.5" font-weight="700" fill="currentColor">S 6V</text>
+    <line x1="500" y1="60" x2="500" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="508" y="30" font-size="10.5" font-weight="700" fill="currentColor">D 5V</text>
+    <polygon points="170,60 450,60 450,72 170,75" fill="#e0533d" fill-opacity="0.45" stroke="#e0533d" stroke-opacity="0.8"/>
+    <text x="310" y="92" text-anchor="middle" font-size="10" fill="#e0533d">hole channel h&#8314; — nearly uniform, S&#8594;D</text>
+    <line x1="170" y1="160" x2="450" y2="160" stroke="#e0533d" stroke-width="1.4"/>
+    <line x1="170" y1="156" x2="170" y2="164" stroke="#e0533d" stroke-width="1.4"/>
+    <line x1="450" y1="156" x2="450" y2="164" stroke="#e0533d" stroke-width="1.4"/>
+    <text x="310" y="176" text-anchor="middle" font-size="10" fill="#e0533d">conducting channel L&#8242; — 1V across it (all of V_SD)</text>
   </g>
-  <g transform="translate(0,170)">
-    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">② Triode (ohmic) — large V_SG · small V_SD → channel fully filled, resistor-like</text>
-    <text x="255" y="26" font-size="10" text-anchor="middle" fill="currentColor">Gate</text>
-    <rect x="175" y="28" width="160" height="11" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
-    <line x1="175" y1="41" x2="335" y2="41" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
-    <rect x="155" y="44" width="200" height="50" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
-    <rect x="155" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
-    <rect x="313" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
-    <text x="176" y="67" font-size="10" text-anchor="middle" fill="currentColor">S</text>
-    <text x="334" y="67" font-size="10" text-anchor="middle" fill="currentColor">D</text>
-    <rect x="197" y="46" width="116" height="11" fill="#e0533d" fill-opacity="0.4" stroke="#e0533d" stroke-opacity="0.5"/>
-    <line x1="205" y1="72" x2="305" y2="72" stroke="#e0533d" stroke-width="2" marker-end="url(#ph)"/>
-    <text x="255" y="68" font-size="9.5" text-anchor="middle" fill="#e0533d">hole h⁺ →</text>
-    <text x="390" y="46" font-size="11" fill="currentColor">S=5V · G=0V · D=4.5V</text>
-    <text x="390" y="65" font-size="11" fill="#e0533d">V_SG=5 · V_SD=0.5</text>
-    <text x="390" y="84" font-size="11" fill="currentColor">hole S→D, I_D ∝ V_SD</text>
+  <text x="20" y="254" font-size="12.5" font-weight="700" fill="currentColor">② V_SD = V_OV = 4V — thickness reaches 0 at the drain → pinch-off (boundary)</text>
+  <g transform="translate(0,260)">
+    <rect x="60" y="60" width="500" height="90" fill="#e8a06a" fill-opacity="0.16" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.4"/>
+    <text x="310" y="140" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">N-substrate (n-well)</text>
+    <rect x="70" y="60" width="100" height="40" rx="8" fill="#7fb3d5" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="120" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">P+</text>
+    <rect x="450" y="60" width="100" height="40" rx="8" fill="#7fb3d5" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="500" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">P+</text>
+    <rect x="180" y="30" width="260" height="30" fill="#7fd5a5" fill-opacity="0.3" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="310" y="50" text-anchor="middle" font-size="11" fill="currentColor">SiO2</text>
+    <rect x="175" y="14" width="270" height="16" fill="#e8c86a" fill-opacity="0.5" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <line x1="310" y1="14" x2="310" y2="2" stroke="currentColor" stroke-width="1.4"/>
+    <text x="318" y="10" font-size="10.5" font-weight="700" fill="currentColor">Gate 1V</text>
+    <line x1="120" y1="60" x2="120" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="112" y="30" text-anchor="end" font-size="10.5" font-weight="700" fill="currentColor">S 6V</text>
+    <line x1="500" y1="60" x2="500" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="508" y="30" font-size="10.5" font-weight="700" fill="currentColor">D 2V</text>
+    <polygon points="170,60 450,60 170,75" fill="#e0533d" fill-opacity="0.45" stroke="#e0533d" stroke-opacity="0.8"/>
+    <text x="441" y="72" font-size="13" fill="#3b82f6">&#9986;</text>
+    <text x="386" y="92" font-size="9.5" fill="#3b82f6">thickness 0 here</text>
+    <line x1="170" y1="160" x2="450" y2="160" stroke="#e0533d" stroke-width="1.4"/>
+    <line x1="170" y1="156" x2="170" y2="164" stroke="#e0533d" stroke-width="1.4"/>
+    <line x1="450" y1="156" x2="450" y2="164" stroke="#e0533d" stroke-width="1.4"/>
+    <text x="310" y="176" text-anchor="middle" font-size="10" fill="#e0533d">conducting channel L&#8242; — 4V across it (= V_OV)</text>
   </g>
-  <g transform="translate(0,320)">
-    <text x="10" y="12" font-size="12.5" font-weight="700" fill="currentColor">③ Saturation — large V_SD → pinch-off at the drain side, I_D constant</text>
-    <text x="255" y="26" font-size="10" text-anchor="middle" fill="currentColor">Gate</text>
-    <rect x="175" y="28" width="160" height="11" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-opacity="0.6"/>
-    <line x1="175" y1="41" x2="335" y2="41" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="3 2"/>
-    <rect x="155" y="44" width="200" height="50" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.4"/>
-    <rect x="155" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
-    <rect x="313" y="44" width="42" height="40" fill="#e0533d" fill-opacity="0.22" stroke="#e0533d" stroke-opacity="0.55"/>
-    <text x="176" y="67" font-size="10" text-anchor="middle" fill="currentColor">S</text>
-    <text x="334" y="67" font-size="10" text-anchor="middle" fill="currentColor">D</text>
-    <polygon points="197,46 300,57 197,57" fill="#e0533d" fill-opacity="0.4" stroke="#e0533d" stroke-opacity="0.5"/>
-    <rect x="300" y="44" width="13" height="40" fill="#e0533d" fill-opacity="0.12" stroke="#e0533d" stroke-opacity="0.45" stroke-dasharray="2 2"/>
-    <text x="306" y="102" font-size="8" text-anchor="middle" fill="#e0533d">depletion</text>
-    <line x1="205" y1="66" x2="288" y2="66" stroke="#e0533d" stroke-width="2" marker-end="url(#ph)"/>
-    <text x="390" y="46" font-size="11" fill="currentColor">S=5V · G=0V · D=1V</text>
-    <text x="390" y="65" font-size="11" fill="#e0533d">V_SG=5 · V_SD=4</text>
-    <text x="390" y="84" font-size="11" fill="currentColor">pinch-off, I_D=½kV_OV² fixed</text>
+  <text x="20" y="472" font-size="12.5" font-weight="700" fill="currentColor">③ V_SD = 6V — the extra 2V goes to the depletion gap · the channel still sees only 4V → constant current</text>
+  <g transform="translate(0,478)">
+    <rect x="60" y="60" width="500" height="90" fill="#e8a06a" fill-opacity="0.16" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.4"/>
+    <text x="310" y="140" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.7">N-substrate (n-well)</text>
+    <rect x="70" y="60" width="100" height="40" rx="8" fill="#7fb3d5" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="120" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">P+</text>
+    <rect x="450" y="60" width="100" height="40" rx="8" fill="#7fb3d5" fill-opacity="0.35" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="500" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">P+</text>
+    <rect x="180" y="30" width="260" height="30" fill="#7fd5a5" fill-opacity="0.3" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <text x="310" y="50" text-anchor="middle" font-size="11" fill="currentColor">SiO2</text>
+    <rect x="175" y="14" width="270" height="16" fill="#e8c86a" fill-opacity="0.5" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.3"/>
+    <line x1="310" y1="14" x2="310" y2="2" stroke="currentColor" stroke-width="1.4"/>
+    <text x="318" y="10" font-size="10.5" font-weight="700" fill="currentColor">Gate 1V</text>
+    <line x1="120" y1="60" x2="120" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="112" y="30" text-anchor="end" font-size="10.5" font-weight="700" fill="currentColor">S 6V</text>
+    <line x1="500" y1="60" x2="500" y2="34" stroke="currentColor" stroke-width="1.4"/>
+    <text x="508" y="30" font-size="10.5" font-weight="700" fill="currentColor">D 0V</text>
+    <polygon points="170,60 390,60 170,75" fill="#e0533d" fill-opacity="0.45" stroke="#e0533d" stroke-opacity="0.8"/>
+    <rect x="390" y="60" width="60" height="16" fill="#3b82f6" fill-opacity="0.16" stroke="#3b82f6" stroke-opacity="0.6" stroke-dasharray="3 2"/>
+    <text x="420" y="92" text-anchor="middle" font-size="9.5" fill="#3b82f6">depletion (extra 2V)</text>
+    <line x1="170" y1="160" x2="390" y2="160" stroke="#e0533d" stroke-width="1.4"/>
+    <line x1="170" y1="156" x2="170" y2="164" stroke="#e0533d" stroke-width="1.4"/>
+    <line x1="390" y1="156" x2="390" y2="164" stroke="#e0533d" stroke-width="1.4"/>
+    <text x="280" y="176" text-anchor="middle" font-size="10" fill="#e0533d">L&#8242; shortens — but still 4V across it</text>
   </g>
 </svg>
 
