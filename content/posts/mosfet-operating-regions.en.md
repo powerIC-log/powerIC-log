@@ -286,6 +286,28 @@ The point that inevitably trips you up when you work with BJTs alongside.
 - **Power MOSFET in a switching converter**: it shuttles between `cutoff ↔ triode`. When fully ON it is in **triode** (low $R_{DS(on)}$), so conduction loss is small. During the transition it briefly passes through saturation where $V\cdot I$ overlap → **switching loss**.
 - **Pass FET in an LDO**: it operates like a current source in **saturation (active)** and drops $(V_{in}-V_{out})$ → that voltage difference × current becomes **heat** directly. This is the root of the LDO efficiency $\eta = V_{out}/V_{in}$.
 
+### Why an LDO runs in saturation — "wouldn't turning it fully on be better?"
+
+With a switch mindset it seems obvious that *if you're turning it on anyway, drive it hard into triode and minimise $R_{DS(on)}$.* **For an LDO it is exactly the opposite.**
+
+**An LDO's job is to hold the output steady while the input moves and the load changes**, and that requires the pass FET to **absorb precisely the leftover voltage.** With $V_{in}=1.8\text{V}$ and $V_{out}=1.2\text{V}$, something has to drop 0.6V.
+
+| Pass FET state | Result |
+|---|---|
+| **Fully on in triode** ($R_{DS(on)}=20\text{m}\Omega$) | at 1A it drops only **20mV** → the output becomes 1.78V and simply **follows the input** → no regulation |
+| **Saturation (current source)** | the gate voltage is trimmed so it drops **exactly 0.6V** → **output held at 1.2V** |
+
+So an LDO's pass FET is not a switch but an **electronically adjusted variable resistor**, with the loop trimming the gate continuously to set the drop.
+
+**The control behaviour also demands saturation.**
+
+- **Triode**: $I_D$ is sensitive to $V_{DS}$ → a small input wobble swings the current → twitchy, poorly behaved control
+- **Saturation**: $I_D$ is set by $V_{GS}$ and is insensitive to $V_{DS}$ → clean control through the gate → and better **PSRR** (input-ripple rejection)
+
+> **In one line:** a switch aims to **drop as little voltage as possible** (triode); an LDO pass element aims to **drop exactly the right amount** (saturation). That drop × current is pure heat, which is the same reason efficiency is pinned at $V_{out}/V_{in}$.
+
+**Dropout is precisely this boundary.** When $V_{in}$ gets too close to $V_{out}$ the pass FET can no longer stay in saturation and is **pushed into triode.** At that moment regulation is lost and the output starts following the input — the **dropout voltage** in a datasheet marks this point.
+
 ---
 
 ## Key takeaways
