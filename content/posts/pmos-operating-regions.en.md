@@ -114,6 +114,23 @@ If the signs get confusing, **look at magnitudes (absolute values)** and you get
 
 The **principles — pinch-off, channel charge, "why the current is constant in saturation" (series resistance + voltage division) — are 100% identical to the NMOS post**: read electron as hole and the sign as reversed. For the detailed mechanism, see the [NMOS post](../mosfet-operating-regions/).
 
+> ## The dividing line is the same as for NMOS
+>
+> **If the hole channel runs unbroken from source all the way to the drain it is triode (ohmic); if it is cut off before reaching the drain it is saturation.**
+>
+> - Overdrive at the drain end **> 0** → the channel reaches the drain → **triode** (= $\lvert V_{DS}\rvert < V_{OV}$)
+> - Overdrive at the drain end **≤ 0** → cut off before the drain → **saturation** (= $\lvert V_{DS}\rvert \ge V_{OV}$)
+
+**"Unbroken" does not mean "uniform in thickness".** With a very small $V_{SD}$ the channel is nearly uniform and the response is **truly linear** (a pure resistor); as $V_{SD}$ approaches $V_{OV}$ the drain end thins and **the curve bends over**. It is still triode as long as it is not cut.
+
+The two regions also differ in **what the conducting channel actually sees**, which is why one behaves as a resistor and the other as a current source.
+
+| | Voltage across the conducting channel | So |
+|---|---|---|
+| **Triode** ($V_{SD}=1\text{V}$) | **all of $V_{SD}$** (1V) | raising $V_{SD}$ raises the push directly → **resistor** |
+| **Boundary** ($V_{SD}=V_{OV}$) | 4V | the drain-end thickness reaches zero here |
+| **Saturation** ($V_{SD}=6\text{V}$) | **still $V_{OV}$** (4V); the rest is absorbed by the depletion gap | what the channel sees never changes → **constant current** |
+
 ---
 
 ## 5. Voltage–current curve and current flow by region

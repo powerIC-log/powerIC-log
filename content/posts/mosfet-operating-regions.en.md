@@ -56,6 +56,23 @@ $$\boxed{\,Q_n(x) = C_{ox}\,\big(V_{GS} - V(x) - V_{th}\big)\,}$$
 
 As you move toward the drain, $V(x)$ grows, so the overdrive $V_{GS}-V(x)-V_{th}$ shrinks. The instant the overdrive at the drain end reaches **0** ($V_{DS} = V_{OV}$), the channel is pinched off at the drain end. ($V_{GS}=5\text{V}$, $V_{th}=1\text{V}$ → $V_{OV}=4\text{V}$ example)
 
+> ## One thing separates triode from saturation
+>
+> **If the channel runs unbroken from source all the way to the drain it is triode (ohmic); if it is cut off before reaching the drain it is saturation.**
+>
+> - Overdrive at the drain end **> 0** → the channel reaches the drain → **triode** (= $V_{DS} < V_{OV}$)
+> - Overdrive at the drain end **≤ 0** → cut off before the drain → **saturation** (= $V_{DS} \ge V_{OV}$)
+
+**"Unbroken" does not mean "uniform in thickness".** When $V_{DS}$ is very small ($V_{DS} \ll V_{OV}$) the channel is nearly uniform and the response is **truly linear** (a pure resistor); as $V_{DS}$ approaches $V_{OV}$ the drain end thins, resistance rises and **the curve bends over**. It is still triode as long as it is not cut.
+
+The two regions also differ in **what the conducting channel actually sees** — which is precisely why one behaves as a resistor and the other as a current source.
+
+| | Voltage across the conducting channel | So |
+|---|---|---|
+| **Triode** ($V_{DS}=1\text{V}$) | **all of $V_{DS}$** (1V) | raising $V_{DS}$ raises the push directly → **resistor** |
+| **Boundary** ($V_{DS}=V_{OV}$) | 4V | the drain-end thickness reaches zero here |
+| **Saturation** ($V_{DS}=6\text{V}$) | **still $V_{OV}$** (4V); the rest is absorbed by the depletion gap | what the channel sees never changes → **constant current** |
+
 <svg viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, sans-serif" style="max-width:100%;height:auto;margin:1.5rem 0;">
   <title>N-channel MOSFET cross-section in three conditions</title>
   <desc>Ohmic, pinch-off boundary and saturation drawn on a conventional MOSFET cross-section.</desc>
